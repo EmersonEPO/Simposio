@@ -3,6 +3,7 @@
     
     $email = mysql_real_escape_string( $_POST['email']);
     $senha = mysql_real_escape_string( $_POST['senha']);
+   
 
     $sql = "SELECT * FROM usuario WHERE '".$email."' = email AND '".$senha."' = senha LIMIT 1";
     $query = mysql_query($sql);

@@ -14,14 +14,14 @@
     
     //setando dados
     $usuario->setUsuario($nome);
-    $usuario->etEmail($email);
+    $usuario->setEmail($email);
     $usuario->setSenha($senha);
     
     //persistindo dados na dao
     if(!$dao->inserir($usuario)){
         echo"<script language='javascript'> 
                 alert('Salvo com sucesso!') 
-                window.location.href='../Presentation/login.php'
+                window.location.href='../presentation/login.php?ok=0'
              </script>";
     }else{
         echo"<script language='javascript'> 

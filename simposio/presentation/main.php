@@ -14,10 +14,7 @@
    }	 
 ?>
 <?php
-    include_once "../dataAccess/connection.php";
-    
-    
-    
+    include_once "../dataAccess/connection.php";   
 
 ?>
 
@@ -25,6 +22,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="style/resetar.css" >
+        <link rel="stylesheet" type="text/css" href="style/style.css" >
+    
         <title>Simpósio</title>
     </head>
     <body>
@@ -37,9 +37,23 @@
                 }
                 //------
             ?>
+            <!-- menu horizontal -->
+            <div class="div-menuprincipal">
+                <?php
+                            include_once "menuHorizontal.php";
+                ?>
+                
+            </div>
+            <!-- fim menu -->
             
-            <a href="logout.php">sair</a>
-        </div>
+            <!-- corpo -->
+            <div class="div-corpo">
+                
+                
+            </div>
+            <!-- fim corpo -->
+            
+            
         
     </body>
 </html>

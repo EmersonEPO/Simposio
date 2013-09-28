@@ -14,7 +14,7 @@
         setcookie("expira");
         //mensagem informando que o tempo do usuario expirou, redireciona para index
         echo "<script language='javascript'>
-                    alert('Seu tempo expirou manolo!');
+                    alert('Seu tempo expirou!');
                     window.location.href='../presentation/index.php'
               </script>";
         

@@ -6,7 +6,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style/resetar.css" >
+        <link rel="stylesheet" type="text/css" href="style/reset.css" >
         <link rel="stylesheet" type="text/css" href="style/styleLogin.css" >
         <link rel="stylesheet" type="text/css" href="style/animacaoLogin.css" >
         <title>Login</title>

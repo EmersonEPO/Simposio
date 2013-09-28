@@ -12,16 +12,22 @@
         //senha e usuario invalido
         //echo $sql;
         //redireciona para a tela de login
-        header("Location: index.php?erro= $query"); exit;
+        header("Location: index.php"); exit;
    
     }else{
 	// Salva os dados encontados na variável $resultado
 	$resultado = mysql_fetch_assoc($query);
         // Se a sessão não existir, inicia uma
         //echo $sql;
-        
-        if (!isset($_SESSION)) session_start();
-	    // Salva os dados encontrados na sessão
+        //tempo em segundos para a a sessao ser encerrada     
+        if (!isset($_SESSION)){
+            //inicia uma nova sessao
+            session_start();
+            //criar um cokie para indicar se a sessao deve ser finalizada
+            setcookie("expira",0,(time() + 10));
+            //-----
+         }
+	    // Salva os dados encontrados na consulta sql dentro de uma sessão
 	    $_SESSION['email'] = $resultado['email'];
 	    $_SESSION['nivel'] = $resultado['nivel'];
             $_SESSION['nome'] = $resultado['nome'];

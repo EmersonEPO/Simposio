@@ -6,21 +6,39 @@ and open the template in the editor.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style/resetar.css" >
-        <link rel="stylesheet" type="text/css" href="style/style.css" >
+        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/teste.css);</style>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){      
+                $('.nav li').hover(
+                
+                function(){
+		    $('ul', this).fadeIn();
+		},
+		
+		function(){
+                    $('ul', this).fadeOut();
+		}          
+            );       
+            });
+            
+        </script>
         <title></title>
     </head>
     <body>
-        <?php
-            echo "[".$_SESSION['nome']."]";
-        ?>
-        <a  href="#" class="link-menu-vertical">menu 1</a>
-        <a  href="#" class="link-menu-vertical">menu 2</a>
-        <a  href="#" class="link-menu-vertical">menu 3</a>
-        <a  href="#" class="link-menu-vertical">menu 4</a>
-        <a  href="#" class="link-menu-vertical">menu 5</a>
-        <a  href="#" class="link-menu-vertical">menu 6</a>
-        <a href="logout.php" class="link-sair">sair</a>
+        <div class="cssuser">
+            <?php
+            echo "<ul class=><li><a href='' class='link_font_user'>".$_SESSION['nome']."</a></li></ul>";
+            ?>
         </div>
+        
+        
+       
+                  
+</ul>
+
+ 
+           
     </body>
 </html>

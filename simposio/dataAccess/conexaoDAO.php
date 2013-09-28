@@ -16,7 +16,13 @@ class conexaoDAO {
     private $server = "localhost";
     private $database = "bdevento";
     
-    
+    function __construct() {
+        $this->user;
+        $this->passwd;
+        $this->server;
+        $this->databas;
+    }
+
 
     //inicia uma conexao
     public function conectar(){

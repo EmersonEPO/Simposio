@@ -1,15 +1,15 @@
 <?php
-    include_once "../dataAccess/connection.php";
     include_once "../domainModel/Usuario.php";
-    include_once "../dataAccess/UsuarioDAO.php";
+    include_once "../dataAccess/usuarioDAO.php";
+    
     
     //recebendo os dados via post
     $nome = ($_POST["nick"]);
     $email = ($_POST["email"]);
     $senha = ($_POST["senha"]);
     
-    //criando objetos
-    $dao = new UsuarioDAO();
+    //instanciando
+    $dao = new usuarioDAO();
     $usuario = new Usuario();
     
     //setando dados

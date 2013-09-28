@@ -13,7 +13,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            include_once "../dataAccess/connection.php";
+            
         ?>
         <div id="container">
             <form name="login" id="login" method="POST" action="login.php">
@@ -24,7 +24,7 @@ and open the template in the editor.
                 <input type="password" id="senha" name="senha" value="" required ><br/>
                 <!-- Registrar -->
                 <span class="registrar">Não é registrado?</span> 
-                <a href="frmCadUsuario.php" class="cliqueaqui">Clique aqui!</a>
+                <a href="save/frmUsuario.php" class="cliqueaqui">Clique aqui!</a>
                 <div id="lower">
                     <!-- botao entrar -->
                     <input type="submit" id="entrar" name="entrar" value="Entrar">

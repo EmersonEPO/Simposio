@@ -16,7 +16,7 @@ and open the template in the editor.
         <div>
             <fieldsetl>
                 <legend>Usuario</legend>
-                <form name="formUsuario" id="formUsuario" method="POST" action="../controller/ctlUsuario.php">
+                <form name="formUsuario" id="formUsuario" method="POST" action="../../controller/ctlUsuario.php">
                     <label for="nick">Nickname:</label>
                     <input type="text" required name="nick" id="nick"><br/>
                     <!-- -->

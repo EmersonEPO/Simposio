@@ -6,7 +6,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);</style> 
+        <style type="text/css" media="all">@import url(../style/reset.css);@import url(../style/generic.css);@import url(../style/style.css);</style> 
         
         <title>Dados Pessoais</title>
     </head>
@@ -14,6 +14,7 @@ and open the template in the editor.
         <?php
         // put your code here
         ?>
+        <div class="divNovaPessoa">
         <fieldset class="cssfielset">
             <legend></legend>
             
@@ -40,15 +41,27 @@ and open the template in the editor.
                     <option value="" selected="">Selecione</option>
                     <option value="M">Masculino</option>
                     <option value="F">Feminino</option>
-                </select><br/>
-                <!-- div para outra instituicao -->
+                </select>
+                
+                <label class="csslabel">Estado:</label>
+                <select class="cssformselect" name="sexo" id="sexo" required>
+                    <option value="" selected="">Selecione</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                </select>
+                
+                <label class="csslabel">Cidade:</label>
+                <select class="cssformselect" name="sexo" id="sexo" required>
+                    <option value="" selected="">Selecione</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                </select>
+                
                 <div>
                     <label class="csslabel">Instituicao:</label>
                     <input type="text" class="cssforminput" name="outraInstituicao" id="outraInstituicao" required value="" maxlength="100"><br/>
                 </div> 
            
-            <form name="outro">
-                <input type="text" class="cssforminput" name="nome" id="nome" required value="" maxlength="100"><br/>
                 <!-- nome -->
                 <label class="csslabel">Rua:</label>
                 <input type="text" class="cssforminput" name="nome" id="nome" required value="" maxlength="100"><br/>
@@ -64,7 +77,17 @@ and open the template in the editor.
                 <!-- nome -->
                 <label class="csslabel">Complemento:</label>
                 <input type="text" class="cssforminput" name="nome" id="nome" required value="" maxlength="100"><br/>
+                
+                <div class="divoption">
+                    <a href=""><input type="submit" value="Salvar" name="salvar" id="salvar" class="salvarUser"></a>
+                    <br>
+                    <a href=""><input type="button" value="Cancelar" name="cancelar" id="cancelar" class="salvarUser"></a>
+                    <br>
+                    <a href="../logout.php"><input type="button" value="Sair" name="sair" id="sair" class="salvarUser"></a>
+                    <br>  
+                </div>
             </form>
         </fieldset>
+        </div>
     </body>
 </html>

@@ -73,7 +73,7 @@
                 <!-- Menu principal -->
                 
                 <ul class="nav">
-                    <li><a  href="main.php?pagina=save/frmPessoa.php">Dados Gerais</a></li>
+                    <li><a  href="../presentation/main.php?">Home</a></li>
                     <li><a  href="#">menu 2</a></li>
                    
                     <li><a  href="#" >menu 3</a>

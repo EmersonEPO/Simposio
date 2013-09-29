@@ -10,7 +10,7 @@
  *
  * @author emerson
  */
-class Pessoa {
+class Pessoa extends Usuario{
     //put your code here
     private $id;
     private $nome;
@@ -23,6 +23,7 @@ class Pessoa {
     private $cidade;
     private $complemento;
     private $instituicao;
+    private $nomeInstituicao;
     
     //contrutor
     function __construct(){
@@ -37,6 +38,7 @@ class Pessoa {
         $this->cidade = 0;
         $this->complemento = "";
         $this->instituicao = 0;
+        $this->nomeInstituicao = "";
     }
     
     //metodos
@@ -116,6 +118,14 @@ class Pessoa {
     public function getFk_instituicao(){
         return $this->instituicao;
     }
+    //----
+    public function setNomeInstituicao($nomeInstituicao){
+        $this->nomeInstituicao = addcslashes($nomeInstituicao);  
+    }
+    public function getNomeInstituicao(){
+        return $this->nomeInstituicao;
+    }
+    
     
 }
 

@@ -39,48 +39,81 @@ body{
 
 
 .csslabel {
-    
     position: absolute;
-    left: 20px;
+    margin-top: 3px;
+    display: block;
+    left: 50px;
     font-family:Arial, Helvetica, sans-serif;
     font-size:13px;
     color:#036;
     font-weight:bold;
-    float:left;
+
 }
 .cssforminput {
-    position: relative;
-    left: -100px;
+    margin: 2px;
+    margin-left: 145px;
+    margin-top: 3px;
     pointer-events: 12px;
     background-color:#f2f2f2;
     border:1px solid #000;
     padding:5px;
-    width: 160px; 
-    margin: 1px;
+    width: 170px; 
 }
 
 .cssformselect {
-    position: relative;
-    left: -100px;
+    margin: 2px;
+    margin-left: 145px;
+    margin-top: 5px;
     background-color:#f2f2f2;
     border:1px solid #000;
     padding:2px;
-    width: 171px;
-    margin: 1px;
+    width: 181px;
 }
 
 .cssfielset{
     position: absolute;
-    left: 20px;
-    margin-top: 8%;
+    left: 95px;
+    margin-top: 6%;
     font-size:13px;
     color:#036;
     font-weight:bold;
-    width: 600px;
+    width: 610px;
+    height: 423px
     
    
 }
 
+.divNovaPessoa{
+    position: absolute;
+    left: 22%;
+    right: 22%;
+    top: 10%;
+    background: activeborder;
+    width: 800px;
+    height: 500px;
+    -moz-border-top-left-radius: 12px;
+    -moz-border-top-right-radius: 12px;
+    -webkit-border-top-left-radius: 12px;
+    -webkit-border-top-right-radius: 12px;
+     border-radius:12px;
+}
+
+.salvarUser{
+    margin: 2px;
+    left: 400px;
+    font-family: monospace,sans-serif,serif;
+    text-transform: uppercase;
+    font-size: 13px;
+    width: 100px;
+    height: 30px;
+    color: #000;
+}
+
+.divoption{
+    position: absolute;
+    left: 400px;
+    top:140px;
+}
 
 .nav { margin:2px; padding:1px; margin-left: 15px;  list-style:none;}
 .nav li { float:left; width:150px; position:relative; }

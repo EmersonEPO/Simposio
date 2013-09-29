@@ -10,7 +10,7 @@
  *
  * @author emerson
  */
-class Usuario {
+class Usuario extends Pessoa{
     // Objetos
     private $id;
     private $nome;
@@ -21,9 +21,9 @@ class Usuario {
     // Construtor
     function __construct() {
         $this->id = 0;
-        $this->nome = "vazio";
-        $this->email = "vazio";
-        $this->senha = "vazio";
+        $this->nome = "";
+        $this->email = "";
+        $this->senha = "";
         $this->status = 1;
     }
     

@@ -73,6 +73,7 @@
             //verifico aqui se o usuario já tem dados cadastrados no sistema, 
             //caso nao tenha ele será obrigado a entra em uma tela se cadastro de dados pessoais. 
             if(!$user->verificarRegistros($id)){
+                $_SESSION['nivel'] = 0;
                 header("Location: save/frmPessoa.php");
                 exit;
             }else{

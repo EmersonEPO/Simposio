@@ -22,11 +22,20 @@
     $nivel_necessario = 1;
     // Verifica se não há a variavel da sessao que identifica o usuario
     if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)){
-        // Destroi a sessao por seguran?a
-	session_destroy();
-	// Redireciona o visitante de volta pro login
-	header("Location: ../presentation/index.php"); exit;
-        //modificar depois dos testes
+        
+        //pego o nivel aqui para verificar se o usuario esta logado.
+        //se ele estiver logado ele nao podera acessar outra pagina do sistema além do formulario de 
+        //cadastro de dados pessoais
+        //caso esteja logado, será redirecionado para a tela de cadastro de dados pessoais.
+        if($_SESSION['nivel'] == 0){
+            header("Location: ../presentation/save/frmPessoa.php"); 
+            exit;
+        }else{
+            //destroi a sessao por segurança
+            session_destroy();
+            //redireciona o visitante de volta pro login
+            header("Location: ../presentation/index.php"); exit;
+        }
     }
     
 ?>

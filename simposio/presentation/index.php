@@ -8,28 +8,42 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style/reset.css" >
         <link rel="stylesheet" type="text/css" href="style/styleLogin.css" >
-        <link rel="stylesheet" type="text/css" href="style/animacaoLogin.css" >
+        
         <title>Login</title>
     </head>
     <body>
         <?php
             
         ?>
-        <div id="container">
+        <div class="divlogin">
+            <span class="titulo">IF</span>
             <form name="login" id="login" method="POST" action="login.php">
                 <label for="email">Email:</label>
-                <input type="text" id="email" name="email" value="" required ><br/>
+                <input type="text" id="email" name="email" value="" required >
                 <!-- informa senha -->
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" value="" required ><br/>
-                <!-- Registrar -->
-                <span class="registrar">Não é registrado?</span> 
-                <a href="save/frmUsuario.php" class="cliqueaqui">Clique aqui!</a>
-                <div id="lower">
-                    <!-- botao entrar -->
-                    <input type="submit" id="entrar" name="entrar" value="Entrar">
-                </div>
+                <input type="password" id="senha" name="senha" value="" required >
+       
+                <!-- botao entrar -->
+                <input type="submit" id="entrar" name="entrar" value="Entrar">
             </form>
+        </div>
+        <!-- div novo usuario -->
+        <div class="conteudo">
+            <span class="">Cadastre-se</span><br/>
+            <form name="formUsuario" id="formUsuario" method="POST" action="../controller/ctlUsuario.php">
+                <label for="nick">Nome:</label>
+                <input type="text" required name="nick" id="nick" class="novoUser"><br/>
+                <!-- -->
+                <label for="email">Email:</label>
+                <input type="text" required name="email" id="email" class="novoUser"><br/>
+                <!-- -->
+                <label for="senha">Senha:</label>
+                <input type="password" required name="senha" id="senha" class="novoUser"><br/>
+
+                <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" class="salvarUser">
+            </form>
+
         </div>
     </body>
 </html>

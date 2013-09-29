@@ -1,6 +1,6 @@
 <?php
     include_once "../dataAccess/conexaoDAO.php";
-    
+       
     //criar uma conexao com o banco
     $dao = new conexaoDAO();
     //criar uma conexao
@@ -9,10 +9,22 @@
     $dao->selecionarBanco();
     //----
     
+    //pegar cokie para efetuar login automaticamente (somente na hora q um user é criado)
+    if(isset($_GET["ok"])){
+        
+        $email = $_COOKIE['email_user'];
+        $senha = $_COOKIE['senha_user'];
+      
+        //destruindo cokie por segurança
+        setcookie("nome");
+        setcookie("senha");
+        
+    }else{
+        
+        $email = mysql_real_escape_string( $_POST['email']);
+        $senha = mysql_real_escape_string( $_POST['senha']);
+    }
     
-    $email = mysql_real_escape_string( $_POST['email']);
-    $senha = mysql_real_escape_string( $_POST['senha']);
-   
     //selecionar o usuario
     $sql = "SELECT * FROM usuario WHERE '".$email."' = email AND '".$senha."' = senha LIMIT 1";
     $query = $dao->executeQuery($sql);

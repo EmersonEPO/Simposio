@@ -1,7 +1,7 @@
 <?php
 
-    include_once "../dataAccess/conexaoDAO.php";
-    include_once "../dataAccess/usuarioDAO.php";
+    include_once "../dataAccess/ConexaoDAO.php";
+    include_once "../dataAccess/UsuarioDAO.php";
 
     //criar uma conexao com o banco
     $dao = new conexaoDAO();
@@ -25,7 +25,7 @@
         $email = mysql_real_escape_string($_POST['email']);
         $senha = mysql_real_escape_string($_POST['senha']);
     }
-
+    
     //selecionar o usuario
     $sql = "SELECT * FROM usuario WHERE '" . $email . "' = email AND '" . $senha . "' = senha LIMIT 1";
     $query = $dao->executeQuery($sql);

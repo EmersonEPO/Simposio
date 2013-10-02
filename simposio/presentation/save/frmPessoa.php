@@ -3,6 +3,7 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
+ 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,6 +11,7 @@ and open the template in the editor.
         
         <title>Dados Pessoais</title>
     </head>
+   
     <body>
         <?php
         // put your code here
@@ -32,16 +34,32 @@ and open the template in the editor.
                 <label class="csslabel">Sexo:</label>
                 <select class="cssformselect" name="sexo" id="sexo" required>
                     <option value="" selected="">Selecione</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Feminino</option>
+                    <option value="1">Masculino</option>
+                    <option value="2">Feminino</option>
                 </select><br/>
                 <!-- instituicao -->
-                <label class="csslabel">Instituição:</label>
-                <select class="cssformselect" name="instituicao" id="instituicao" required>
-                    <option value="" selected="">Selecione</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Feminino</option>
-                </select>
+                <?php
+                    include_once "../dataAccess/InstituicaoDAO.php";
+                    include_once "../domainModel/Instituicao.php";
+
+                    //instanciando obj
+                    /*
+                    $dao = new InstituicaoDAO();
+
+                    $inst = new Instituicao();
+
+                    $inst = $dao->listarTodos();*/
+
+                    echo"<label class='csslabel'>Instituição:</label>";
+                    echo"<select class='cssformselect' name='instituicao' id='instituicao' required>";
+                        echo"<option value='' selected=''>Selecione</option>";
+                        foreach ($inst as $i){
+                            echo"<option value='".$i->getId()."'>".$i->getNome()."</option>";
+
+                            $i++;
+                        }
+                    echo"</select>";
+                ?>
                 
                 <label class="csslabel">Estado:</label>
                 <select class="cssformselect" name="sexo" id="sexo" required>
@@ -80,8 +98,6 @@ and open the template in the editor.
                 
                 <div class="divoption">
                     <a href=""><input type="submit" value="Salvar" name="salvar" id="salvar" class="salvarUser"></a>
-                    <br>
-                    <a href=""><input type="button" value="Cancelar" name="cancelar" id="cancelar" class="salvarUser"></a>
                     <br>
                     <a href="../logout.php"><input type="button" value="Sair" name="sair" id="sair" class="salvarUser"></a>
                     <br>  

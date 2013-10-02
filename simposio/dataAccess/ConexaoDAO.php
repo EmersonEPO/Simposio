@@ -10,7 +10,7 @@
  *
  * @author emerson
  */
-class conexaoDAO {
+class ConexaoDAO {
     private $user = "root";
     private $passwd = "epo123";
     private $server = "localhost";

@@ -12,9 +12,7 @@ and open the template in the editor.
         <title>Login</title>
     </head>
     <body>
-        <?php
-            
-        ?>
+     
         <div class="divlogin">
             <span class="titulo">IF</span>
             <form name="login" id="login" method="POST" action="login.php">
@@ -31,7 +29,7 @@ and open the template in the editor.
         <!-- div novo usuario -->
         <div class="conteudo">
             <span class="">Cadastre-se</span><br/>
-            <form name="formUsuario" id="formUsuario" method="POST" action="../controller/ctlUsuario.php">
+            <form name="formUsuario" id="formUsuario" method="POST" action="../controller/CtlUsuario.php">
                 <label for="nick">Nome:</label>
                 <input type="text" required name="nick" id="nick" class="novoUser"><br/>
                 <!-- -->
@@ -46,4 +44,20 @@ and open the template in the editor.
 
         </div>
     </body>
+       <?php
+            //mensagem informando que usuario ou email já existe no sistema!
+            if(!isset($_GET['erro'])){
+                //se erro nao existir, nada será feito
+            }else{
+                //mensagem para usuario
+                if(($_GET['erro'])== 0){
+                    echo "<script type='text/javascript'> alert('Usuario ja existe!')</script>";
+                }
+           
+                if(($_GET['erro']) == 1){
+                    echo "<script type='text/javascript'> alert('Email ja existe!')</script>";
+                }
+            }
+            
+        ?>
 </html>

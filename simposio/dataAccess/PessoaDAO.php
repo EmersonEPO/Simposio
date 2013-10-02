@@ -1,5 +1,5 @@
 <?php
-    include_once "../dataAccess/conexaoDAO.php";
+    include_once "../dataAccess/ConexaoDAO.php";
     include_once "../domainModel/Pessoa.php";
 
 /*
@@ -12,7 +12,7 @@
  *
  * @author emerson
  */
-class pessoaDAO {
+class PessoaDAO {
     //put your code here
     
    public function inserir(Pessoa $obj){

@@ -1,9 +1,9 @@
 <?php
-    include_once "../dataAccess/conexaoDAO.php";
-    include_once "../domainModel/usuario.php";
+    include_once "../dataAccess/ConexaoDAO.php";
+    include_once "../domainModel/Usuario.php";
      
       
-    class usuarioDAO{
+    class UsuarioDAO{
      
 
         //inserir
@@ -72,7 +72,59 @@
             }else{
                 return false;
             }
-        } 
+        }
+        
+        //função que verifica se usuario já existe no sistema
+        public function verificarUser($nick){
+            $query = sprintf("SELECT COUNT(idUsuario) as ok FROM usuario WHERE nome LIKE UPPER('%s')",$nick);
+            
+            //iniciar conexao
+            $daoConexao = new conexaoDAO();
+            $conexaoAberta = $daoConexao->conectar();
+
+            //selecionar banco
+            $daoConexao->selecionarBanco(); 
+
+            //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+            $resultado = $daoConexao->executeQuery($query);
+
+            //fecha conexao
+            $daoConexao->desconectar($conexaoAberta);
+            
+            $query = mysql_fetch_assoc($resultado);
+            
+            if($query['ok'] == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        
+          //função que verifica se email já existe no sistema
+        public function verificarEmail($email){
+            $query = sprintf("SELECT COUNT(idUsuario) as ok FROM usuario WHERE email like '%s' ",$email);
+            
+            //iniciar conexao
+            $daoConexao = new conexaoDAO();
+            $conexaoAberta = $daoConexao->conectar();
+
+            //selecionar banco
+            $daoConexao->selecionarBanco(); 
+
+            //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+            $resultado = $daoConexao->executeQuery($query);
+
+            //fecha conexao
+            $daoConexao->desconectar($conexaoAberta);
+            
+            $query = mysql_fetch_assoc($resultado);
+            
+            if($query['ok'] == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }
         
     }
 

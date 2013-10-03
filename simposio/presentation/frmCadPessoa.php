@@ -34,10 +34,23 @@ and open the template in the editor.
         <!-- mascaras -->
         <script>
             jQuery(function($){
+                   $("#cpf").mask("999.999.999-99");
                    $("#nascimento").mask("99/99/9999");
                    $("#fone").mask("(99) 999-9999");
-                   $("#cpf").mask("999.999.999-99");
             });
+          
+        </script>
+        <script type="text/javascript">
+            //ao selecionar estado o select de cidade so contera cidades pertendentes ao estado selecionado
+                 function buscarCidades(){
+                     var estado = $('#estado').val();
+                     if(estado){
+                         var url = '../controller/CtlCidadeAjax.php?estado='+estado;
+                         $.get(url, function(dataReturn) {
+                             $('#loadcidades').html(dataReturn);
+                         });
+                     }
+                }    
         </script>
 </script>
             
@@ -52,7 +65,7 @@ and open the template in the editor.
                 <label for="nome" class="labelRegistrar">Nome:</label>
                 <input type="text" id="nome" name="nome" value="" required=""  class="forRegistrar"/><br/>
                 <label for="cpf" class="labelRegistrar">Cpf:</label>
-                <input type="text" id="cpf" name="cpf" value="" required="" class="forRegistrar" maxlength="11" onblur="$('#cpf').validacpf();"/>
+                <input type="text" id="cpf" name="cpf" value="" required="" class="forRegistrar" maxlength="11"/>
                 <?php
                     echo "Cpf invalido!";
                 ?>
@@ -92,21 +105,22 @@ and open the template in the editor.
                     <input type="text" id="complemento" name="complemento" value="" class="forRegistrar"/><br/>
 
                     <label for="cidade" class="labelRegistrar">Estado:</label>
-                    <select id="sexo" name="sexo" required="" class="forRegistrarSelec">
+                    <select id="estado" name="estado" required="" class="forRegistrarSelec" onchange="buscarCidades()">
                         <option value="" selected="">Selecione</option>
                         <?php
+                            ini_set( 'default_charset', 'utf-8');
                             foreach ($estado as $es){
                                 echo"<option value='".$es->getId()."'>".strtoupper($es->getNome())."</option>";
                                 $es++;
                             }
                         ?>
                     </select><br/>
-                    <label for="cidade" class="labelRegistrar">Cidade:</label>
-                    <select id="sexo" name="sexo" required="" class="forRegistrarSelec">
-                        <option value="" selected="">Selecione</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                    </select>
+                    <div id="loadcidades">
+                        <label for="cidade" class="labelRegistrar">Cidade:</label>
+                        <select id="cidade" name="cidade" required="" class="forRegistrarSelec">
+                            <option selected value="">Escolha um estado</option>
+                        </select>
+                    </div>
                 </fieldset>
                 
                 <fieldset class="fieldsetRegistrarLog">

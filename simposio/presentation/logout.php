@@ -6,11 +6,11 @@
     }
     $nivel_necessario = 1;
     // Verifica se não há a variavel da sessao que identifica o usuario
-    if (!isset($_SESSION['nome']) OR ($_SESSION['nivel'] < $nivel_necessario)){
+    if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)){
         // Destroi a sessao por seguran?a
 	session_destroy();
 	// Redireciona o visitante de volta pro login
-	header("Location: ../presentation/index.php");
+	header("Location: ../presentation/index.php?pag=frmLogin.php");
         exit;
    }
 	 
@@ -22,6 +22,6 @@
     // Destroi a sessao
     session_destroy(); 
     // Redireciona para o login
-    header("Location: index.php"); 
+    header("Location: index.php?pag=frmLogin.php"); 
     exit; 
 ?>

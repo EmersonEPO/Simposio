@@ -14,7 +14,7 @@
         setcookie("expira");
         //mensagem informando que o tempo do usuario expirou, redireciona para index
         echo "<script language='javascript'>
-                    window.location.href='../presentation/index.php'
+                    window.location.href='../presentation/index.php?pag=frmLogin.php'
               </script>";
         
     }
@@ -22,20 +22,10 @@
     $nivel_necessario = 1;
     // Verifica se não há a variavel da sessao que identifica o usuario
     if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)){
-        
-        //pego o nivel aqui para verificar se o usuario esta logado.
-        //se ele estiver logado ele nao podera acessar outra pagina do sistema além do formulario de 
-        //cadastro de dados pessoais
-        //caso esteja logado, será redirecionado para a tela de cadastro de dados pessoais.
-        if($_SESSION['nivel'] == 0){
-            header("Location: ../presentation/save/frmPessoa.php"); 
-            exit;
-        }else{
-            //destroi a sessao por segurança
-            session_destroy();
-            //redireciona o visitante de volta pro login
-            header("Location: ../presentation/index.php"); exit;
-        }
+        //destroi a sessao por segurança
+        session_destroy();
+        //redireciona o visitante de volta pro login
+        header("Location: ../presentation/index.php?pag=frmLogin.php"); exit;
     }
     
 ?>
@@ -74,8 +64,8 @@
             <div class="div-corpo">
                 <?php
                 //Com isso todas as paginas que forem chamadas serão aberta em main
-                if(isset($_GET["pagina"])){
-                    include $_GET["pagina"];
+                if(isset($_GET["pag"])){
+                    include $_GET["pag"];
                 }
                 //------
                 ?>
@@ -98,12 +88,7 @@
                    
                     <li><a  href="#">menu 6</a></li> 
                     <!-- Logout do usuario -->
-                    <li><a  href="#" class="cssuser"><?php echo "[".$_SESSION['nome']."]"; ?></a>
-                        <ul>
-                            <li><a  href="#" >Configurações</a></li>
-                            <li><a href="logout.php" >Logout</a></li>
-                        </ul>
-                    </li>
+                    <li><a  href="logout.php" class="cssuser">Sair</a></li>
                     
                 </ul>
                 <!-- fim menu principal -->

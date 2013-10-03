@@ -12,7 +12,7 @@
  */
 class ConexaoDAO {
     private $user = "root";
-    private $passwd = "epo123";
+    private $passwd = "";
     private $server = "localhost";
     private $database = "bdevento";
     
@@ -20,7 +20,7 @@ class ConexaoDAO {
         $this->user;
         $this->passwd;
         $this->server;
-        $this->databas;
+        $this->database;
     }
 
 

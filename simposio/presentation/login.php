@@ -38,7 +38,7 @@
     
         //senha e usuario invalido
         //redireciona para a tela de login
-        header("Location: index.php");
+        header("Location: index.php?pag=frmLogin.php");
         exit;
     } else {
         
@@ -62,26 +62,13 @@
             $_SESSION['id'] = $resultado['idUsuario'];
             $_SESSION['email'] = $resultado['email'];
             $_SESSION['nivel'] = $resultado['nivel'];
-            $_SESSION['nome'] = $resultado['nome'];
 
             //limpa os dados contido na variavel $resultado
-            mysql_free_result($resultado);
-
-            $user = new usuarioDAO();
-            $id = $_SESSION['id'];
-            
-            //verifico aqui se o usuario já tem dados cadastrados no sistema, 
-            //caso nao tenha ele será obrigado a entra em uma tela se cadastro de dados pessoais. 
-            if(!$user->verificarRegistros($id)){
-                $_SESSION['nivel'] = 0;
-                header("Location: save/frmPessoa.php");
-                exit;
-            }else{
-                //redireciona
-                header("Location: main.php");
-                exit;
-            }
-
+            mysql_free_result($resultado);     
+        
+            //redireciona
+            header("Location: main.php");
+            exit;
     }
 ?>
 

@@ -79,23 +79,7 @@ body{
     font-weight:bold;
     width: 610px;
     height: 423px
-    
-   
-}
-
-.divNovaPessoa{
-    position: absolute;
-    left: 22%;
-    right: 22%;
-    top: 10%;
-    background: activeborder;
-    width: 800px;
-    height: 500px;
-    -moz-border-top-left-radius: 12px;
-    -moz-border-top-right-radius: 12px;
-    -webkit-border-top-left-radius: 12px;
-    -webkit-border-top-right-radius: 12px;
-     border-radius:12px;
+ 
 }
 
 .salvarUser{
@@ -125,3 +109,143 @@ body{
 .nav ul li { width:150px; float:left; } 
 .nav ul a { display:block; height:15px; padding:7px 8px; color:#fff; text-decoration:none; border-bottom:1px solid #222; }
 .nav ul a:hover { color:#069; }
+
+
+.divMenu{
+    position: absolute;
+    float: left;
+    background: #333333;
+    width: 100%;
+    height: 40px;
+  
+}
+
+.divConteudo{
+    position: absolute;
+    float: left;
+    background: #ffffff;
+    width: 100%;
+    height: 100%;   
+}
+.divRodape{
+    position: absolute;
+    top: 80%;
+    float: left;
+    background: #333333;
+    width: 100%;
+    height: 131px;  
+}
+
+.botao{
+    position: absolute;
+    float: left;
+    margin-left: 358px;
+    width: 70px;
+    height: 30px;
+  
+}
+
+.botaoLogin{
+    position: absolute;
+    top: 5px;
+    margin-left: 81%;
+    float: left;
+    width: 70px;
+    height: 30px;
+  
+}
+.botaoRegistrar{
+    position: absolute;
+    top: 5px;
+    margin-left: 89%;
+    float: left;
+    width: 70px;
+    height: 30px;  
+}
+
+.imgIfnmg{
+    width: 70%;
+    float: left;
+    margin-left: 30%;
+    height: 190px;
+}
+
+.formLogin{
+    margin: 2px;
+    margin-left: 170px;
+    padding: 2px;
+    width: 250px;
+    height: 35px;
+    font-family: monospace,sans-serif,serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: double;
+    color: #222;
+    border-radius: 10px;
+    border-color: #009933;
+    -webkit-border-radius: 10px; 
+    -moz-border-radius: 10px;
+}
+.formLoginLabel{
+    position: absolute;
+    left: 100px;
+    font-family: monospace,sans-serif,serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.fieldsetRegistrar{
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    width: 60%;
+}
+
+.fieldsetRegistrarLog{
+    position: absolute;
+    top: 0px;
+    left: 360px;
+    border: 2px;
+}
+
+.labelRegistrar{
+    display: block;
+    margin: 6px;
+    float: left;
+    position: absolute;
+    font-weight: bold;
+}
+.forRegistrar{
+    margin: 3px;
+    margin-left: 109px;
+    width: 160px;
+    height: 20px;   
+}
+
+.forRegistrarLog{
+    margin: 3px;
+    margin-left: 70px;
+    width: 160px;
+    height: 20px;   
+}
+
+
+.forRegistrarSelec{
+    margin: 3px;
+    margin-left: 109px;
+    width: 165px;
+    height: 25px;   
+}
+
+.botaoCad{
+    top: 100%;
+    margin-left: 203px;
+    float: left;
+    width: 70px;
+    height: 30px;
+}
+
+
+
+
+

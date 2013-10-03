@@ -35,7 +35,7 @@ class Instituicao {
         $this->nome = addslashes($nome);
     }
     public function getNome(){
-        return $this->id;
+        return $this->nome;
     }
 }
 

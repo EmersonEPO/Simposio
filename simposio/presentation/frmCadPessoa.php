@@ -3,6 +3,27 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
+<?php
+    //Listar todas as instituições, estados, cidade, colocando cada lista em seus respectivos select.
+    include_once "../dataAccess/InstituicaoDAO.php";
+    include_once "../domainModel/Instituicao.php";
+    include_once "../dataAccess/EstadoDAO.php";
+    include_once "../domainModel/Estado.php";
+   
+    //Instituição
+    $daoI = new InstituicaoDAO();
+    $instituicao = new Instituicao();
+    $instituicao = $daoI->listarTodos();
+    //-----
+    
+    //Estado
+    $daoE = new EstadoDAO();
+    $estado = new Estado();
+    $estado = $daoE->listarTodos();
+    //-----
+
+
+?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,8 +70,12 @@ and open the template in the editor.
                 <label for="sexo" class="labelRegistrar">Instituição:</label>
                 <select id="sexo" name="sexo" required="" class="forRegistrarSelec">
                     <option value="" selected="">Selecione</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Feminino</option>
+                    <?php
+                        foreach ($instituicao as $in){
+                            echo"<option value='".$in->getId()."'>".strtoupper($in->getNome())."</option>";
+                            $in++;
+                        }
+                    ?>
                 </select><br/>
                 <label for="fone" class="labelRegistrar">Telefone:</label>
                 <input type="text" id="fone" name="fone" value="" required="" class="forRegistrar"/><br/><br/>
@@ -69,8 +94,12 @@ and open the template in the editor.
                     <label for="cidade" class="labelRegistrar">Estado:</label>
                     <select id="sexo" name="sexo" required="" class="forRegistrarSelec">
                         <option value="" selected="">Selecione</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
+                        <?php
+                            foreach ($estado as $es){
+                                echo"<option value='".$es->getId()."'>".strtoupper($es->getNome())."</option>";
+                                $es++;
+                            }
+                        ?>
                     </select><br/>
                     <label for="cidade" class="labelRegistrar">Cidade:</label>
                     <select id="sexo" name="sexo" required="" class="forRegistrarSelec">

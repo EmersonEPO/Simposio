@@ -12,11 +12,14 @@
     //----
 
     //pegar cokie para efetuar login automaticamente (somente na hora q um user é criado)
-    if (isset($_GET["ok"])==1) {
+    if (isset($_GET["ok"])== 1) {
 
-        $email = $_COOKIE['email_user'];
-        $senha = $_COOKIE['senha_user'];
-
+        $email = $_SESSION['email_user'];
+        $senha = $_SESSION['senha_user'];
+        
+        //destroi sessão
+        session_destroy();
+        
         //destruindo cokie por segurança
         setcookie("nome");
         setcookie("senha");
@@ -67,7 +70,7 @@
             mysql_free_result($resultado);     
         
             //redireciona
-            header("Location: main.php");
+            header("Location: main.php?pag=frmLogin.php");
             exit;
     }
 ?>

@@ -19,7 +19,7 @@
         $complemento = "vazio";
     }
     //-----
-    if(isset($_POST['novaInstituicao'])or($instituicao != 1)){
+    if($instituicao == 1){
         $outraInstituicao = $_POST['novaIns'] ;
     }else{
         $outraInstituicao = "vazio";
@@ -49,19 +49,21 @@
     $pessoa->setEmail($email);
     $pessoa->setSenha($senha);
     
-    
-    if($dao->inserir($pessoa)){
-          setcookie("email_user", $email, time() + 30);
-          setcookie("senha_user", $senha, time() + 30);
-          
-          echo"<script language='javascript'> 
-               window.location.href='../presentation/login.php?ok=1'
-               </script>";
-    }else{
-          echo"<script language='javascript'> 
-               alert('Ocorreu um erro!') 
-               window.location.href='../Presentation/index.php'
-               </script>";
-    }
+ 
+    if (!$dao->inserir($pessoa)) {
+        //----
+        session_start();
+        $_SESSION['email_user'] = $email;
+        $_SESSION['senha_user'] = $senha;
+
+        echo"<script language='javascript'> 
+                   window.location.href='../presentation/login.php?ok=1'
+                   </script>";
+    } else {
+        echo"<script language='javascript'> 
+                   alert('Ocorreu um erro!') 
+                   window.location.href='../Presentation/index.php'
+                   </script>";
+}
     
 ?>

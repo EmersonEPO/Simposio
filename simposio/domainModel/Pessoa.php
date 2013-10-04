@@ -10,12 +10,13 @@
  *
  * @author emerson
  */
-class Pessoa extends Usuario{
+class Pessoa{
     //put your code here
     private $id;
     private $nome;
     private $cpf;
     private $nascimento;
+    private $fone;
     private $sexo;
     private $rua;
     private $numero;
@@ -24,6 +25,10 @@ class Pessoa extends Usuario{
     private $complemento;
     private $instituicao;
     private $nomeInstituicao;
+    //user
+    private $email;
+    private $senha;
+    private $status;
     
     //contrutor
     function __construct(){
@@ -31,6 +36,7 @@ class Pessoa extends Usuario{
         $this->nome = "";
         $this->cpf = 0;
         $this->nascimento = "";
+        $this->fone = "";
         $this->sexo = "";
         $this->rua = "";
         $this->numero = 0;
@@ -39,94 +45,119 @@ class Pessoa extends Usuario{
         $this->complemento = "";
         $this->instituicao = 0;
         $this->nomeInstituicao = "";
+        //user
+        $this->email = "";
+        $this->senha = "";
+        $this->status = 1;
+      
     }
     
     //metodos
     public function setId($id){
-        $this->id = addcslashes($id);  
+        $this->id = addslashes($id);  
     }
     public function getId(){
         return $this->id;
     }
     //----
     public function setNome($nome){
-        $this->nome = addcslashes($nome);  
+        $this->nome = addslashes($nome);  
     }
     public function getNome(){
         return $this->nome;
     }
     //----
     public function setCpf($Cpf){
-        $this->cpf = addcslashes($Cpf);  
+        $this->cpf = addslashes($Cpf);  
     }
     public function getCpf(){
         return $this->cpf;
     }
     //----
     public function setNascimento($nascimento){
-        $this->nascimento = addcslashes($nascimento);  
+        $this->nascimento = addslashes($nascimento);  
     }
     public function getNascimento(){
         return $this->nascimento;
     }
     //----
+    public function setFone($fone){
+        $this->fone = addslashes($fone);  
+    }
+    public function getFone(){
+        return $this->fone;
+    }
+    //----
     public function setSexo($sexo){
-        $this->sexo = addcslashes($sexo);  
+        $this->sexo = addslashes($sexo);  
     }
     public function getSexo(){
         return $this->sexo;
     }
     //----
     public function setRua($rua){
-        $this->rua = addcslashes($rua);  
+        $this->rua = addslashes($rua);  
     }
     public function getRua(){
         return $this->rua;
     }
     //----
     public function setNumero($numero){
-        $this->numero = addcslashes($numero);  
+        $this->numero = addslashes($numero);  
     }
     public function getNumero(){
         return $this->numero;
     }
     //----
     public function setBairro($bairro){
-        $this->bairro = addcslashes($bairro);  
+        $this->bairro = addslashes($bairro);  
     }
     public function getBairro(){
         return $this->bairro;
     }
     //----
     public function setComplemento($complemento){
-        $this->complemento = addcslashes($complemento);  
+        $this->complemento = addslashes($complemento);  
     }
     public function getComplemento(){
         return $this->complemento;
     }
     //----
     public function setFk_cidade($cidade){
-        $this->cidade = addcslashes($cidade);  
+        $this->cidade = addslashes($cidade);  
     }
     public function getFk_cidade(){
         return $this->cidade;
     }
     //----
     public function setFk_instituicao($instituicao){
-        $this->instituicao = addcslashes($instituicao);  
+        $this->instituicao = addslashes($instituicao);  
     }
     public function getFk_instituicao(){
         return $this->instituicao;
     }
     //----
     public function setNomeInstituicao($nomeInstituicao){
-        $this->nomeInstituicao = addcslashes($nomeInstituicao);  
+        $this->nomeInstituicao = addslashes($nomeInstituicao);  
     }
     public function getNomeInstituicao(){
         return $this->nomeInstituicao;
     }
-    
-    
+    //email
+    public function setEmail($email){
+        $this->email = addslashes($email);
+    }
+    public function getEmail(){
+        return $this->email;
+    }
+    //senha
+    public function setSenha($senha){
+        $this->senha = addslashes($senha);
+    }
+    public function getSenha(){
+        return $this->senha;
+    }
+   
 }
 
 ?>

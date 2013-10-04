@@ -1,7 +1,7 @@
 <?php
 
     include_once "../dataAccess/ConexaoDAO.php";
-    include_once "../dataAccess/UsuarioDAO.php";
+    include_once "../dataAccess/PessoaDAO.php";
 
     //criar uma conexao com o banco
     $dao = new conexaoDAO();
@@ -12,7 +12,7 @@
     //----
 
     //pegar cokie para efetuar login automaticamente (somente na hora q um user é criado)
-    if (isset($_GET["ok"])) {
+    if (isset($_GET["ok"])==1) {
 
         $email = $_COOKIE['email_user'];
         $senha = $_COOKIE['senha_user'];
@@ -27,7 +27,7 @@
     }
     
     //selecionar o usuario
-    $sql = "SELECT * FROM usuario WHERE '" . $email . "' = email AND '" . $senha . "' = senha LIMIT 1";
+    $sql = "SELECT * FROM pessoa WHERE '" . $email . "' = email AND '" . $senha . "' = senha LIMIT 1";
     $query = $dao->executeQuery($sql);
 
     //se a conexão apos realizar a consulta

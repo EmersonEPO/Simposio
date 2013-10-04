@@ -1,0 +1,143 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of Atividade
+ *
+ * @author Home
+ */
+class Atividade {
+    //put your code here
+    private $id;
+    private $nome;
+    private $tipoDuracao;
+    private $duracao;
+    private $totalVaga;
+    private $estoque;
+    private $dataAtividade;
+    private $horaInicio;
+    private $horaTermino;
+    private $local;
+    //-----
+    private $fk_evento;
+    private $fk_tipoAtv;
+    private $fk_ministrante;
+    
+    //construtor
+    public function __construct() {
+        $this->id = 0;
+        $this->nome = "";
+        $this->tipoDuracao = 0;
+        $this->duracao = 0;
+        $this->totalVaga = 0;
+        $this->estoque = 0;
+        $this->dataAtividade = 0;
+        $this->horaInicio = 0;
+        $this->horaTermino = 0;
+        $this->local = "";
+        
+        //-----
+        $this->fk_evento = 0;
+        $this->fk_tipoAtv = 0;
+        $this->fk_ministrante = 0;
+    }
+    
+    //metodos
+    public function setId($id){
+        $this->id = addslashes($id);  
+    }
+    public function getId(){
+        return $this->id;
+    }
+    //----
+    public function setNome($nome){
+        $this->nome = addslashes($nome);  
+    }
+    public function getNome(){
+        return $this->nome;
+    }
+    //----
+    public function setTipoDucacao($tipoDuracao){
+        $this->tipoDuracao = addslashes($tipoDuracao);  
+    }
+    public function getTipoDuracao(){
+        return $this->tipoDuracao;
+    }
+    //----
+    public function setDuracao($duracao){
+        $this->duracao = addslashes($duracao);  
+    }
+    public function getDuracao(){
+        return $this->duracao;
+    }
+    //----
+    public function setTotalVaga($totalVaga){
+        $this->totalVaga = addslashes($totalVaga);  
+    }
+    public function getTotalVaga(){
+        return $this->totalVaga;
+    }
+    //----
+    public function setEstoque($estoque){
+        $this->estoque = addslashes($estoque);  
+    }
+    public function getEstoque(){
+        return $this->estoque;
+    }
+    //----
+    public function setDataAtividade($dataAtividade){
+        $this->dataAtividade = addslashes($dataAtividade);  
+    }
+    public function getDataAtividade(){
+        return $this->dataAtividade;
+    }
+    //----
+    public function setHoraInicio($horaInicio){
+        $this->horaInicio = addslashes($horaInicio);  
+    }
+    public function getHoraInicio(){
+        return $this->horaInicio;
+    }
+    //----
+    public function setHoraTermino($horaTermino){
+        $this->horaTermino = addslashes($horaTermino);  
+    }
+    public function getHoraTermino(){
+        return $this->horaTermino;
+    }
+    //----
+    public function setLocal($local){
+        $this->local = addslashes($local);  
+    }
+    public function getLocal(){
+        return $this->local;
+    }
+    //----
+    public function setFk_evento($evento){
+        $this->fk_evento = addslashes($evento);  
+    }
+    public function getFk_evento(){
+        return $this->fk_evento;
+    }
+    //----
+    public function setFk_ministrante($ministrante){
+        $this->fk_ministrante = addslashes($ministrante);  
+    }
+    public function getFk_ministrante(){
+        return $this->fk_ministrante;
+    }
+    //----
+    public function setFk_tipoAtv($tipoAtv){
+        $this->fk_tipoAtv = addslashes($tipoAtv);  
+    }
+    public function getFk_tipoAtv(){
+        return $this->fk_tipoAtv;
+    }
+
+}
+
+?>

@@ -73,7 +73,7 @@
                 
                 <ul class="nav">
                     <li><a  href="../presentation/main.php?">Home</a></li>
-                    <li><a  href="#">menu 2</a></li>
+                    <li><a  href="#">Minicursos</a></li>
                    
                     <li><a  href="#" >menu 3</a>
                         <ul>

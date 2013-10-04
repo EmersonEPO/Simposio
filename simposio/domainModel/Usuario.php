@@ -14,17 +14,13 @@ class Usuario{
     // Objetos
     private $id;
     private $nome;
-    private $email;
-    private $senha;
-    private $status;
+   
     
     // Construtor
     function __construct() {
         $this->idUser = 0;
         $this->nome = "";
-        $this->email = "";
-        $this->senha = "";
-        $this->status = 1;
+      
     }
     
     // Metodos Set e Get
@@ -41,20 +37,6 @@ class Usuario{
     }
     public function getUsuario(){
         return $this->nome;
-    }
-    //email
-    public function setEmail($email){
-        $this->email = addslashes($email);
-    }
-    public function getEmail(){
-        return $this->email;
-    }
-    //senha
-    public function setSenha($senha){
-        $this->senha = addslashes($senha);
-    }
-    public function getSenha(){
-        return $this->senha;
     }
     //status
     public function setStatus($status){

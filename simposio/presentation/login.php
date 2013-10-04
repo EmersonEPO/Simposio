@@ -70,7 +70,7 @@
             mysql_free_result($resultado);     
         
             //redireciona
-            header("Location: main.php?pag=frmLogin.php");
+            header("Location: main.php");
             exit;
     }
 ?>

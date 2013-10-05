@@ -23,7 +23,7 @@ class ConexaoDAO {
         $this->database;
     }
 
-
+    
     //inicia uma conexao
     public function conectar(){
         $conexao = mysql_connect($this->server, $this->user, $this->passwd) or die(mysql_error());

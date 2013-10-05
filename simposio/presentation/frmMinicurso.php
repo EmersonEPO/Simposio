@@ -3,6 +3,9 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
+    //resolver problemas relacionado aos acentos
+    header("Content-Type: text/html; charset=ISO-8859-1", true);
+    
     include_once "../dataAccess/AtividadeDAO.php";
     include_once "../domainModel/Atividade.php";
     include_once "../dataAccess/MinistranteDAO.php";
@@ -21,11 +24,14 @@ and open the template in the editor.
     //TipoAtividade
     $daoTA = new TipoAtividadeDAO();
     $tipoAtividade = new TipoAtividade();
+    
+   
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="content-Type" content="text/html; charset=iso-utf-8" />
         <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);</style>
         <title></title>
     </head>
@@ -48,7 +54,7 @@ and open the template in the editor.
                     echo "<tr>";
                     echo "<td width='1200' align='middle' class='cssRow'>" . $at->getNome() . "</td>";
                     //bucar nome do tipo de atividade
-                    $tipoAtividade = $daoTA->abrir($at->getFk_ministrante());
+                    $tipoAtividade = $daoTA->abrir($at->getFk_tipoAtv());
                     echo "<td width='1200' align='middle' class='cssRow'>" . $tipoAtividade->getNome() . "</td>";
                     
                     //tipo de duracao 1 = horas ou 2 == minutos
@@ -66,7 +72,7 @@ and open the template in the editor.
                     $ministrante = $daoM->abrir($at->getFk_ministrante());
                     echo "<td width='1200' align='middle' class='cssRow'>" . $ministrante->getNome() . "</td>";
                     echo "<td width='1200' align='middle' class='cssRow'>" . $ministrante->getFormacao() . "</td>";
-                    echo "<td><a href='#'" . $at->getId() . " class='tblBotao'><img src='image/confirm2.png'></a></td>";
+                    echo "<td><a href='#'" . $at->getId() . " class='tblBotao'><img src='image/confirm.png'></a></td>";
                  
                     echo "</tr>";
                     $at++;

@@ -3,9 +3,14 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
+<?php
+    //resolver problemas relacionado a acentuuação
+    header("Content-Type: text/html; charset=ISO-8859-1", true);
+?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="content-Type" content="text/html; charset=iso-8859-1" />
         <link rel="stylesheet" type="text/css" href="style/reset.css" >
         <link rel="stylesheet" type="text/css" href="style/style.css" >
         
@@ -34,11 +39,11 @@ and open the template in the editor.
             <!-- fim -->
             
             
-            <!-- div rodape
+            <!-- div rodape -->
             <div class="divRodape">
                 
             </div>
-            -->
+            
 
         </div>
     </body>

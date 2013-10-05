@@ -34,10 +34,11 @@ and open the template in the editor.
             <!-- fim -->
             
             
-            <!-- div rodape -->
+            <!-- div rodape
             <div class="divRodape">
                 
             </div>
+            -->
 
         </div>
     </body>

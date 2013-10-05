@@ -16,8 +16,6 @@ class Atividade {
     private $nome;
     private $tipoDuracao;
     private $duracao;
-    private $totalVaga;
-    private $estoque;
     private $dataAtividade;
     private $horaInicio;
     private $horaTermino;
@@ -33,8 +31,6 @@ class Atividade {
         $this->nome = "";
         $this->tipoDuracao = 0;
         $this->duracao = 0;
-        $this->totalVaga = 0;
-        $this->estoque = 0;
         $this->dataAtividade = 0;
         $this->horaInicio = 0;
         $this->horaTermino = 0;
@@ -73,20 +69,6 @@ class Atividade {
     }
     public function getDuracao(){
         return $this->duracao;
-    }
-    //----
-    public function setTotalVaga($totalVaga){
-        $this->totalVaga = addslashes($totalVaga);  
-    }
-    public function getTotalVaga(){
-        return $this->totalVaga;
-    }
-    //----
-    public function setEstoque($estoque){
-        $this->estoque = addslashes($estoque);  
-    }
-    public function getEstoque(){
-        return $this->estoque;
     }
     //----
     public function setDataAtividade($dataAtividade){

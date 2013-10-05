@@ -1,0 +1,125 @@
+<?php
+    include_once "../dataAccess/ConexaoDAO.php";
+    include_once "../domainModel/Ministrante.php";
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of MinistranteDAO
+ *
+ * @author Home
+ */
+class MinistranteDAO {
+    //put your code here
+    //inserir
+    public function inserir(Ministrante $obj){
+        $query = sprintf("INSERT INTO ministrante(nome,formacao,status) VALUES('%s','%s',1)",$obj->getNome(),$obj->getFormacao());
+        
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+    }
+    //atualizar
+    public function atualizar(Ministrante $obj){
+        $query = sprintf("UPDATE ministrante SET nome='%s',formacao='%s' WHERE idMinistrante = '%s'",$obj->getNome(),$obj->getFormacao(),$obj->getId());
+        
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+    }
+    //abrir
+    public function abrir($id){
+        $query = sprintf("SELECT * from ministrante WHERE idMinistrante = '%s'",$id);
+        
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+        
+        while ($rs = mysql_fetch_array($resultado)){
+            $novo = new Ministrante();
+            
+            $novo->setId(stripslashes($rs['idMinistrante']));
+            $novo->setNome(stripslashes($rs['nome']));
+            $novo->setFormacao(stripslashes($rs['formacao']));
+            return $novo;
+        }  
+    }
+    //apagar
+    public function apagar($id){
+        $query = sprintf("UPDATE ministrante SET status = 0 WHERE idMinistrante = '%s'",$id);
+        
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+    }
+    //listarTodos
+    public function listarTodos(){
+        $query = sprintf("SELECT * from ministrante WHERE status = 1");
+        
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+        
+        $lista = new ArrayObject();
+        
+        while ($rs = mysql_fetch_array($resultado)){
+            $novo = new Ministrante();
+            
+            $novo->setId(stripslashes($rs['idMinistrante']));
+            $novo->setNome(stripslashes($rs['nome']));
+            $novo->setFormacao(stripslashes($rs['formacao']));
+            $lista->append($novo);
+        }  
+        return $lista;
+    }
+}
+
+?>

@@ -1,4 +1,5 @@
 <?php
+    include_once "../dataAccess/ConexaoDAO.php";
     include_once "../dataAccess/PessoaDAO.php";
     include_once "../domainModel/Pessoa.php";
 
@@ -27,8 +28,8 @@
     //-----
     $cidade = $_POST['cidade'];
     //Login
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+    $email = mysql_real_escape_string($_POST['email']);
+    $senha = mysql_real_escape_string($_POST['senha']);
     
     //instacia classes
     $dao = new PessoaDAO();
@@ -51,14 +52,9 @@
     
  
     if (!$dao->inserir($pessoa)) {
-        //----
-        session_start();
-        $_SESSION['email_user'] = $email;
-        $_SESSION['senha_user'] = $senha;
-
-        echo"<script language='javascript'> 
-                   window.location.href='../presentation/login.php?ok=1'
-                   </script>";
+        
+        
+        
     } else {
         echo"<script language='javascript'> 
                    alert('Ocorreu um erro!') 

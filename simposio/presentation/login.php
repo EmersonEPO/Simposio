@@ -10,24 +10,9 @@
     //seleciona o banco
     $dao->selecionarBanco();
     //----
-
-    //pegar cokie para efetuar login automaticamente (somente na hora q um user é criado)
-    if (isset($_GET["ok"])== 1) {
-
-        $email = $_SESSION['email_user'];
-        $senha = $_SESSION['senha_user'];
-        
-        //destroi sessão
-        session_destroy();
-        
-        //destruindo cokie por segurança
-        setcookie("nome");
-        setcookie("senha");
-    } else {
     
-        $email = mysql_real_escape_string($_POST['email']);
-        $senha = mysql_real_escape_string($_POST['senha']);
-    }
+    $email = mysql_real_escape_string($_POST['email']);
+    $senha = mysql_real_escape_string($_POST['senha']);
     
     //selecionar o usuario
     $sql = "SELECT * FROM pessoa WHERE '" . $email . "' = email AND '" . $senha . "' = senha LIMIT 1";

@@ -99,7 +99,7 @@ body{
     top:140px;
 }
 
-.nav { margin:2px; padding:1px; margin-left: 15px;  list-style:none;}
+.nav { position: absolute; margin:2px; padding:1px; margin-left: 15px;  list-style:none;}
 .nav li { float:left; width:150px; position:relative; }
 .nav li a { background:#333; color:#fff; display:block; padding:7px 8px; text-decoration:none; border-top:1px solid #069; }
 .nav li a:hover { color:#069; }

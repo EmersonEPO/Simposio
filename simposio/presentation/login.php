@@ -47,7 +47,7 @@
         }
           
             //Salva os dados encontrados na consulta sql dentro de uma sessão
-            $_SESSION['id'] = $resultado['idUsuario'];
+            $_SESSION['id'] = $resultado['idPessoa'];
             $_SESSION['email'] = $resultado['email'];
             $_SESSION['nivel'] = $resultado['nivel'];
 

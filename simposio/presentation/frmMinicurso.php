@@ -72,13 +72,44 @@ and open the template in the editor.
                     $ministrante = $daoM->abrir($at->getFk_ministrante());
                     echo "<td width='1200' align='middle' class='cssRow'>" . $ministrante->getNome() . "</td>";
                     echo "<td width='1200' align='middle' class='cssRow'>" . $ministrante->getFormacao() . "</td>";
-                    echo "<td><a href='#'" . $at->getId() . " class='tblBotao'><img src='image/confirm.png'></a></td>";
+                    echo "<td><a href='../controller/CtlParticipar.php?id=" . $at->getId() . "' class='tblBotao'><img src='image/confirm.png'></a></td>";
                  
                     echo "</tr>";
                     $at++;
                 }
                 echo "</table>";
-
             ?>
+        
+            <!-- Alertas -->
+            <?php
+            
+                    if (isset($_GET['msg'])) {
+                    $alerta = $_GET['msg'];
+                    //destruindo $_GET['msg']
+                    unset($_GET['msg']);
+
+                    //-----
+                    if (isset($_GET['max'])) {
+                        $max = $_GET['max'];
+                    }
+
+                    if ($alerta == 1)
+                        echo "<script type='text/javascript'>alert('Matricula Realizada com sucesso');</script>";
+                    if ($alerta == 2)
+                        echo "<script type='text/javascript'>alert('Matricula realizada com sucesso na lista de Espera');</script>";
+                    if ($alerta == 3)
+                        echo "<script type='text/javascript'>alert('Sentimos informa-lo que todas foram preenchidas!');</script>";
+                    if ($alerta == 4)
+                        echo "<script type='text/javascript'>alert('Voce ja efetuou o numero maximo de " . $max . " matriculas!');</script>";
+                } else {
+                    //destruindo $_GET['msg']
+                    unset($_GET['msg']);
+                }
+
+                //limite de matriculas que podem ser efeutadas por usuario
+                //destruindo alerta
+                unset($alerta);
+            ?>
+            <!-- fim alertas -->
     </body>
 </html>

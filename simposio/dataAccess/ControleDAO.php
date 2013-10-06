@@ -17,7 +17,7 @@ class ControleDAO {
     //put your code here
     //pegar total de vagas e esperas
     public function abrirtotal($idAtividade) {
-        $query = sprintf("SELECT * FROM estado WHERE fk_atividade = '%s' FOR UPDATE", $idAtividade);
+        $query = sprintf("SELECT * FROM controle WHERE fk_atividade = '%s' FOR UPDATE", $idAtividade);
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();
@@ -37,7 +37,7 @@ class ControleDAO {
 
             $novo->setId(stripslashes($rs['idControle']));
             $novo->setTotalVaga(stripslashes($rs['totalVaga']));
-            $novo->setTotalEspera(estripslashes($rs['totalEspera']));
+            $novo->setTotalEspera(stripslashes($rs['totalEspera']));
             $novo->setFk_atividade(stripslashes($rs['fk_atividade']));
 
             return $novo;

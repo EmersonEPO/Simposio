@@ -34,7 +34,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);</style>
+        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);@import url(style/alertas.css)</style>
         <script type="text/javascript" src="js/jquery.js"></script>
         <!-- script auxiliar do jquery para o menu dropdown -->
         <script type="text/javascript">
@@ -69,6 +69,7 @@
                 }
                 //------
                 ?>
+                
                 <!-- Menu principal -->
                 
                 <ul class="nav">

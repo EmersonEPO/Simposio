@@ -32,10 +32,27 @@ and open the template in the editor.
 <html>
     <head>
         <meta http-equiv="content-Type" content="text/html; charset=iso-utf-8" />
-        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);</style>
+        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);@import url(style/alertas.css);</style>
         <title></title>
     </head>
     <body>
+            <!-- Alertas -->
+            <div class="posicaoDivAlerta">
+                <div class="info">Sentimos Informa-lo Que Todas as Vagas Para Esta Atividade Já foram Preenchidas</div>
+            </div>
+            <!--
+            <div class="posicaoDivAlerta">
+                <div class="success">Parabéns! Sua Matricula foi Efetuada com Sucesso!</div>
+            </div>
+            <div class="posicaoDivAlerta">
+                <div class="warning">Sua Matricula na Lista de Espera foi Efetuada com Sucesso!</div>
+            </div>
+            <div class="posicaoDivAlerta">
+            <div class="posicaoDivAlerta">
+                <div class="error">Você Já Atingiu o Numero Máximo de Matriculas!</div> 
+            </div>
+            -->
+            <!-- fim alertas -->
             <?php
                 echo "<table name='tbl' id='tbl' border='1' class='cssTblAtividade'>";
                 echo "<tr>";
@@ -80,36 +97,5 @@ and open the template in the editor.
                 echo "</table>";
             ?>
         
-            <!-- Alertas -->
-            <?php
-            
-                    if (isset($_GET['msg'])) {
-                    $alerta = $_GET['msg'];
-                    //destruindo $_GET['msg']
-                    unset($_GET['msg']);
-
-                    //-----
-                    if (isset($_GET['max'])) {
-                        $max = $_GET['max'];
-                    }
-
-                    if ($alerta == 1)
-                        echo "<script type='text/javascript'>alert('Matricula Realizada com sucesso');</script>";
-                    if ($alerta == 2)
-                        echo "<script type='text/javascript'>alert('Matricula realizada com sucesso na lista de Espera');</script>";
-                    if ($alerta == 3)
-                        echo "<script type='text/javascript'>alert('Sentimos informa-lo que todas foram preenchidas!');</script>";
-                    if ($alerta == 4)
-                        echo "<script type='text/javascript'>alert('Voce ja efetuou o numero maximo de " . $max . " matriculas!');</script>";
-                } else {
-                    //destruindo $_GET['msg']
-                    unset($_GET['msg']);
-                }
-
-                //limite de matriculas que podem ser efeutadas por usuario
-                //destruindo alerta
-                unset($alerta);
-            ?>
-            <!-- fim alertas -->
     </body>
 </html>

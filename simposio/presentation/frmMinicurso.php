@@ -34,6 +34,15 @@ and open the template in the editor.
         <meta http-equiv="content-Type" content="text/html; charset=iso-utf-8" />
         <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);@import url(style/alertas.css);</style>
         <title></title>
+         <script language="Javascript">
+	
+            function confirmacao(id) { 
+                var resposta = confirm("Realmente deseja prosseguir com essa operação? Lembre-se ela não poderá ser desfeita posteriormente.");   
+                if (resposta == true) { 
+                    window.location.href = "../controller/CtlParticipar.php?id="+id; 
+                } 
+            } 
+        </script>
     </head>
     <body>
             <!-- Alertas -->
@@ -74,7 +83,7 @@ and open the template in the editor.
                     $ministrante = $daoM->abrir($at->getFk_ministrante());
                     echo "<td width='1200' align='middle' class='cssRow'>" . $ministrante->getNome() . "</td>";
                     echo "<td width='1200' align='middle' class='cssRow'>" . $ministrante->getFormacao() . "</td>";
-                    echo "<td><a href='../controller/CtlParticipar.php?id=" . $at->getId() . "' class='tblBotao'><img src='image/confirm.png'></a></td>";
+                    echo "<td><a href='javascript:func()' onclick='confirmacao(".$at->getId().")' class='tblBotao'><img src='image/confirm.png'></a></td>";
                  
                     echo "</tr>";
                     $at++;

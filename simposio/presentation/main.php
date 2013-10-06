@@ -30,6 +30,15 @@
     
 ?>
 
+<?php
+    if(isset($_GET['msg'])){
+        $msg = $_GET['msg'];
+        unset($_GET['msg']);
+    }else{
+        unset($msg);
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,6 +62,15 @@
             
         </script>
         <!-- fim script -->
+        <script language="Javascript">
+	
+            function confirmacao() { 
+                var resposta = confirm("Realmente deseja sair?");   
+                if (resposta == true) { 
+                    window.location.href = "../presentation/logout.php"; 
+                } 
+            } 
+        </script>
     
         <title>Simpósio</title>
     </head>
@@ -89,7 +107,7 @@
                    
                     <li><a  href="#">menu 6</a></li> 
                     <!-- Logout do usuario -->
-                    <li><a  href="logout.php" class="cssuser">Sair</a></li>
+                    <li><?php echo"<a href='javascript:func()' onclick='confirmacao()'  class='cssuser'>Sair</a>";?></li>
                     
                 </ul>
                 <!-- fim menu principal -->
@@ -97,6 +115,7 @@
             
             </div>
             <!-- fim corpo -->
+           
             
             
         

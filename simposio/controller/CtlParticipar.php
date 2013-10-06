@@ -49,7 +49,7 @@
             //realizar matricula
             $daoM->matricular($pessoa, $idAtividade, $tipo);
             //mensagem de resposta
-            echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=1';</script>";
+            echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php';alert('Matricula realizado com sucesso.');</script>";
         } else {
             if (($novo->getTotalEspera() >= 0 ) and ($novo->getTotalEspera() < 5)) {
                 //acrescenta +1 na lista de espera
@@ -61,14 +61,14 @@
                 //realizar matricula
                 $daoM->matricular($pessoa, $idAtividade, $tipo);
                 //mensagem de resposta
-                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=2';</script>";
+                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php';alert('Matricula realizado com sucesso na lista de espera.');</script>";
             } else {
                 //mensagem de resposta
-                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=3';</script>";
+                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php';alert('Sentimos informa-lo que todas as vagas já foram preenchidas.')</script>";
             }
         }
     } else {
          //mensagem de resposta
-         echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=4&max=". $max ."';</script>";
+         echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php';alert('Voce ja atingiu o limite maximo de matriculas.');</script>";
     }
 ?>

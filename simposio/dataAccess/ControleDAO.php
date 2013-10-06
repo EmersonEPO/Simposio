@@ -76,8 +76,33 @@ class ControleDAO {
 
         //fecha conexao
         $daoConexao->desconectar($conexaoAberta);
-    }    
+    } 
+    //controle de choque de horario
+    public function acrescentarEspra($horaInicio,$horaTermino) {
+        $query = "SELECT COUNT(idAtividade) AS ok FROM atividade WHERE (((horaInicio >= '".$horaInicio."') AND (horaInicio < '".$horaTermino."')) OR ((horaTermino >= '".$horaInicio."') AND (horaTermino <= '".$horaTermino."')))";
 
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+        
+        $query = mysql_fetch_assoc($resultado);
+            
+        //Se a consulta retornar 1 entao a função retornará false
+        if($query['ok'] != 0){
+            return true;
+        }else{
+            return false;
+        }
+    } 
 }
 
 ?>

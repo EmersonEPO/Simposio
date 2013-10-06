@@ -37,21 +37,6 @@ and open the template in the editor.
     </head>
     <body>
             <!-- Alertas -->
-            <div class="posicaoDivAlerta">
-                <div class="info">Sentimos Informa-lo Que Todas as Vagas Para Esta Atividade Já foram Preenchidas</div>
-            </div>
-            <!--
-            <div class="posicaoDivAlerta">
-                <div class="success">Parabéns! Sua Matricula foi Efetuada com Sucesso!</div>
-            </div>
-            <div class="posicaoDivAlerta">
-                <div class="warning">Sua Matricula na Lista de Espera foi Efetuada com Sucesso!</div>
-            </div>
-            <div class="posicaoDivAlerta">
-            <div class="posicaoDivAlerta">
-                <div class="error">Você Já Atingiu o Numero Máximo de Matriculas!</div> 
-            </div>
-            -->
             <!-- fim alertas -->
             <?php
                 echo "<table name='tbl' id='tbl' border='1' class='cssTblAtividade'>";
@@ -96,6 +81,9 @@ and open the template in the editor.
                 }
                 echo "</table>";
             ?>
+            
+            
+            
         
     </body>
 </html>

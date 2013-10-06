@@ -89,7 +89,9 @@ and open the template in the editor.
                     $at++;
                 }
                 echo "</table>";
+               
             ?>
+            <br/><br/><br/><a href="../controller/CtlMatriculaPDF.php">Gerar Matricula </a>
             
             
             

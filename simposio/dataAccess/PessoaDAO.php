@@ -48,7 +48,7 @@ class PessoaDAO {
         $daoConexao->selecionarBanco();
 
         //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
-        $resultado = $daoConexao->executeQuery($query);
+        $rs = $daoConexao->executeQuery($query);
 
         //fecha conexao
         $daoConexao->desconectar($conexaoAberta);
@@ -56,21 +56,24 @@ class PessoaDAO {
         //Setando valores
         $pessoa = new Pessoa();
 
-        $pessoa->setId($resultado['idPessoa']);
-        $pessoa->setIdUser($resultado['fk_usuario']);
-        $pessoa->setFk_instituicao($resultado['fk_instituicao']);
-        $pessoa->setFk_cidade($resultado['fk_cidade']);
-        $pessoa->setNome($resultado['nome']);
-        $pessoa->setCpf($resultado['cpf']);
-        $pessoa->setNascimento(implode("/", array_reverse(explode("-", $resultado['nascimento']))));
-        $pessoa->setSexo($resultado['sexo']);
-        $pessoa->setRua($resultado['rua']);
-        $pessoa->setNumero($resultado['numero']);
-        $pessoa->setBairro($resultado['bairro']);
-        $pessoa->setId($resultado['complemento']);
-        $pessoa->setNomeInstituicao($resultado['outraInsituicao']);
+        while ($resultado = mysql_fetch_array($rs)){
+            $pessoa->setId(stripslashes($resultado['idPessoa']));
+            $pessoa->setFk_instituicao(stripslashes($resultado['fk_instituicao']));
+            $pessoa->setFk_cidade(stripslashes($resultado['fk_cidade']));
+            $pessoa->setNome(stripslashes($resultado['nome']));
+            $pessoa->setCpf(stripslashes($resultado['cpf']));
+            $pessoa->setNascimento(implode("/", array_reverse(explode("-", $resultado['nascimento']))));
+            $pessoa->setSexo(stripslashes($resultado['sexo']));
+            $pessoa->setRua(stripslashes($resultado['rua']));
+            $pessoa->setNumero(stripslashes($resultado['numero']));
+            $pessoa->setFone(stripslashes($resultado['telefone']));
+            $pessoa->setBairro(stripslashes($resultado['bairro']));
+            $pessoa->setId(stripslashes($resultado['complemento']));
+            $pessoa->setNomeInstituicao(stripslashes($resultado['outraInstituicao']));
+            $pessoa->setEmail(stripslashes($resultado['email']));
 
-        return $pessoa;
+            return $pessoa;
+        }
     }
 
     //função que verifica se email já existe no sistema

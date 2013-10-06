@@ -54,7 +54,7 @@ $ministrante = new Ministrante();
 $daoI = new InstituicaoDAO();
 $instituicao = new Instituicao();
 
-$novo = $daoA->listaTodos();
+$novo = $daoA->listarAtividadeDoUser($idPessoa);
 
 $pessoa = $daoP->abrir($idPessoa);
 $ministrante = $daoM->abrir(2);

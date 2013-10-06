@@ -91,7 +91,9 @@ and open the template in the editor.
                 echo "</table>";
                
             ?>
-            <br/><br/><br/><a href="../controller/CtlMatriculaPDF.php">Gerar Matricula </a>
+            <div class="csspdf">
+                <a href="../controller/CtlMatriculaPDF.php"><img src="../presentation/image/pdf.png"><br/>Gerar Matricula</a>
+            </div>
             
             
             

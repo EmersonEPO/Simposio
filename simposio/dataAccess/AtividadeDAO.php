@@ -141,6 +141,50 @@ class AtividadeDAO {
         }
         return $lista;
     }
+    //listarTodos
+    public function listarAtividadeDoUser($id) {
+        $query = "SELECT a.idAtividade,a.fk_evento,a.fk_tipoAtv,a.fk_ministrante,a.nome,a.tipoDuracao,a.duracao,a.local,a.dataAtividade,a.horaInicio,a.horaTermino 
+                  FROM atividade a 
+                  INNER JOIN matricula m ON (m.fk_atividade = a.idAtividade)
+                  WHERE a.status = 1 AND  m.fk_pessoa = '".$id."' 
+                  ORDER BY a.nome";
+
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+
+
+        $lista = new ArrayObject();
+
+        while ($rs = mysql_fetch_array($resultado)) {
+
+            $novo = new Atividade();
+
+            $novo->setId(stripslashes($rs['idAtividade']));
+            $novo->setNome(stripslashes($rs['nome']));
+            $novo->setTipoDucacao(stripslashes($rs['tipoDuracao']));
+            $novo->setDuracao(stripslashes($rs['duracao']));
+            $novo->setDataAtividade(implode("/", array_reverse(explode("-", $rs['dataAtividade']))));
+            $novo->setHoraInicio(stripslashes($rs['horaInicio']));
+            $novo->setHoraTermino(stripslashes($rs['horaTermino']));
+            $novo->setLocal(stripslashes($rs['local']));
+            $novo->setFk_evento(stripslashes($rs['fk_evento']));
+            $novo->setFk_ministrante(stripslashes($rs['fk_ministrante']));
+            $novo->setFk_tipoAtv(stripslashes($rs['fk_tipoAtv']));
+
+            $lista->append($novo);
+        }
+        return $lista;
+    }
 
 }
 

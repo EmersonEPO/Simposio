@@ -64,7 +64,7 @@
         <!-- fim script -->
         <script language="Javascript">
 	
-            function confirmacao() { 
+            function confirmacao2() { 
                 var resposta = confirm("Realmente deseja sair?");   
                 if (resposta == true) { 
                     window.location.href = "../presentation/logout.php"; 
@@ -107,7 +107,7 @@
                    
                     <li><a  href="#">menu 6</a></li> 
                     <!-- Logout do usuario -->
-                    <li><?php echo"<a href='javascript:func()' onclick='confirmacao()'  class='cssuser'>Sair</a>";?></li>
+                    <li><?php echo"<a href='javascript:func()' onclick='confirmacao2()'  class='cssuser'>Sair</a>";?></li>
                     
                 </ul>
                 <!-- fim menu principal -->

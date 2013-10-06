@@ -19,23 +19,43 @@
     include_once "../dataAccess/ControleDAO.php";
     include_once "../domainModel/Controle.php";
     include_once "../dataAccess/MatriculaDAO.php";
+    include_once "../domainModel/Atividade.php";
+    include_once "../dataAccess/AtividadeDAO.php";
 
+    $passe = 1;
+    //id pessoa
+    $pessoa = $_SESSION['id'];
+    //numero maximo de matriculas que um aluno pode ter
+    $max = 3;
+    //id Atividade
+    $idAtividade = $_GET['id'];
+    
+    $daoA = new AtividadeDAO();
+    $atv = new Atividade();
     $daoM = new MatriculaDAO();
     $dao = new ControleDAO();
     $novo = new Controle();
-
-    $idAtividade = $_GET['id'];
+    
+    //verificar se usuario possui alguma matricula
+    if ($daoM->existteMatricula($pessoa) == true) {
+        //verificar se nao ocorreu choque de horario.
+        $atv = $daoA->abrir($idAtividade);
+        
+        if ($dao->choqueHorario($atv->getHoraInicio(), $atv->getHoraTermino(), $pessoa) == true) {
+            $passe = 0;
+            echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php';alert('Sentimos muito mas houve choque de horario.');</script>";
+        }
+    }
+    
     //pega o total de vagas normais e na lista de espera
     $novo = $dao->abrirtotal($idAtividade);
     
     //-----------
-    //id pessoa
-    $pessoa = $_SESSION['id'];
-
+  
     //verifica se o usuario exedeu o limite maximo de matriculas
     //se for retornado true significa que o aluno ainda pode fazer matricula,
     //caso retorne false é porque o aluno atingiu o numero maximo de matriculas
-    $max = 3; //numero maximo de matriculas que um aluno pode ter
+    if($passe == 1){
     if (($daoM->totalMatricula($max,$pessoa)) == true) {
 
         //Verifica se o totol ainda esta dentro do aceitavel
@@ -70,5 +90,6 @@
     } else {
          //mensagem de resposta
          echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php';alert('Voce ja atingiu o limite maximo de matriculas.');</script>";
+    }
     }
 ?>

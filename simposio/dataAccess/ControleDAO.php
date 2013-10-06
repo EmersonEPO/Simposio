@@ -78,8 +78,8 @@ class ControleDAO {
         $daoConexao->desconectar($conexaoAberta);
     } 
     //controle de choque de horario
-    public function acrescentarEspra($horaInicio,$horaTermino) {
-        $query = "SELECT COUNT(idAtividade) AS ok FROM atividade WHERE (((horaInicio >= '".$horaInicio."') AND (horaInicio < '".$horaTermino."')) OR ((horaTermino >= '".$horaInicio."') AND (horaTermino <= '".$horaTermino."')))";
+    public function choqueHorario($horaInicio,$horaTermino,$pessoa) {
+        $query = "SELECT COUNT(a.idAtividade) AS ok FROM atividade a INNER JOIN matricula m ON (m.fk_atividade = a.idAtividade) WHERE ((((a.horaInicio >= '".$horaInicio."') AND (a.horaInicio < '".$horaTermino."')) OR ((a.horaTermino >= '".$horaInicio."') AND (a.horaTermino <= '".$horaTermino."')))AND m.fk_pessoa = '".$pessoa."')";
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();

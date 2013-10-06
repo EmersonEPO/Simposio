@@ -55,6 +55,31 @@ class MatriculaDAO {
                 return false;
             }
         }
+        //verifica a quantidade de matricula que um aluno fez
+        public function existteMatricula($pessoa){
+            $query = sprintf("SELECT COUNT(fk_pessoa) as totalMatriculas FROM matricula WHERE fk_pessoa = '%s'",$pessoa);
+
+            //iniciar conexao
+            $daoConexao = new conexaoDAO();
+            $conexaoAberta = $daoConexao->conectar();
+
+            //selecionar banco
+            $daoConexao->selecionarBanco();
+
+            //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+            $resultado = $daoConexao->executeQuery($query);
+
+            //fecha conexao
+            $daoConexao->desconectar($conexaoAberta);
+            
+            $matriculas = mysql_fetch_array($resultado);
+            
+            if($matriculas['totalMatriculas'] != 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
 }
 
 ?>

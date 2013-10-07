@@ -30,15 +30,6 @@
     
 ?>
 
-<?php
-    if(isset($_GET['msg'])){
-        $msg = $_GET['msg'];
-        unset($_GET['msg']);
-    }else{
-        unset($msg);
-    }
-?>
-
 <!DOCTYPE html>
 <html>
     <head>

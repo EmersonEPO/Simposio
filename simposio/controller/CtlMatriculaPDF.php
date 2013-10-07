@@ -41,6 +41,7 @@ require_once '../dataAccess/MinistranteDAO.php';
 require_once '../dataAccess/InstituicaoDAO.php';
 require_once '../domainModel/Instituicao.php';
 
+
 //Recebe pela sessao o id da pessoa
 $idPessoa = $_SESSION['id'];
 
@@ -71,7 +72,7 @@ $pdf->AddPage('P', 'A4');
 $pdf->Image('../presentation/image/logo.jpg', 70);
 $pdf->SetFont('Arial', 'B', 14);
 $pdf->Cell(80);
-$pdf->Cell(30, 10, 'Matricula', 0, 0, 'C');
+$pdf->Cell(30, 10, 'VI SIMPOSIO INFORMATICA', 0, 0, 'C');
 $pdf->Ln();
 $pdf->Ln(20);
 $pdf->SetFont('Arial', 'B', 11);
@@ -96,7 +97,7 @@ $pdf->Ln();
 $pdf->SetFont('Arial', 'B', 11);
 $pdf->Cell(28,5,'INSTITUIÇÃO:', 0, 0, 'C');
 $pdf->SetFont('Arial', '', 11);
-$pdf->Cell(18,5,  strtoupper($instituicao->getNome()), 0, 0, 'C');
+$pdf->Cell(29,5,  strtoupper($instituicao->getNome()), 0, 0, 'C');
 
 
 $pdf->Ln(10);
@@ -110,11 +111,23 @@ $pdf->Ln();
 $pdf->SetFont('Arial', '', 8);
 foreach ($novo as $row) {
     $ministrante = $daoM->abrir($row->getFk_ministrante());
+
+    //tipo duração
+    if ($row->getTipoDuracao() == 1) {
+        $duracao = "Hora(s)";
+    } else {
+        $duracao = "Min.";
+    }
     
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'TITULO', 1);
     $pdf->SetFont('Arial', '', 8);
     $pdf->Cell(130, 5, $row->getNome(), 1);
+    $pdf->Ln();
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell(27, 5, 'DURAÇAO', 1);
+    $pdf->SetFont('Arial', '', 8);
+    $pdf->Cell(130, 5,$row->getTipoDuracao()." ".$duracao, 1);
     $pdf->Ln();
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'DATA', 1);
@@ -139,5 +152,5 @@ foreach ($novo as $row) {
 }
 
 //FORÇA O DOWNLOAD PELO BROWSER
-$pdf->Output('pessoas.pdf', 'I');
+$pdf->Output('matriculaIFNMG.pdf', 'D');
 ?>

@@ -280,10 +280,30 @@ body{
 
 .csspdf{
     position: absolute;
-    top: 40%;
-    left: 88%;
+    top: 15%;
+    left: 5%;
 }
 
+a:link, a:visited {
+    text-decoration: none
+}
+a:hover {
+    text-decoration: underline;
+    color: #f00
+}
+
+a:active {
+    text-decoration: none
+}
+
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration: #ffffff;
+    color:#000;
+}
 
 
 

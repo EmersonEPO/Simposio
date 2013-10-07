@@ -1,7 +1,35 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+    //A sessao precisa ser iniciada caso ela nao exista
+    //para ser feito a comparação log mais
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+
+    //Se o cokie criado apos o login não existir mais
+    //significa que a sessao deve ser finalizada
+    if(!isset($_COOKIE['expira'])){
+        //detroi sessao
+        session_destroy();
+        //por segurança, estou destruindo também o cokie
+        setcookie("expira");
+        //mensagem informando que o tempo do usuario expirou, redireciona para index
+        echo "<script language='javascript'>
+                    window.location.href='../presentation/index.php?pag=frmLogin.php'
+              </script>";
+        
+    }
+    //nivel para ter acesso a essa pagina
+    $nivel_necessario = 1;
+    // Verifica se não há a variavel da sessao que identifica o usuario
+    if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)){
+        //destroi a sessao por segurança
+        session_destroy();
+        //redireciona o visitante de volta pro login
+        header("Location: ../presentation/index.php?pag=frmLogin.php"); exit;
+    }
+    
+?>
+
 <?php
     //resolver problemas relacionado aos acentos
     header("Content-Type: text/html; charset=ISO-8859-1", true);
@@ -12,6 +40,7 @@ and open the template in the editor.
     include_once "../domainModel/Ministrante.php";
     include_once "../dataAccess/TipoAtividadeDAO.php";
     include_once "../domainModel/TipoAtividade.php";
+    include_once "../dataAccess/MatriculaDAO.php";
     
     $daoA = new AtividadeDAO();
     $atividade = new Atividade();
@@ -24,6 +53,9 @@ and open the template in the editor.
     //TipoAtividade
     $daoTA = new TipoAtividadeDAO();
     $tipoAtividade = new TipoAtividade();
+    
+    //matricula
+    $daoMa = new MatriculaDAO();
     
    
 ?>
@@ -91,9 +123,14 @@ and open the template in the editor.
                 echo "</table>";
                
             ?>
-            <div class="csspdf">
-                <a href="../controller/CtlMatriculaPDF.php"><img src="../presentation/image/pdf.png"><br/>Gerar Matricula</a>
-            </div>
+            <?php
+                //verifica se o usuario ja possui alguma matricula para que entao seja exibida a opção de gerar pdf
+                if($daoMa->existteMatricula($_SESSION['id']) == true){
+                    echo"<div class='csspdf'>";
+                    echo "<a href='../controller/CtlMatriculaPDF.php'><img src='../presentation/image/pdf.gif'> Imprimir Matricula</a>";
+                    echo "</div>";
+                 }
+            ?>
             
             
             

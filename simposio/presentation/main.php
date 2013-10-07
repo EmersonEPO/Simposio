@@ -36,6 +36,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);@import url(style/alertas.css)</style>
         <script type="text/javascript" src="js/jquery.js"></script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
         <!-- script auxiliar do jquery para o menu dropdown -->
         <script type="text/javascript">
             $(document).ready(function(){      
@@ -70,7 +71,7 @@
         <div>
             
             <!-- corpo -->
-            <div class="div-corpo">
+            <div id="cssmenu">
                 <?php
                 //Com isso todas as paginas que forem chamadas serão aberta em main
                 if(isset($_GET["pag"])){
@@ -81,24 +82,18 @@
                 
                 <!-- Menu principal -->
                 
-                <ul class="nav">
-                    <li><a  href="../presentation/main.php?">Home</a></li>
-                    <li><a  href="../presentation/main.php?pag=frmMinicurso.php">Minicursos</a></li>
-                   
-                    <li><a  href="#" >menu 3</a>
+                <ul>
+                    <li class='active'><a  href="../presentation/main.php?" >Home</a></li>
+                    
+                    <li class='has-sub'><a  href="#" >Informações</a>
                         <ul>
-                            <li><a  href="#" >menu 3.1</a></li>
-                            <li><a  href="#" >menu 3.2</a></li>
-                            <li><a  href="#" >menu 3.3</a></li>
+                            <li><a  href="#" >Dados Pessoais</a></li><br/>
+                            <li><a  href="#" >Login</a></li>
                         </ul>
                     </li>
-                   
-                    <li><a  href="#">menu 4</a></li>
-                    <li><a  href="#">menu 5</a></li>  
-                   
-                    <li><a  href="#">menu 6</a></li> 
+                    <li class='has-sub'><a  href="../presentation/main.php?pag=frmMinicurso.php">Minicursos</a></li>
                     <!-- Logout do usuario -->
-                    <li><?php echo"<a href='javascript:func()' onclick='confirmacao2()'  class='cssuser'>Sair</a>";?></li>
+                    <li class='has-sub'><?php echo"<a href='javascript:func()' onclick='confirmacao2()'>Sair</a>";?></li>
                     
                 </ul>
                 <!-- fim menu principal -->

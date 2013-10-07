@@ -32,7 +32,7 @@
 
 <?php
     //resolver problemas relacionado aos acentos
-    header("Content-Type: text/html; charset=ISO-8859-1", true);
+    header("Content-Type: text/html; charset=ISO-UTF-8", true);
     
     include_once "../dataAccess/AtividadeDAO.php";
     include_once "../domainModel/Atividade.php";
@@ -63,7 +63,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="content-Type" content="text/html; charset=iso-utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);@import url(style/alertas.css);</style>
         <title></title>
          <script language="Javascript">

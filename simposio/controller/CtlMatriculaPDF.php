@@ -152,5 +152,5 @@ foreach ($novo as $row) {
 }
 
 //FORÇA O DOWNLOAD PELO BROWSER
-$pdf->Output('matriculaIFNMG.pdf', 'D');
+$pdf->Output('matriculaIFNMG.pdf', 'I');
 ?>

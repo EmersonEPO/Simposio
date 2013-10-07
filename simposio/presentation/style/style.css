@@ -270,7 +270,7 @@ body{
 
 .csspdf{
     position: absolute;
-    top: 15%;
+    top: 22%;
     left: 5%;
 }
 
@@ -425,6 +425,18 @@ a:hover {
   color: #f0f0f0;
 }
 
+.linha-td{
+    width: 150px;
+    height: 50px;
+}
 
+.linha-td:hover{
+   background-color: #aaa;
+   cursor: pointer;   
+}
+
+.botao:hover{
+  cursor:pointer;	
+}
 
 

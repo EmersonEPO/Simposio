@@ -83,6 +83,7 @@
                 <!-- Menu principal -->
                 
                 <ul>
+                    <li class="has-sub">"           "</li>
                     <li class='active'><a  href="../presentation/main.php?" >Home</a></li>
                     
                     <li class='has-sub'><a  href="#" >Informações</a>
@@ -93,6 +94,7 @@
                     </li>
                     <li class='has-sub'><a  href="../presentation/main.php?pag=frmMinicurso.php">Minicursos</a></li>
                     <!-- Logout do usuario -->
+              
                     <li class='has-sub'><?php echo"<a href='javascript:func()' onclick='confirmacao2()'>Sair</a>";?></li>
                     
                 </ul>

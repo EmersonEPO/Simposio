@@ -94,28 +94,28 @@
                 echo "</tr>";
 
                 foreach ($atividade as $at) {
-                    echo "<tr>";
-                    echo "<td width='1200' align='middle' class='cssRow'>" . $at->getNome() . "</td>";
+                    echo "<tr class='linha-td'>";
+                    echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getNome() . "</td>";
                     //bucar nome do tipo de atividade
                     $tipoAtividade = $daoTA->abrir($at->getFk_tipoAtv());
-                    echo "<td width='1200' align='middle' class='cssRow'>" . $tipoAtividade->getNome() . "</td>";
+                    echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $tipoAtividade->getNome() . "</td>";
                     
                     //tipo de duracao 1 = horas ou 2 == minutos
                     if($at->getTipoDuracao() == 1){
-                        echo "<td width='1200' align='middle' class='cssRow'>" . $at->getDuracao() ." Hora(s)". "</td>";
+                        echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getDuracao() ." Hora(s)". "</td>";
                     }else{
-                        echo "<td width='1200' align='middle' class='cssRow'>" . $at->getDuracao() ." Min". "</td>";
+                        echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getDuracao() ." Min". "</td>";
                     }
                     //-----
-                    echo "<td width='1200' align='middle' class='cssRow'>" . $at->getDataAtividade() . "</td>";
-                    echo "<td width='1200' align='middle' class='cssRow'>" . $at->getHoraInicio() . "</td>";
-                    echo "<td width='1200' align='middle' class='cssRow'>" . $at->getHoraTermino() . "</td>";
-                    echo "<td width='1200' align='middle' class='cssRow'>" . $at->getLocal() . "</td>";
+                    echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getDataAtividade() . "</td>";
+                    echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getHoraInicio() . "</td>";
+                    echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getHoraTermino() . "</td>";
+                    echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getLocal() . "</td>";
                     //bucar nome do ministrante
                     $ministrante = $daoM->abrir($at->getFk_ministrante());
-                    echo "<td width='1200' align='middle' class='cssRow'>" . $ministrante->getNome() . "</td>";
-                    echo "<td width='1200' align='middle' class='cssRow'>" . $ministrante->getFormacao() . "</td>";
-                    echo "<td><a href='javascript:func()' onclick='confirmacao(".$at->getId().")' class='tblBotao'><img src='image/confirm.png'></a></td>";
+                    echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $ministrante->getNome() . "</td>";
+                    echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $ministrante->getFormacao() . "</td>";
+                    echo "<td ><a href='javascript:func()' onclick='confirmacao(".$at->getId().")' class='botao'>_<img src='image/confirm.png'></a></td>";
                  
                     echo "</tr>";
                     $at++;
@@ -127,7 +127,7 @@
                 //verifica se o usuario ja possui alguma matricula para que entao seja exibida a opção de gerar pdf
                 if($daoMa->existteMatricula($_SESSION['id']) == true){
                     echo"<div class='csspdf'>";
-                    echo "<a href='../controller/CtlMatriculaPDF.php'><img src='../presentation/image/pdf.gif'> Imprimir Matricula</a>";
+                    echo "<a href='../controller/CtlMatriculaPDF.php'  target='_blank'><img src='../presentation/image/pdf.gif'> Imprimir Matricula</a>";
                     echo "</div>";
                  }
             ?>

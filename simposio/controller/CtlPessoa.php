@@ -15,7 +15,7 @@
     $numero = $_POST['numero'];
     $bairro = $_POST['bairro'];
     //-----
-    if(isset($_POST['complemento'])){
+    if((isset($_POST['complemento'])) != null){
         $complemento = $_POST['complemento'];
     }else{
         $complemento = "vazio";
@@ -29,8 +29,8 @@
     //-----
     $cidade = $_POST['cidade'];
     //Login
-    $email = mysql_real_escape_string($_POST['email']);
-    $senha = mysql_real_escape_string($_POST['senha']);
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
     
     //instacia classes
     $dao = new PessoaDAO();
@@ -53,6 +53,12 @@
     
  
     if (!$dao->inserir($pessoa)) {
+        setcookie("email",$email, time()+50);
+        setcookie("email",$senha, time()+50);
+        
+        echo"<script language='javascript'> 
+                   window.location.href='../Presentation/login.php'
+                   </script>";
         
         
         

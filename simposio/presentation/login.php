@@ -11,8 +11,14 @@
     $dao->selecionarBanco();
     //----
     
-    $email = mysql_real_escape_string($_POST['email']);
-    $senha = mysql_real_escape_string($_POST['senha']);
+    if(isset($_GET['sucess'])){
+        $email = mysql_real_escape_string($_COOKIE['email']);
+        $senha = mysql_real_escape_string($_COOKIE['senha']);
+        
+    }else{
+        $email = mysql_real_escape_string($_POST['email']);
+        $senha = mysql_real_escape_string($_POST['senha']);
+    }
     
     //selecionar o usuario
     $sql = "SELECT * FROM pessoa WHERE '" . $email . "' = email AND '" . $senha . "' = senha LIMIT 1";
@@ -26,7 +32,7 @@
     
         //senha e usuario invalido
         //redireciona para a tela de login
-        header("Location: index.php?pag=frmLogin.php");
+        header("Location: index.php?pag=frmLogin.php&erro");
         exit;
     } else {
         

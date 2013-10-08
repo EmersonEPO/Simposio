@@ -42,9 +42,19 @@ and open the template in the editor.
             <!-- div rodape -->
             <div class="divRodape">
                 
-            </div>
-            
-
+            </div
         </div>
+           <?php
+                if(isset($_GET['erro'])){
+                    echo"<script language='javascript'> 
+                            alert('EMAIL ou SENHA incorretos!') 
+                            window.location.href='../Presentation/index.php?pag=frmLogin.php'
+                         </script>";
+                    unset($_GET['erro']);
+
+                }else{
+
+                }
+            ?>
     </body>
 </html>

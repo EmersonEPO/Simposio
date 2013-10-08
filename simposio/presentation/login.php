@@ -60,8 +60,13 @@
             //limpa os dados contido na variavel $resultado
             mysql_free_result($resultado);     
         
+            
             //redireciona
-            header("Location: main.php");
+            if($_SESSION['nivel'] == 1){
+                header("Location: main.php");
+            }else{
+                header("Location: administrator/main.php");
+            }
             exit;
     }
 ?>

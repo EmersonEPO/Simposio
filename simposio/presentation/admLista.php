@@ -20,7 +20,7 @@ and open the template in the editor.
             
             echo "<div  class='cssLinkPdf'>";
             foreach ($atv as $a){
-                echo "<a href='#'><img src='../presentation/image/pdf.gif'>  ".$a->getNome()."</a><br/><br/>";
+                echo "<a href='../controller/CtlListasPDF.php'  target='_blank'><img src='../presentation/image/pdf.gif'>  ".$a->getNome()."</a><br/><br/>";
                 $a++;
             }
             echo "</div>";

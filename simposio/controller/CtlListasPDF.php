@@ -75,32 +75,7 @@ $pdf->Cell(80);
 $pdf->Cell(30, 10, 'VI SIMPOSIO INFORMATICA', 0, 0, 'C');
 $pdf->Ln();
 $pdf->Ln(20);
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(11, 5,'NOME:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(29, 5,$pessoa->getNome(), 0, 0, 'C');
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(210,5,'FONE:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(-168,5,$pessoa->getFone(), 0, 0, 'C');
-$pdf->Ln();
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(7,4,'CPF:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(39, 4,$pessoa->getCpf(), 0, 0, 'C');
-$pdf->Ln();
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(11,5,'EMAIL:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(37,5,$pessoa->getEmail(), 0, 0, 'C');
-$pdf->Ln();
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(28,5,'INSTITUIÇÃO:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(29,5,  strtoupper($instituicao->getNome()), 0, 0, 'C');
 
-
-$pdf->Ln(10);
 
 //CABEÇALHO DA TABELA
 $pdf->SetFont('Arial', 'B', 10);

@@ -486,4 +486,10 @@ a:hover {
     cursor:pointer;	
 }
 
+.cssLinkPdf{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
 

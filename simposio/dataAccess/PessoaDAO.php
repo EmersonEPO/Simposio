@@ -1,8 +1,8 @@
 
 <?php
+    include_once "../dataAccess/ConexaoDAO.php";
+    include_once "../domainModel/Pessoa.php";
 
-include_once "../dataAccess/ConexaoDAO.php";
-include_once "../domainModel/Pessoa.php";
 
 /*
  * To change this template, choose Tools | Templates

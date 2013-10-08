@@ -90,7 +90,6 @@
                        window.location.href='../Presentation/main.php?pag=frmEditPessoa.php&atualiza=1'
                        </script>";
 
-
         } else {
             echo"<script language='javascript'>
                        window.location.href='../Presentation/main.php?pag=frmEditPessoa.php&atualiza=2'
@@ -104,26 +103,44 @@
         $pessoa = new Pessoa();
         
         //Login
-        $email = mysql_real_escape_string($_POST['email']);
-        $senha = mysql_real_escape_string($_POST['senha']);
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
         
         $pessoa->setId($id);
         $pessoa->setEmail($email);
         $pessoa->setSenha($senha);
         
         if($dao->verificarEmail($pessoa) == true){
-            echo"<script language='javascript'>
-                           window.location.href='../Presentation/main.php?pag=frmEditLogin.php&atualiza=0'
-                           </script>";
-        }else{
-            if (!$dao->atualizarLogin($pessoa)) {
+            if(!isset($_GET['ad'])){
                 echo"<script language='javascript'>
-                           window.location.href='../Presentation/main.php?pag=frmEditLogin.php&atualiza=3'
-                           </script>";
+                               window.location.href='../Presentation/main.php?pag=frmEditLogin.php&atualiza=0'
+                               </script>";
             }else{
                 echo"<script language='javascript'>
-                        window.location.href='../Presentation/main.php?pag=frmEditLogin.php&atualiza=2'
+                               window.location.href='../Presentation/administrator.php?pag=admLogin.php&atualiza=0'
+                               </script>";
+            }
+        }else{
+            if (!$dao->atualizarLogin($pessoa)) {
+                if(!isset($_GET['ad'])){
+                    echo"<script language='javascript'>
+                               window.location.href='../Presentation/main.php?pag=frmEditLogin.php&atualiza=3'
+                               </script>";
+                }else{
+                    echo"<script language='javascript'>
+                           window.location.href='../Presentation/administrator.php?pag=admLogin.php&atualiza=3'
+                           </script>";
+                }
+            }else{
+                if(isset($_GET['ad'])){
+                    echo"<script language='javascript'>
+                            window.location.href='../Presentation/main.php?pag=frmEditLogin.php&atualiza=2'
+                         </script>";
+                }else{
+                     echo"<script language='javascript'>
+                        window.location.href='../Presentation/administrator.php?pag=admLogin.php&atualiza=2'
                      </script>";
+                }
             }
         }
    

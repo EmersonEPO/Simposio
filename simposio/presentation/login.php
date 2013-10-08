@@ -65,7 +65,7 @@
             if($_SESSION['nivel'] == 1){
                 header("Location: main.php");
             }else{
-                header("Location: administrator/main.php");
+                header("Location: administrator.php");
             }
             exit;
     }

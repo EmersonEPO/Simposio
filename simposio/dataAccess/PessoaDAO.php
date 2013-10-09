@@ -57,8 +57,8 @@ class PessoaDAO {
     }
     //atualiza login
      public function atualizarLogin(Pessoa $obj) {
-        $query = sprintf("UPDATE pessoa SET email='%s',senha='%s' WHERE idPessoa = '%s'",
-        $obj->getEmail(),$obj->getSenha(),$obj->getId());
+        $query = sprintf("UPDATE pessoa SET senha='%s' WHERE idPessoa = '%s'",
+        $obj->getSenha(),$obj->getId());
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();

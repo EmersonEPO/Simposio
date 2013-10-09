@@ -21,6 +21,11 @@ and open the template in the editor.
     $estado = new Estado();
     $estado = $daoE->listarTodos();
     //-----
+    if(isset($_POST['email'])){
+        $email = $_POST['email'];
+    }else{
+        $email = "";
+    }
 
 
 ?>
@@ -141,7 +146,7 @@ and open the template in the editor.
                 <fieldset class="fieldsetRegistrarLog">
                     <legend>LOGIN</legend>
                     <label for="nascimento" class="labelRegistrar">Email:</label>
-                    <input type="text" id="email" name="email" value="" required="" class="forRegistrarLog"/>
+                    <input type="text" id="email" name="email" value="<?php echo $email; ?>" required="" class="forRegistrarLog"/>
                   
                     <br/>
                     <label for="nascimento" class="labelRegistrar">Senha:</label>

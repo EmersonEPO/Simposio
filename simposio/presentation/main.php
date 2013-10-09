@@ -33,8 +33,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);@import url(style/alertas.css)</style>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <style type="text/css" media="all">
+            @include url('http://yui.yahooapis.com/3.5.0/build/cssreset/cssreset-min.css');
+            @include url('http://yui.yahooapis.com/3.5.0/build/cssbase/cssbase-min.css');
+            @include url('http://yui.yahooapis.com/3.5.0/build/cssfonts/cssfonts-min.css');
+            @import url(style/style.css);
+        </style>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
         <!-- script auxiliar do jquery para o menu dropdown -->
@@ -50,8 +55,7 @@
                     $('ul', this).fadeOut();
 		}          
             );       
-        });
-            
+        }); 
         </script>
         <!-- fim script -->
         <script language="Javascript">
@@ -80,27 +84,27 @@
                 //------
                 ?>
                 
+                
                 <!-- Menu principal -->
                 
                 <ul>
-                    <li class="has-sub">"           "</li>
-                    <li class='active'><a  href="../presentation/main.php?" >Home</a></li>
+                    <li class="has-sub"></li>
+                    <li class='active'></li>
                     
-                    <li class='has-sub'><a  href="#" >Configurações</a>
+                    <li class='has-sub'><a  href="#" >Perfil</a>
                         <ul>
-                            <li><a  href="../presentation/main.php?pag=frmEditPessoa.php" >Dados Pessoais</a></li><br/>
-                            <li><a  href="../presentation/main.php?pag=frmEditLogin.php" >Login</a></li>
+                            <li><a  href="../presentation/main.php?pag=frmEditPessoa.php" >Alterar Dados</a></li><br/>
+                            <li><a  href="../presentation/main.php?pag=frmEditLogin.php" >Alterar Senha</a></li>
                         </ul>
                     </li>
                     <li class='has-sub'><a  href="../presentation/main.php?pag=frmMinicurso.php">Atividades</a></li>
+                    <li class='has-sub'><a  href="#" target="_blank">Simpósio</a></li>
                     <!-- Logout do usuario -->
               
                     <li class='has-sub'><?php echo"<a href='javascript:func()' onclick='confirmacao2()'>Sair</a>";?></li>
                     
                 </ul>
                 <!-- fim menu principal -->
-                
-            
             </div>
             <!-- fim corpo -->
             <?php 

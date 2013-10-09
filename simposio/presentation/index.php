@@ -5,12 +5,11 @@ and open the template in the editor.
 <!DOCTYPE html>
 <?php
     //resolver problemas relacionado a acentuuação
-    header("Content-Type: text/html; charset=ISO-8859-1", true);
+    header("Content-Type: text/html; charset=utf-8", true);
 ?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="content-Type" content="text/html; charset=iso-8859-1" />
         <link rel="stylesheet" type="text/css" href="style/reset.css" >
         <link rel="stylesheet" type="text/css" href="style/style.css" >
         
@@ -20,12 +19,13 @@ and open the template in the editor.
         <!-- div menu login ou novo usuario -->
         <div class="divConteudo">
             <div class="divMenu">
-                <a href="index.php?pag=frmLogin.php">
-                    <input type="button" value="Login" class="botaoLogin">
+                
+                <a href="index.php?pag=frmLogin.php" class="linkLogin">
+                    Login
                 </a>
-                <a href="index.php?pag=frmCadPessoa.php">
-                    <input type="button" value="Registrar" class="botaoRegistrar">
-                </a>
+                <a href="index.php?pag=frmCadastro.php" class="linkRegis">
+                    Registrar
+                </a>          
             </div>
             <img src="image/background.png" class="imgIfnmg"/>
             

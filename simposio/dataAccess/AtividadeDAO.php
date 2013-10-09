@@ -102,9 +102,9 @@ class AtividadeDAO {
         //fecha conexao
         $daoConexao->desconectar($conexaoAberta);
     }
-    //listarTodos
-    public function listaTodos() {
-        $query = "SELECT a.idAtividade,a.fk_evento,a.fk_tipoAtv,a.fk_ministrante,a.nome,a.tipoDuracao,a.duracao,a.local,a.dataAtividade,a.horaInicio,a.horaTermino FROM atividade a INNER JOIN evento e on (a.fk_evento = e.idEvento) WHERE a.status = 1 AND  e.status = 1";
+    //listarTodos por data
+    public function listaTodos($data) {
+        $query = "SELECT a.idAtividade,a.fk_evento,a.fk_tipoAtv,a.fk_ministrante,a.nome,a.tipoDuracao,a.duracao,a.local,a.dataAtividade,a.horaInicio,a.horaTermino FROM atividade a INNER JOIN evento e on (a.fk_evento = e.idEvento) WHERE ((a.status = 1 AND  e.status = 1)AND (a.dataAtividade like '". $data ."' )) ORDER BY a.horaInicio";
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();
@@ -142,7 +142,7 @@ class AtividadeDAO {
         }
         return $lista;
     }
-    //listarTodos
+    //listarTodos do usuario
     public function listarAtividadeDoUser($id) {
         $query = "SELECT a.idAtividade,a.fk_evento,a.fk_tipoAtv,a.fk_ministrante,a.nome,a.tipoDuracao,a.duracao,a.local,a.dataAtividade,a.horaInicio,a.horaTermino 
                   FROM atividade a 

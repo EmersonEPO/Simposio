@@ -70,7 +70,12 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
-        <script src="validacao.js" type="text/javascript"></script>
+        <style type="text/css" media="all">
+            @include url('http://yui.yahooapis.com/3.5.0/build/cssreset/cssreset-min.css');
+            @include url('http://yui.yahooapis.com/3.5.0/build/cssbase/cssbase-min.css');
+            @include url('http://yui.yahooapis.com/3.5.0/build/cssfonts/cssfonts-min.css');
+            @import url(style/style.css);
+        </style>
         <title>Dados Pessoais</title>
         <!-- mascaras -->
         <script>

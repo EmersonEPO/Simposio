@@ -105,8 +105,8 @@
     if (($daoM->totalMatricula($max,$pessoa)) == true) {
 
         //Verifica se o totol ainda esta dentro do aceitavel
-        if (($novo->getTotalVaga() >= 0 ) and ($novo->getTotalVaga() < 2 )) {
-            //acrescenta +1 na lista de vagas normais 
+        if (($novo->getTotalVaga() > 0 ) and ($novo->getTotalVaga() <= 2 )) {
+            //retira -1 na lista de vagas normais 
             $dao->acrescentarVaga($idAtividade);
 
             //id tipo matricula Vaga normal
@@ -117,7 +117,7 @@
             //mensagem de resposta
             echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=sucess';</script>";
         } else {
-            if (($novo->getTotalEspera() >= 0 ) and ($novo->getTotalEspera() < 5)) {
+            if (($novo->getTotalEspera() > 0 ) and ($novo->getTotalEspera() <= 5)) {
                 //acrescenta +1 na lista de espera
                 $dao->acrescentarEspera($idAtividade);
 

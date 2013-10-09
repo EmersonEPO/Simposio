@@ -77,6 +77,8 @@ header("Content-Type: text/html; charset=ISO-UTF-8", true);
         include_once "../dataAccess/TipoAtividadeDAO.php";
         include_once "../domainModel/TipoAtividade.php";
         include_once "../dataAccess/MatriculaDAO.php";
+        include_once "../domainModel/Controle.php";
+        include_once "../dataAccess/ControleDAO.php";
 
         $daoA = new AtividadeDAO();
         $atividade = new Atividade();
@@ -92,6 +94,10 @@ header("Content-Type: text/html; charset=ISO-UTF-8", true);
 
         //matricula
         $daoMa = new MatriculaDAO();
+        
+        //controle
+        $daoC = new ControleDAO();
+        $controle = new Controle();
         
          //aqui inicio o teste para ver quais "atividades" o usuario já esta 
          //registrado para entao deixar um botao agradavel para ele... ¬¬
@@ -135,7 +141,7 @@ header("Content-Type: text/html; charset=ISO-UTF-8", true);
         echo "<td width='600' align='middle' class='cssRow1'><b>MINISTRANTE</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>FORMAÇÃO</b></td>";
         echo "</tr>";
-
+   
         foreach ($atividade as $at) {
             echo "<tr class='linha-td'>";
             echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getNome() . "</td>";
@@ -149,31 +155,64 @@ header("Content-Type: text/html; charset=ISO-UTF-8", true);
             } else {
                 echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getDuracao() . " Min" . "</td>";
             }
-            //verificar atividades
-            $atv2 = 0;
-            foreach ($atv as $atv2){
-                if($at->getId() == $atv2->getId()){
-                    $inscrever = "Inscrito";  
-                    break;
-                }else {
-                    $inscrever = "Inscreva-se";
+            
+            //verifiar se existe vaga na lista de normal,espera ou se ja esgotou
+            $controle = $daoC->abrirtotal($at->getId());
+
+            //se lista de vagas normais ainda contiver vagas
+            if ($controle->getTotalVaga() > 0) {
+
+                //verificar se o usuario já se inscreveu em alguma disciplina
+                $atv2 = 0;
+                foreach ($atv as $atv2) {
+                    if ($at->getId() == $atv2->getId()) {
+                        $inscrever = "Inscrito";
+
+                        break;
+                    } else {
+                        $inscrever = "Inscreva-se";
+                    }
+                    $atv2++;
                 }
-                $atv2++;
+
+                //se lista de vagas normais NAO contiver vagas
+            } else {
+                //verificar novamente se o usuario já se inscreveu em alguma disciplina
+                $atv2 = 0;
+                foreach ($atv as $atv2) {
+                    if ($at->getId() == $atv2->getId()) {
+                        $inscrever = "Inscrito";
+                        break;
+                    } else {
+                        //se lista de espera ainda contiver vagas
+                        if ($controle->getTotalEspera() > 0) {
+                            $inscrever = "Espera";
+                        } else {
+                            $inscrever = "Esgotado";
+                        }
+                    }
+                    $atv2++;
+                }
             }
             
             //if para mudar cor do botao
             if($inscrever == "Inscrito"){
-                echo"<style type='text/css'> .botaoInscrever2{
-                                        font:bold 14px Arial, Helvetica, sans-serif; font-style:normal; color:#000000;
-                                        background:#63d989; border:0px solid #ffffff; text-shadow:-1px 1px 0px #fff; 
-                                        box-shadow:0px 0px 7px #000000; -moz-box-shadow:0px 0px 7px #000000;-webkit-box-shadow:0px 0px 7px #000000;
-                                        border-radius:20px 20px 20px 20px;-moz-border-radius:20px 20px 20px 20px;-webkit-border-radius:20px 20px 20px 20px;
-                                        width:120px;height: 26px;padding:5px 4px;cursor:pointer;margin:0 auto;margin-left: 5px;margin-top: 6px;
-                    }</style>";
-                
-                $estilo = "botaoInscrever2";
+                $estilo = "botaoInscrito";
+                $link = "";
             }else{
-                $estilo = "botaoInscrever";
+                if($inscrever == "Espera"){
+                    $estilo = "botaoEspera";
+                    $link = "javascript:func()' onclick='confirmacao(" . $at->getId() . ")";
+
+                }else{
+                    if($inscrever == "Esgotado"){
+                        $estilo = "botaoEsgotado";
+                        $link = "";
+                    }else{
+                        $estilo = "botaoInscrever";
+                        $link = "javascript:func()' onclick='confirmacao(" . $at->getId() . ")";
+                    }
+                }
             }
            
             echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getDataAtividade() . "</td>";
@@ -185,7 +224,7 @@ header("Content-Type: text/html; charset=ISO-UTF-8", true);
             echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $ministrante->getNome() . "</td>";
             echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $ministrante->getFormacao() . "</td>";
             
-            echo "<td  style='border-color:#f2f2f2;background:#f2f2f2;' ><a href='javascript:func()' onclick='confirmacao(" . $at->getId() . ")'>
+            echo "<td  style='border-color:#f2f2f2;background:#f2f2f2;' ><a href='".$link."'>
                   <input type='button' value='".$inscrever."' class='".$estilo."'>
                   </a></td>";
 

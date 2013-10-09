@@ -49,7 +49,7 @@ class ControleDAO {
     //put your code here
     //pegar total de vagas e esperas
     public function abrirtotal($idAtividade) {
-        $query = sprintf("SELECT * FROM controle WHERE fk_atividade = '%s' FOR UPDATE", $idAtividade);
+        $query = sprintf("SELECT * FROM controle WHERE fk_atividade = '%s'", $idAtividade);
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();
@@ -77,7 +77,7 @@ class ControleDAO {
     }
     //diminuir lista de vagas
     public function acrescentarVaga($idAtividade) {
-        $query = sprintf("UPDATE controle SET totalVaga = totalVaga + 1 WHERE fk_atividade = '%s'", $idAtividade);
+        $query = sprintf("UPDATE controle SET totalVaga = totalVaga - 1 WHERE fk_atividade = '%s'", $idAtividade);
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();
@@ -94,7 +94,7 @@ class ControleDAO {
     }
     //diminuir lista de espera
     public function acrescentarEspera($idAtividade) {
-        $query = sprintf("UPDATE controle SET totalEspera = totalEspera + 1 WHERE fk_atividade = '%s'", $idAtividade);
+        $query = sprintf("UPDATE controle SET totalEspera = totalEspera - 1 WHERE fk_atividade = '%s'", $idAtividade);
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();

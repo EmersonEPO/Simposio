@@ -37,7 +37,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/generic.css);@import url(style/style.css);@import url(style/alertas.css);</style>
+        
+        <style type="text/css" media="all">
+            @import url(style/reset.css);
+            @import url(style/base.css);
+            @import url(style/font.css);
+            @import url(style/alertas.css);
+            
+            #cssmenu > ul > li {
+                float: left;
+                margin-left: 55px;
+                margin-top: -16px;
+                position: relative;
+            }
+        </style>
+        
         <title></title>
         <script language="Javascript">
             function confirmacao(id) { 

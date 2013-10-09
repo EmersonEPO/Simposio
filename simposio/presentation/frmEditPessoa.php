@@ -70,12 +70,14 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
+        
         <style type="text/css" media="all">
-            @include url('http://yui.yahooapis.com/3.5.0/build/cssreset/cssreset-min.css');
-            @include url('http://yui.yahooapis.com/3.5.0/build/cssbase/cssbase-min.css');
-            @include url('http://yui.yahooapis.com/3.5.0/build/cssfonts/cssfonts-min.css');
+            @import url(style/reset.css);
+            @import url(style/base.css);
+            @import url(style/font.css);
             @import url(style/style.css);
         </style>
+       
         <title>Dados Pessoais</title>
         <!-- mascaras -->
         <script>
@@ -185,7 +187,7 @@ and open the template in the editor.
                             <option selected value="">Escolha um estado</option>
                         </select>
                     </div>
-                    <input type="submit" value="Atualizar" class="botaoAtualizar">
+                    <input type="submit" value="Atualizar" class="botaoAtualizarPessao">
                 </fieldset>
             </form>
             

@@ -35,9 +35,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <style type="text/css" media="all">
-            @include url('http://yui.yahooapis.com/3.5.0/build/cssreset/cssreset-min.css');
-            @include url('http://yui.yahooapis.com/3.5.0/build/cssbase/cssbase-min.css');
-            @include url('http://yui.yahooapis.com/3.5.0/build/cssfonts/cssfonts-min.css');
+            @import url(style/reset.css);
+            @import url(style/base.css);
+            @import url(style/font.css);
             @import url(style/style.css);
         </style>
         <script type="text/javascript" src="js/jquery.js"></script>
@@ -97,7 +97,7 @@
                             <li><a  href="../presentation/main.php?pag=frmEditLogin.php" >Alterar Senha</a></li>
                         </ul>
                     </li>
-                    <li class='has-sub'><a  href="../presentation/main.php?pag=frmMinicurso.php">Atividades</a></li>
+                    <li class='has-sub'><a  href="../presentation/main.php?pag=frmMinicurso.php&Qua">Atividades</a></li>
                     <li class='has-sub'><a  href="#" target="_blank">Simpósio</a></li>
                     <!-- Logout do usuario -->
               

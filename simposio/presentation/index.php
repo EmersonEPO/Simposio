@@ -10,8 +10,12 @@ and open the template in the editor.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style/reset.css" >
-        <link rel="stylesheet" type="text/css" href="style/style.css" >
+        <style type="text/css" media="all">
+            @import url(style/reset.css);
+            @import url(style/base.css);
+            @import url(style/font.css);
+            @import url(style/style.css);
+        </style>
         
         <title>Login</title>
     </head>
@@ -40,9 +44,11 @@ and open the template in the editor.
             
             
             <!-- div rodape -->
+            <!--
             <div class="divRodape">
                 
             </div
+            -->
         </div>
            <?php
                 if(isset($_GET['erro'])){

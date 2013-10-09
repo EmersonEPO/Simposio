@@ -143,8 +143,8 @@ width:90px;
 padding:8px 4px;
 cursor:pointer;
 margin:0 auto;
-margin-left: 236px;
-margin-top: 6px;
+margin-left: 195px;
+margin-top: 10px;
 }
 .botao:active{
 cursor:pointer;
@@ -170,8 +170,8 @@ width:90px;
 padding:8px 4px;
 cursor:pointer;
 margin:0 auto;
-margin-left: 188px;
-margin-top: 6px;
+margin-left: 220px;
+margin-top: 2px;
 }
 .botaoCad:active{
 cursor:pointer;
@@ -287,7 +287,7 @@ top:2px;
 
 .fieldsetRegistrar{
     position: absolute;
-    top: 90px;
+    top: 60px;
     left: 90px;
     width: 60%;
 }
@@ -336,11 +336,11 @@ top:2px;
 
 
 .forRegistrar{
-    font-size: 14px;
+    font-size: 16px;
     margin: 3px;
     margin-left: 109px;
-    width: 161px;
-    height: 20px;   
+    width: 190px;
+    height: 25px;   
 }
 
 .forRegistrarLog{
@@ -365,13 +365,20 @@ top:2px;
 .forRegistrarSelec{
     margin: 3px;
     margin-left: 109px;
-    width: 165px;
-    height: 25px;   
+    width: 200px;
+    height: 30px;   
 }
 
 
-.botaoAtualizar{
-    margin-left: 205px;
+.botaoAtualizarSenha{
+    margin-left: 245px;
+    float: left;
+    width: 70px;
+    height: 30px;
+}
+
+.botaoAtualizarPessao{
+    margin-left: 240px;
     float: left;
     width: 70px;
     height: 30px;
@@ -462,14 +469,16 @@ a:hover {
     text-decoration: none;
 }
 #cssmenu {
-    height: 70px;
+    height: 55px;
+    margin: -10px;
+    margin-top: -12px;
     background-color: #232323;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
     width: auto;
 }
 #cssmenu > ul > li {
     float: left;
-    margin-left: 15px;
+    margin-left: 55px;
     position: relative;
 }
 #cssmenu > ul > li > a {

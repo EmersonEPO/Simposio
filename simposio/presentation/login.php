@@ -63,7 +63,7 @@
             
             //redireciona
             if($_SESSION['nivel'] == 1){
-                header("Location: main.php");
+                header("Location: main.php?pag=frmMinicurso.php&Qua");
             }else{
                 header("Location: administrator.php");
             }

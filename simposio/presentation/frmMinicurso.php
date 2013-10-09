@@ -177,7 +177,7 @@ header("Content-Type: text/html; charset=ISO-UTF-8", true);
 
                 //se lista de vagas normais NAO contiver vagas
             } else {
-                //verificar novamente se o usuario já se inscreveu em alguma disciplina
+                //verificar novamente se o usuario já se inscreveu em alguma disciplina 
                 $atv2 = 0;
                 foreach ($atv as $atv2) {
                     if ($at->getId() == $atv2->getId()) {

@@ -731,8 +731,19 @@ a:hover {
     left: 6%;
 }
 
+.errocadastro{
+    background:#FFFF66;
+    color:#990000;
+    width:230px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:10px;
+    height:auto;
+    border:1px solid #990000;
+    padding:10px;
+    margin-top:-323px;
+    margin-left: auto;
+    margin-right: auto;
+    display:none;
 
-
-
-
+}
 

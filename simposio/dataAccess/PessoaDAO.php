@@ -1,19 +1,13 @@
-
 <?php
-    include_once "../dataAccess/ConexaoDAO.php";
-    include_once "../domainModel/Pessoa.php";
+
+include_once "../dataAccess/ConexaoDAO.php";
+include_once "../domainModel/Pessoa.php";
 
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of pessoaDAO
- *
  * @author emerson
  */
+
 class PessoaDAO {
 
     //put your code here
@@ -21,7 +15,7 @@ class PessoaDAO {
     public function inserir(Pessoa $obj) {
 
         $query = sprintf("INSERT INTO pessoa(fk_instituicao,fk_cidade,email,senha,nivel,nome,cpf,sexo,nascimento,telefone,rua,numero,bairro,complemento,outraInstituicao,status) 
-       VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',1)", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
+        VALUES('%s','%s','%s',SHA1('%s'),'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',1)", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();
@@ -39,8 +33,7 @@ class PessoaDAO {
 
     //atualizar
     public function atualizar(Pessoa $obj) {
-        $query = sprintf("UPDATE pessoa SET fk_instituicao='%s',fk_cidade='%s',nivel='%s',nome='%s',cpf='%s',sexo='%s',nascimento='%s',telefone='%s',rua='%s',numero='%s',bairro='%s',complemento='%s',outraInstituicao='%s',status='%s' WHERE idPessoa = '%s'",
-        $obj->getFk_instituicao(), $obj->getFk_cidade(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao(),1,$obj->getId());
+        $query = sprintf("UPDATE pessoa SET fk_instituicao='%s',fk_cidade='%s',nivel='%s',nome='%s',cpf='%s',sexo='%s',nascimento='%s',telefone='%s',rua='%s',numero='%s',bairro='%s',complemento='%s',outraInstituicao='%s',status='%s' WHERE idPessoa = '%s'", $obj->getFk_instituicao(), $obj->getFk_cidade(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao(), 1, $obj->getId());
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();
@@ -55,10 +48,10 @@ class PessoaDAO {
         //fecha conexao
         $daoConexao->desconectar($conexaoAberta);
     }
+
     //atualiza login
-     public function atualizarLogin(Pessoa $obj) {
-        $query = sprintf("UPDATE pessoa SET senha='%s' WHERE idPessoa = '%s'",
-        $obj->getSenha(),$obj->getId());
+    public function atualizarLogin(Pessoa $obj) {
+        $query = sprintf("UPDATE pessoa SET senha='%s' WHERE idPessoa = '%s'", sha1($obj->getSenha()), $obj->getId());
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();
@@ -117,7 +110,7 @@ class PessoaDAO {
 
     //função que verifica se email já existe no sistema
     public function verificarEmail(Pessoa $obj) {
-        $query = sprintf("SELECT COUNT(idPessoa) as ok FROM pessoa WHERE email LIKE '%s' AND idPessoa <> '%s' ", $obj->getEmail(),$obj->getId());
+        $query = sprintf("SELECT COUNT(idPessoa) as ok FROM pessoa WHERE email LIKE '%s' AND idPessoa <> '%s' ", $obj->getEmail(), $obj->getId());
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();

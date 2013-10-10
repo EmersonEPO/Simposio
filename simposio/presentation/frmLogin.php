@@ -2,10 +2,11 @@
 To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <style type="text/css" media="all">
             @import url(style/reset.css);
             @import url(style/base.css);
@@ -16,7 +17,6 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        
         ?>
         <fieldset class="loginFildesetOne">
             <legend>Já sou Cadastrado :</legend><br/>
@@ -38,6 +38,6 @@ and open the template in the editor.
 
             </form>
         </fieldset>
-        
+
     </body>
 </html>

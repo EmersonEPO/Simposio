@@ -21,7 +21,7 @@
     }
     
     //selecionar o usuario
-    $sql = "SELECT * FROM pessoa WHERE '" . $email . "' = email AND '" . $senha . "' = senha LIMIT 1";
+    $sql = "SELECT * FROM pessoa WHERE '" . $email . "' = email AND '" . sha1($senha) . "' = senha LIMIT 1";
     $query = $dao->executeQuery($sql);
 
     //se a conexão apos realizar a consulta
@@ -30,7 +30,7 @@
     
     if (mysql_num_rows($query) != 1) {
     
-        //senha e usuario invalido
+        //senha e ou usuario invalido
         //redireciona para a tela de login
         header("Location: index.php?pag=frmLogin.php&erro");
         exit;

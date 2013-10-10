@@ -109,13 +109,13 @@
             <!-- fim corpo -->
             <?php 
                 if(isset($_GET['msg'])){
-                    if($_GET['msg'] == 'alert'){
+                    if($_GET['msg'] == 'atention'){
                          echo"<script language='javascript'>
-                                alert('Sentimos muito mas houve choque de horario.');
+                                alert('Atenção! Você atingiu o numero maximo de inscrições permitidas.');
                                 window.location.href='../presentation/main.php?pag=frmMinicurso.php';
                              </script>";
                         
-                    }
+                    }    
                     if($_GET['msg'] == 'sucess'){
                          echo"<script language='javascript'>
                                 alert('Matricula realizada com sucesso.');
@@ -125,25 +125,26 @@
                     }
                     if($_GET['msg'] == 'alert'){
                          echo"<script language='javascript'>
+                                alert('Sentimos muito mas houve choque de horario.');
+                                window.location.href='../presentation/main.php?pag=frmMinicurso.php';
+                             </script>";
+                        
+                    }
+                    
+                    if($_GET['msg'] == 'alert'){
+                         echo"<script language='javascript'>
                                 alert('Atenção! Você foi adicionado a lista de espera con sucesso!');
                                 window.location.href='../presentation/main.php?pag=frmMinicurso.php';
                              </script>";
                         
                     }
-                    if($_GET['msg'] == 'atention'){
-                         echo"<script language='javascript'>
-                                alert('Atenção! Você atingiu o numero maximo de inscrições permitidas.');
-                                window.location.href='../presentation/main.php?pag=frmMinicurso.php';
-                             </script>";
-                        
-                    }    
                     if($_GET['msg'] == 'ops'){
                          echo"<script language='javascript'>
                                 alert('Atenção! Sentimos informa-lo que todas as vagas para esta atividade foram preenchidas.');
                                 window.location.href='../presentation/main.php?pag=frmMinicurso.php';
                              </script>";
                         
-                    }   
+                    }
                 }
                 
                 if(isset($_GET['atualiza'])){

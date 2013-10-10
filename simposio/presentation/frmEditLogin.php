@@ -16,14 +16,11 @@ and open the template in the editor.
         </style>
         <script type="text/javascript">
             function valida(){
-                if(document.frmEditLogin.senha.value != document.frmEditLogin.confirmarSenha.value ){
+                if(document.formEditLogin.senha.value != document.formEditLogin.confirmarSenha.value ){
                     alert("As senhas Estão incorretas")
-                    document.frmEditLogin.senha.focus()
-                    document.frmEditLogin.senha.value = ""
-                    document.frmEditLogin.confirmarSenha.value = ""
-                    return false;
-                }else if(document.frmEditLogin.funcionario.value == 0){
-                    alert("Selecione um Funcionário");
+                    document.formEditLogin.senha.focus()
+                    document.formEditLogin.senha.value = ""
+                    document.formEditLogin.confirmarSenha.value = ""
                     return false;
                 }
             }
@@ -44,20 +41,17 @@ and open the template in the editor.
         ?>
         <fieldset class="fieldsetRegistrarLog2">
             <legend>LOGIN</legend>
-            <form name="formEditLogin" id="formEditLogin" action="../controller/CtlPessoaEditar.php?at" method="POST" name="login" id="login" onsubmit="return valida(this);">
-                <label for="nascimento" class="labelRegistrar">Email:</label>
+            <form name="formEditLogin" id="formEditLogin" action="../controller/CtlPessoaEditar.php?at" method="POST" name="login" id="login" >
+                <label for="email" class="labelRegistrar">Email:</label>
                 <input type="text" id="email" name="email" value="<?php echo $p->getEmail(); ?>"  class="forRegistrarLog" disabled="true"/>
-                <br/>
-                <label for="nascimento" class="labelRegistrar">Senha antiga:</label>
-                <input type="password" id="senhaAntiga" name="senhaAntiga" value="" required="" class="forRegistrarLog" maxlength="16" placeholder="Senha antiga"/>
                 
                 <br/>
-                <label for="nascimento" class="labelRegistrar">Nova senha:</label>
+                <label for="senha" class="labelRegistrar">Nova senha:</label>
                 <input type="password" id="senha" name="senha" value="" required="" class="forRegistrarLog" maxlength="16" placeholder="Nova senha"/>
                 
                 <br/>
-                <label for="nascimento" class="labelRegistrar">Confirmar senha:</label>
-                <input type="password" id="confirmarSenha" name="confirmarSenha" value="" required="" class="forRegistrarLog" maxlength="16" placeholder="Digite novamente"/>
+                <label for="confirmarSenha" class="labelRegistrar">Confirmar senha:</label>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" value="" required="" class="forRegistrarLog" maxlength="16" placeholder="Digite novamente" onblur="valida();"/>
                 <br/>
                 <input type="submit" name="atualizar" id="atualizar" value="Atualizar"  class="botaoAtualizarSenha">
                     

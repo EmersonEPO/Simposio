@@ -42,7 +42,8 @@
             @import url(style/reset.css);
             @import url(style/base.css);
             @import url(style/font.css);
-            @import url(style/alertas.css);
+            @import url(style/style.css);
+
             
             #cssmenu > ul > li {
                 float: left;
@@ -119,6 +120,15 @@
         ?>
 
         <!-- -->
+        <div class="divLegenda">
+            <img src="image/no.png"> Inscrever-se em alguma atividade<br/>
+            <img src="image/es.png"> Inscrever-se na lista de espera<br/>
+            <img src="image/er.png"> Todas as vagas foram preenchidas<br/>
+            <img src="image/su.png"> Inscrito na atividadade<br/>
+            <img src="image/pr.png"> Pré-inscrito na atividadade<br/>
+           
+            
+        </div>
 
         <?php
             echo "<table name='tbl' id='tbl' border='1' class='cssTblAtividade'>";
@@ -194,7 +204,7 @@
                     $atv2 = 0;
                     foreach ($atv as $atv2) {
                         if ($at->getId() == $atv2->getId()) {
-                            $inscrever = "Inscrito";
+                            $inscrever = "Pré-inscrito";
                             break;
                         } else {
                             //se lista de espera ainda contiver vagas
@@ -213,10 +223,14 @@
                     $estilo = "botaoInscrito";
                     $link = "";
                 }else{
+                     if($inscrever == "Pré-inscrito"){
+                            $estilo = "botaoPreInscrito";
+                            $link = "";
+                        }else
                     if($inscrever == "Espera"){
                         $estilo = "botaoEspera";
                         $link = "javascript:func()' onclick='confirmacao(" . $at->getId() . ")";
-
+                        
                     }else{
                         if($inscrever == "Esgotado"){
                             $estilo = "botaoEsgotado";
@@ -244,15 +258,20 @@
                 echo "</tr>";
                 $at++;
             }
+            echo"<tr>";
+                echo"<td colspan='9' style='border-color:#f2f2f2;background:#f2f2f2;'>";
+                    if ($daoMa->existteMatricula($_SESSION['id']) == true) {
+                        echo"<div class='csspdf'>";
+                        echo "<a href='../controller/CtlMatriculaPDF.php'  target='_blank'><img src='../presentation/image/pdf.gif'> Gerar matricula de inscrição</a>";
+                        echo "</div>";
+                    }
+                echo"</td>";
+            echo"</tr>";
             echo "</table>";
         ?>
         <?php
             //verifica se o usuario ja possui alguma matricula para que entao seja exibida a opção de gerar pdf
-            if ($daoMa->existteMatricula($_SESSION['id']) == true) {
-                echo"<div class='csspdf'>";
-                echo "<a href='../controller/CtlMatriculaPDF.php'  target='_blank'><img src='../presentation/image/pdf.gif'> Gerar matricula de inscrição</a>";
-                echo "</div>";
-            }
+            
         ?>
 
     </body>

@@ -209,6 +209,14 @@ top:2px;
     width:120px;height: 26px;padding:5px 4px;cursor:pointer;margin:0 auto;margin-left: 5px;margin-top: 6px;
 }
 
+.botaoPreInscrito{
+    font:bold 14px Arial, Helvetica, sans-serif; font-style:normal; color:#000000;
+    background:#54bef2 ; border:0px solid #ffffff; text-shadow:-1px 1px 0px #fff; 
+    box-shadow:0px 0px 7px #000000; -moz-box-shadow:0px 0px 7px #000000;-webkit-box-shadow:0px 0px 7px #000000;
+    border-radius:20px 20px 20px 20px;-moz-border-radius:20px 20px 20px 20px;-webkit-border-radius:20px 20px 20px 20px;
+    width:120px;height: 26px;padding:5px 4px;cursor:pointer;margin:0 auto;margin-left: 5px;margin-top: 6px;
+}
+
 .botaoEspera{
     font:bold 14px Arial, Helvetica, sans-serif; font-style:normal; color:#000000;
     background: #f6fa72; border:0px solid #ffffff; text-shadow:-1px 1px 0px #fff; 
@@ -402,9 +410,9 @@ top:2px;
 
 .cssTblAtividade{
     position: absolute;
-    top: 170px;
-    margin-left: 5%;
-    width: 80%;
+    top: 210px;
+    margin-left: 6%;
+    width: 90%;
 }
 
 .cssRow{
@@ -418,15 +426,15 @@ top:2px;
 }
 
 .cssRow1{
-    height: 20px;
+    height: 5px;
     text-align: center;
     background: #aaa;
 }
 
 .csspdf{
     position: absolute;
-    top: 22%;
-    left: 5%;
+    top: 120%;
+    left: 40%;
 }
 
 a:link, a:visited {
@@ -589,7 +597,7 @@ a:hover {
 }
 
 .linha-td:hover{
-    background-color: #aaa;
+    background-color: #f2f2f2;
     cursor: pointer;   
 }
 
@@ -715,6 +723,13 @@ a:hover {
     background: #e0e0e0;
 }
 
+.divLegenda{
+    position: absolute;
+    width: 30%;
+    height: 74px;
+    top: 110px;
+    left: 6%;
+}
 
 
 

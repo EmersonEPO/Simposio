@@ -97,6 +97,9 @@
     $novo = $dao->abrirtotal($idAtividade);
     
     //-----------
+    //ATENTION/ ATENÇÃO { AQUI FICAM A QUANTIDADE DE MATRICULAS QUE O SISTEMA ACEITARA´SEREM FEITAS }
+    $total_vagas_normais = 30;
+    $total_vagas_espera = 5;
   
     //verifica se o usuario exedeu o limite maximo de matriculas
     //se for retornado true significa que o aluno ainda pode fazer matricula,
@@ -105,7 +108,7 @@
     if (($daoM->totalMatricula($max,$pessoa)) == true) {
 
         //Verifica se o totol ainda esta dentro do aceitavel
-        if (($novo->getTotalVaga() > 0 ) and ($novo->getTotalVaga() <= 2 )) {
+        if (($novo->getTotalVaga() > 0 ) and ($novo->getTotalVaga() <= $total_vagas_normais )) {
             //retira -1 na lista de vagas normais 
             $dao->acrescentarVaga($idAtividade);
 
@@ -117,7 +120,7 @@
             //mensagem de resposta
             echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=sucess';</script>";
         } else {
-            if (($novo->getTotalEspera() > 0 ) and ($novo->getTotalEspera() <= 5)) {
+            if (($novo->getTotalEspera() > 0 ) and ($novo->getTotalEspera() <= $total_vagas_espera )) {
                 //acrescenta +1 na lista de espera
                 $dao->acrescentarEspera($idAtividade);
 

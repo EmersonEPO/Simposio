@@ -154,7 +154,7 @@ class AtividadeDAO {
     }
     
     //listarTodos por data
-    public function listaTodosPorData() {
+    public function listaTodosPorData($data) {
         $query = "SELECT a.idAtividade,a.fk_evento,a.fk_tipoAtv,a.fk_ministrante,a.nome,a.tipoDuracao,a.duracao,a.local,a.dataAtividade,a.horaInicio,a.horaTermino FROM atividade a INNER JOIN evento e on (a.fk_evento = e.idEvento) WHERE ((a.status = 1 AND  e.status = 1)AND (a.dataAtividade like '" . $data . "' )) ORDER BY a.horaInicio";
 
         //iniciar conexao
@@ -199,7 +199,7 @@ class AtividadeDAO {
         $query = "SELECT a.idAtividade,a.fk_evento,a.fk_tipoAtv,a.fk_ministrante,a.nome,a.tipoDuracao,a.duracao,a.local,a.dataAtividade,a.horaInicio,a.horaTermino 
                   FROM atividade a 
                   INNER JOIN matricula m ON (m.fk_atividade = a.idAtividade)
-                  WHERE a.status = 1 AND  m.fk_pessoa = '" . $id . "' 
+                  WHERE a.status = 1 AND  m.fk_pessoa = '" . $id . "'
                   ORDER BY a.nome";
 
         //iniciar conexao
@@ -236,7 +236,11 @@ class AtividadeDAO {
 
             $lista->append($novo);
         }
-        return $lista;
+        if(count($lista)){
+            return $lista;
+        }else{
+            return null;
+        }
     }
 
 }

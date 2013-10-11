@@ -10,6 +10,8 @@ and open the template in the editor.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
         <style type="text/css" media="all">
             @import url(style/reset.css);
             @import url(style/base.css);

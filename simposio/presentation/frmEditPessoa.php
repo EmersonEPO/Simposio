@@ -37,6 +37,7 @@ include_once "../dataAccess/EstadoDAO.php";
 include_once "../domainModel/Estado.php";
 include_once "../domainModel/Pessoa.php";
 include_once "../dataAccess/PessoaDAO.php";
+include_once "../domainModel/Cidade.php";
 
 //pessoa
 $daoP = new PessoaDAO();
@@ -90,6 +91,7 @@ $estado = $daoE->listarTodos();
                     $.get(url, function(dataReturn) {
                         $('#loadcidades').html(dataReturn);
                     });
+                    
                 }
             }    
         </script>
@@ -134,6 +136,8 @@ $estado = $daoE->listarTodos();
                     <option value="M">Masculino</option>
                     <option value="F">Feminino</option>
                 </select><br/>
+                <script type='text/javascript'> $(document).ready(function(){  $('#sexo').val("<?php echo $p->getSexo();?>")}) </script>
+                
                 <label for="fone" class="labelRegistrar">Telefone:</label>
                 <input type="text" id="fone" name="fone" value="<?php echo $p->getFone(); ?>" required="" class="forRegistrar"/><br/>
                 <label for="instituicao" class="labelRegistrar">Instituição:</label>
@@ -147,6 +151,8 @@ $estado = $daoE->listarTodos();
                     }
                     ?>
                 </select><br/>
+                <script type='text/javascript'> $(document).ready(function(){  $('#instituicao').val("<?php echo $p->getFk_instituicao();?>")}) </script>
+                
 
                 <label for="novaIns" class="labelRegistrar" id="novaIns1" style="display: none">Instituição:</label>
                 <input type="text" id="novaIns" name="novaIns" value="" class="forRegistrar" style="display: none"/><br/><br/>
@@ -163,6 +169,10 @@ $estado = $daoE->listarTodos();
                     <label for="complemento" class="labelRegistrar">Complemento:</label>
                     <input type="text" id="complemento" name="complemento" value="<?php echo $p->getComplemento(); ?>" class="forRegistrar"/><br/>
 
+                    <?php
+                        $c = new Cidade();
+                        $c = $daoE->abrirIdEstado($p->getFk_cidade());
+                    ?>
                     <label for="cidade" class="labelRegistrar">Estado:</label>
                     <select id="estado" name="estado" required="" class="forRegistrarSelec" onchange="buscarCidades()">
                         <option value="" selected="">Selecione</option>
@@ -174,12 +184,18 @@ $estado = $daoE->listarTodos();
                         }
                         ?>
                     </select><br/>
+                    <script type='text/javascript'> $(document).ready(function(){  $('#estado').val("<?php echo $c->getIdEstado();?>")}) </script>
+
                     <div id="loadcidades">
                         <label for="cidade" class="labelRegistrar">Cidade:</label>
                         <select id="cidade" name="cidade" required="" class="forRegistrarSelec">
                             <option selected value="">Escolha um estado</option>
                         </select>
+                        <script type='text/javascript'> $(document).ready(function(){  $('#loadcidades').val("<?php echo $p->getFk_cidade();?>")}) </script>
                     </div>
+                    
+                   
+                     
                     <input type="submit" value="Atualizar" class="botaoAtualizarPessao">
                 </fieldset>
             </form>

@@ -5,18 +5,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-//Se o cokie criado apos o login não existir mais
-//significa que a sessao deve ser finalizada
-if (!isset($_COOKIE['expira'])) {
-    //detroi sessao
-    session_destroy();
-    //por segurança, estou destruindo também o cokie
-    setcookie("expira");
-    //mensagem informando que o tempo do usuario expirou, redireciona para index
-    echo "<script language='javascript'>
-                        window.location.href='../presentation/index.php?pag=frmLogin.php'
-                  </script>";
-}
 //nivel para ter acesso a essa pagina
 $nivel_necessario = 1;
 // Verifica se não há a variavel da sessao que identifica o usuario
@@ -66,15 +54,15 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         //Para que isso funcione é preciso enviar as variaveis Qui, Qua e Sex fia GET para essa pag
         if (isset($_GET['Qua'])) {
             echo"<style type='text/css'> .cssAbaLink1{background: #e0e0e0;}</style>";
-            $data = "2013-10-09"; //data refente ao dia da semana
+            $data = "2013-11-06"; //data refente ao dia da semana
         }
         if (isset($_GET['Qui'])) {
             echo"<style type='text/css'> .cssAbaLink2{background: #e0e0e0;}</style>";
-            $data = "2013-10-10"; //data refente ao dia da semana
+            $data = "2013-11-07"; //data refente ao dia da semana
         }
         if (isset($_GET['Sex'])) {
             echo"<style type='text/css'> .cssAbaLink3{background: #e0e0e0;}</style>";
-            $data = "2013-10-11"; //data refente ao dia da semana
+            $data = "2013-11-08"; //data refente ao dia da semana
         }
         ?>
             
@@ -111,7 +99,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         //aqui inicio o teste para ver quais "atividades" o usuario já esta 
         //registrado para entao deixar um botao agradavel para ele... ¬¬
         $atv = new Atividade();
-        $atv = $daoA->listarAtividadeDoUser($_SESSION['id']);
+        
         ?>
 
         <!-- -->
@@ -173,46 +161,71 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             } else {
                 echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getDuracao() . " Min" . "</td>";
             }
-
+            
+              
             //verifiar se existe vaga na lista de normal,espera ou se ja esgotou
-            $controle = $daoC->abrirtotal($at->getId());
-
+          
+           $inscrever = "nada";
+            
+            //verifiar se existe vaga na lista de normal,espera ou se ja esgotou
+           $controle = $daoC->abrirtotal($at->getId());
+           $atv = $daoA->listarAtividadeDoUser($_SESSION['id']);
+        
+           $total_vagas_espera = 5;
             //se lista de vagas normais ainda contiver vagas
-            if ($controle->getTotalVaga() > 0) {
+            if (($controle->getTotalVaga() > 0)and($controle->getTotalEspera() == $total_vagas_espera)) {
 
-                //verificar se o usuario já se inscreveu em alguma disciplina
-                $atv2 = 0;
-                foreach ($atv as $atv2) {
-                    if ($at->getId() == $atv2->getId()) {
-                        $inscrever = "Inscrito";
+               //verificar se o usuario já se inscreveu em alguma disciplina
+               $atv2 = 0;
+               if($daoA->listarAtividadeDoUser($_SESSION['id']) != null){
+                    foreach ($atv as $atv2) {
+                        
+                         if ($at->getId() == $atv2->getId()) {
+                             $inscrever = "Inscrito";
+                             break;
+                         } else {
+                             $inscrever = "Inscreva-se";
+                         }
 
-                        break;
-                    } else {
-                        $inscrever = "Inscreva-se";
+                         $atv2++;
                     }
-                    $atv2++;
-                }
-
-                //se lista de vagas normais NAO contiver vagas
+               }else{
+                   $inscrever = "Inscreva-se";  
+               }
+            //se lista de vagas normais NAO contiver vagas
             } else {
-                //verificar novamente se o usuario já se inscreveu em alguma disciplina 
+                //verificar novamente se o usuario já se inscreveu em alguma disciplina
                 $atv2 = 0;
-                foreach ($atv as $atv2) {
-                    if ($at->getId() == $atv2->getId()) {
-                        $inscrever = "Pré-inscrito";
-                        break;
+                if($daoA->listarAtividadeDoUser($_SESSION['id']) != null){
+                    foreach ($atv as $atv3) {
+                            if ($at->getId() == $atv3->getId()) {
+                                if($controle->getTotalEspera() == $total_vagas_espera){
+                                    $inscrever = "Inscrito";
+                                }else{
+                                    $inscrever = "Pré-inscrito";
+                                }
+                                break;
+                            }else{
+                                 //se lista de espera ainda contiver vagas
+                                if (($controle->getTotalEspera() > 0) and ($controle->getTotalEspera() <= $total_vagas_espera)) {
+                                    $inscrever = "Espera";
+                                } else {
+                                    $inscrever = "Esgotado";
+                                }
+                            }
+                            $atv2++;
+                     }
+                }else{
+                    //se lista de espera ainda contiver vagas
+                    if (($controle->getTotalEspera() > 0) and ($controle->getTotalEspera() <= 5)) {
+                        $inscrever = "Espera";
                     } else {
-                        //se lista de espera ainda contiver vagas
-                        if ($controle->getTotalEspera() > 0) {
-                            $inscrever = "Espera";
-                        } else {
-                            $inscrever = "Esgotado";
-                        }
+                        $inscrever = "Esgotado";
                     }
-                    $atv2++;
                 }
             }
-
+            
+           
             //if para mudar cor do botao
             if ($inscrever == "Inscrito") {
                 $estilo = "botaoInscrito";
@@ -222,18 +235,18 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                     $estilo = "botaoPreInscrito";
                     $link = "";
                 } else
-                if ($inscrever == "Espera") {
-                    $estilo = "botaoEspera";
-                    $link = "javascript:func()' onclick='confirmacao(" . $at->getId() . ")";
-                } else {
-                    if ($inscrever == "Esgotado") {
-                        $estilo = "botaoEsgotado";
-                        $link = "";
-                    } else {
-                        $estilo = "botaoInscrever";
+                    if ($inscrever == "Espera") {
+                        $estilo = "botaoEspera";
                         $link = "javascript:func()' onclick='confirmacao(" . $at->getId() . ")";
+                    } else {
+                        if ($inscrever == "Esgotado") {
+                            $estilo = "botaoEsgotado";
+                            $link = "";
+                        } else {
+                            $estilo = "botaoInscrever";
+                            $link = "javascript:func()' onclick='confirmacao(" . $at->getId() . ")";
+                        }
                     }
-                }
             }
 
             echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $at->getDataAtividade() . "</td>";

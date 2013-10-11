@@ -190,6 +190,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                          $atv2++;
                     }
                }else{
+                   
                    $inscrever = "Inscreva-se";  
                }
             //se lista de vagas normais NAO contiver vagas

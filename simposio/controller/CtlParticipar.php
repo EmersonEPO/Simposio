@@ -4,20 +4,7 @@
     if (!isset($_SESSION)) {
         session_start();
     }
-
-    //Se o cokie criado apos o login não existir mais
-    //significa que a sessao deve ser finalizada
-    if(!isset($_COOKIE['expira'])){
-        //detroi sessao
-        session_destroy();
-        //por segurança, estou destruindo também o cokie
-        setcookie("expira");
-        //mensagem informando que o tempo do usuario expirou, redireciona para index
-        echo "<script language='javascript'>
-                    window.location.href='../presentation/index.php?pag=frmLogin.php'
-              </script>";
-        
-    }
+    
     //nivel para ter acesso a essa pagina
     $nivel_necessario = 1;
     // Verifica se não há a variavel da sessao que identifica o usuario
@@ -27,39 +14,6 @@
         //redireciona o visitante de volta pro login
         header("Location: ../presentation/index.php?pag=frmLogin.php"); exit;
     }
-    
-?>
-
-<?php
-    //A sessao precisa ser iniciada caso ela nao exista
-    //para ser feito a comparação log mais
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-
-    //Se o cokie criado apos o login não existir mais
-    //significa que a sessao deve ser finalizada
-    if(!isset($_COOKIE['expira'])){
-        //detroi sessao
-        session_destroy();
-        //por segurança, estou destruindo também o cokie
-        setcookie("expira");
-        //mensagem informando que o tempo do usuario expirou, redireciona para index
-        echo "<script language='javascript'>
-                    window.location.href='../presentation/index.php?pag=frmLogin.php'
-              </script>";
-        
-    }
-    //nivel para ter acesso a essa pagina
-    $nivel_necessario = 1;
-    // Verifica se não há a variavel da sessao que identifica o usuario
-    if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)){
-        //destroi a sessao por segurança
-        session_destroy();
-        //redireciona o visitante de volta pro login
-        header("Location: ../presentation/index.php?pag=frmLogin.php"); exit;
-    }
-    
 ?>
 <?php
     include_once "../dataAccess/ControleDAO.php";
@@ -89,7 +43,7 @@
         
         if ($dao->choqueHorario($atv->getHoraInicio(), $atv->getHoraTermino(), $pessoa) == true) {
             $passe = 0;
-            echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=alert';</script>";
+            echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=alert&Qua';</script>";
         }
     }
     
@@ -118,7 +72,7 @@
             //realizar matricula
             $daoM->matricular($pessoa, $idAtividade, $tipo);
             //mensagem de resposta
-            echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=sucess';</script>";
+            echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=sucess&Qua';</script>";
         } else {
             if (($novo->getTotalEspera() > 0 ) and ($novo->getTotalEspera() <= $total_vagas_espera )) {
                 //acrescenta +1 na lista de espera
@@ -130,15 +84,15 @@
                 //realizar matricula
                 $daoM->matricular($pessoa, $idAtividade, $tipo);
                 //mensagem de resposta
-                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=info';</script>";
+                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=info&Qua';</script>";
             } else {
                 //mensagem de resposta
-                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=ops';</script>";
+                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=ops&Qua';</script>";
             }
         }
     } else {
          //mensagem de resposta
-         echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=atention';</script>";
+         echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=atention&Qua';</script>";
     }
     }
 ?>

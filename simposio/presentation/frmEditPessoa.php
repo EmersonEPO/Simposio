@@ -5,18 +5,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-//Se o cokie criado apos o login não existir mais
-//significa que a sessao deve ser finalizada
-if (!isset($_COOKIE['expira'])) {
-    //detroi sessao
-    session_destroy();
-    //por segurança, estou destruindo também o cokie
-    setcookie("expira");
-    //mensagem informando que o tempo do usuario expirou, redireciona para index
-    echo "<script language='javascript'>
-                    window.location.href='../presentation/index.php?pag=frmLogin.php'
-              </script>";
-}
 //nivel para ter acesso a essa pagina
 $nivel_necessario = 1;
 // Verifica se não há a variavel da sessao que identifica o usuario
@@ -123,7 +111,7 @@ $estado = $daoE->listarTodos();
                 <label for="nome" class="labelRegistrar">Nome:</label>
                 <input type="text" id="nome" name="nome" value="<?php echo $p->getNome(); ?>" required=""  class="forRegistrar"/><br/>
                 <label for="cpf" class="labelRegistrar">Cpf:</label>
-                <input type="text" id="cpf" name="cpf" value="<?php echo $p->getCpf(); ?>" required="" class="forRegistrar" maxlength="11"/>
+                <input type="text" id="cpf" name="cpf" value="<?php echo $p->getCpf(); ?>" required="" class="forRegistrar" maxlength="14" disabled=""/>
 
                 <br/>
                 <label for="nascimento" class="labelRegistrar">Nascimento:</label>

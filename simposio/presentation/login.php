@@ -11,15 +11,9 @@
     $dao->selecionarBanco();
     //----
     
-    if(isset($_GET['sucess'])){
-        $email = mysql_real_escape_string($_COOKIE['email']);
-        $senha = mysql_real_escape_string($_COOKIE['senha']);
-        
-    }else{
-        $email = mysql_real_escape_string($_POST['email']);
-        $senha = mysql_real_escape_string($_POST['senha']);
-    }
-    
+    $email = mysql_real_escape_string($_POST['email']);
+    $senha = mysql_real_escape_string($_POST['senha']);
+  
     //selecionar o usuario
     $sql = "SELECT * FROM pessoa WHERE '" . $email . "' = email AND '" . sha1($senha) . "' = senha LIMIT 1";
     $query = $dao->executeQuery($sql);

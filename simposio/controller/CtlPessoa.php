@@ -5,10 +5,14 @@
     include_once "../domainModel/Pessoa.php";
 
     
+    
+    
+    
     $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
+   
     $sexo = $_POST['sexo'];
     $nascimento = implode("-",array_reverse(explode("/",$_POST['nascimento'])));
+    $cpf = $_POST['cpf'];
     $instituicao = $_POST['instituicao'];
     $telefone = $_POST['fone'];
     $rua = $_POST['rua'];
@@ -51,22 +55,28 @@
     $pessoa->setEmail($email);
     $pessoa->setSenha($senha);
     
- 
-    if (!$dao->inserir($pessoa)) {
-        setcookie("email",$email, time()+50);
-        setcookie("email",$senha, time()+50);
-        
+    //verificar se cpf ja existe no sistema
+    if($dao->verificarCpf($pessoa) == true){
         echo"<script language='javascript'> 
-                   window.location.href='../Presentation/login.php'
-                   </script>";
-        
-        
-        
-    } else {
-        echo"<script language='javascript'> 
-                   alert('Ocorreu um erro!') 
-                   window.location.href='../Presentation/index.php'
-                   </script>";
-}
+                   window.location.href='../Presentation/index.php?pag=frmCadastro.php&cpf'
+                   </script>";    
+    }else{
+        //verificar se email ja existe no sistema
+        if($dao->verificarEmail($pessoa) == true){
+            echo"<script language='javascript'> 
+                       window.location.href='../Presentation/index.php?pag=frmCadastro.php&email'
+                       </script>";    
+        }else{   
+            //caso email e cpf ainda nao estajam no sistema sera efetuado o cadastro
+            if (!$dao->inserir($pessoa)) {
+                setcookie("email",$email,(time()+100));
+                echo"<script language='javascript'>window.location.href='../Presentation/index.php?pag=frmLogin.php&sucess';</script>";          
+            } else {
+                echo"<script language='javascript'> 
+                           alert('Ocorreu um erro!')window.location.href='../Presentation/index.php?pag=frmCadastro.php';</script>";
+            }
+        }
+    }
+    
     
 ?>

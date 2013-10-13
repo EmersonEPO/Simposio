@@ -133,6 +133,32 @@ class PessoaDAO {
             return false;
         }
     }
+    
+    //função que verifica se email já existe no sistema
+    public function verificarCpf(Pessoa $obj) {
+        $query = sprintf("SELECT COUNT(idPessoa) as ok FROM pessoa WHERE cpf LIKE '%s' AND idPessoa <> '%s' ", $obj->getCpf(), $obj->getId());
+
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+
+        $query = mysql_fetch_assoc($resultado);
+
+        if ($query['ok'] > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
 

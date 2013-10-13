@@ -53,6 +53,7 @@ and open the template in the editor.
             -->
         </div>
            <?php
+                //mensagem para o caso de email ou senha estarem incorretos no login
                 if(isset($_GET['erro'])){
                     echo"<script language='javascript'> 
                             alert('EMAIL ou SENHA incorretos!') 
@@ -60,7 +61,31 @@ and open the template in the editor.
                          </script>";
                     unset($_GET['erro']);
 
-                }else{
+                }
+                //mensagem para o caso de ja existir o cpf no sistema 
+                if(isset($_GET['cpf'])){
+                    echo"<script language='javascript'> 
+                            alert('CPF já consta no sistema!') 
+                            window.location.href='../Presentation/index.php?pag=frmCadastro.php'
+                         </script>";
+                    unset($_GET['cpf']);
+
+                }
+                //mensagem para o caso de ja existir o cpf no sistema 
+                if(isset($_GET['email'])){
+                    echo"<script language='javascript'> 
+                            alert('EMAIL já consta no sistema!') 
+                            window.location.href='../Presentation/index.php?pag=frmCadastro.php'
+                         </script>";
+                    unset($_GET['cpf']);
+
+                }
+                if(isset($_GET['sucess'])){
+                    echo"<script language='javascript'> 
+                            alert('Você foi cadastrado com sucesso, faça login para utilizar o sistema!') 
+                            window.location.href='../Presentation/index.php?pag=frmLogin.php'
+                         </script>";
+                    unset($_GET['sucess']);
 
                 }
             ?>

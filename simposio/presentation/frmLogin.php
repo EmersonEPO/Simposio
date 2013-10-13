@@ -19,12 +19,13 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+      
         ?>
         <fieldset class="loginFildesetOne">
             <legend>Já sou Cadastrado :</legend><br/>
             <form id="formLogin" method="POST" action="login.php">
                 <label for="email" class="formLoginLabel">Email:</label>
-                <input type="text" id="email" name="email" placeholder="joao@email.com" required="" class="formLogin"><br/>
+                <input type="text" id="email" name="email" placeholder="joao@email.com" required="" value="" class="formLogin"><br/>
                 <label for="email" class="formLoginLabel">Senha:</label>
                 <input type="password" id="senha" name="senha" placeholder="Digite a senha" required="" class="formLogin"><br/>
                 <input type="submit" value="Entrar" class="botao">
@@ -40,6 +41,7 @@ and open the template in the editor.
 
             </form>
         </fieldset>
+        
 
     </body>
 </html>

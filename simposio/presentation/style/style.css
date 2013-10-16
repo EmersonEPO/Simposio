@@ -127,56 +127,56 @@ body{
 }
 
 .botao{
-font:bold 14px Arial, Helvetica, sans-serif;
-font-style:normal;
-color:#000000;
-background:#f2f2f2;
-border:0px solid #ffffff;
-text-shadow:-1px 1px 0px #fff;
-box-shadow:0px 0px 7px #000000;
--moz-box-shadow:0px 0px 7px #000000;
--webkit-box-shadow:0px 0px 7px #000000;
-border-radius:20px 20px 20px 20px;
--moz-border-radius:20px 20px 20px 20px;
--webkit-border-radius:20px 20px 20px 20px;
-width:90px;
-padding:8px 4px;
-cursor:pointer;
-margin:0 auto;
-margin-left: 195px;
-margin-top: 10px;
+    font:bold 14px Arial, Helvetica, sans-serif;
+    font-style:normal;
+    color:#000000;
+    background:#f2f2f2;
+    border:0px solid #ffffff;
+    text-shadow:-1px 1px 0px #fff;
+    box-shadow:0px 0px 7px #000000;
+    -moz-box-shadow:0px 0px 7px #000000;
+    -webkit-box-shadow:0px 0px 7px #000000;
+    border-radius:20px 20px 20px 20px;
+    -moz-border-radius:20px 20px 20px 20px;
+    -webkit-border-radius:20px 20px 20px 20px;
+    width:90px;
+    padding:8px 4px;
+    cursor:pointer;
+    margin:0 auto;
+    margin-left: 195px;
+    margin-top: 10px;
 }
 .botao:active{
-cursor:pointer;
-position:relative;
-top:2px;
+    cursor:pointer;
+    position:relative;
+    top:2px;
 }
 
 
 .botaoCad{
-font:bold 14px Arial, Helvetica, sans-serif;
-font-style:normal;
-color:#000000;
-background:#f2f2f2;
-border:0px solid #ffffff;
-text-shadow:-1px 1px 0px #fff;
-box-shadow:0px 0px 7px #000000;
--moz-box-shadow:0px 0px 7px #000000;
--webkit-box-shadow:0px 0px 7px #000000;
-border-radius:20px 20px 20px 20px;
--moz-border-radius:20px 20px 20px 20px;
--webkit-border-radius:20px 20px 20px 20px;
-width:90px;
-padding:8px 4px;
-cursor:pointer;
-margin:0 auto;
-margin-left: 220px;
-margin-top: 2px;
+    font:bold 14px Arial, Helvetica, sans-serif;
+    font-style:normal;
+    color:#000000;
+    background:#f2f2f2;
+    border:0px solid #ffffff;
+    text-shadow:-1px 1px 0px #fff;
+    box-shadow:0px 0px 7px #000000;
+    -moz-box-shadow:0px 0px 7px #000000;
+    -webkit-box-shadow:0px 0px 7px #000000;
+    border-radius:20px 20px 20px 20px;
+    -moz-border-radius:20px 20px 20px 20px;
+    -webkit-border-radius:20px 20px 20px 20px;
+    width:90px;
+    padding:8px 4px;
+    cursor:pointer;
+    margin:0 auto;
+    margin-left: 220px;
+    margin-top: 2px;
 }
 .botaoCad:active{
-cursor:pointer;
-position:relative;
-top:2px;
+    cursor:pointer;
+    position:relative;
+    top:2px;
 }
 
 .botaoInscrever{
@@ -295,7 +295,7 @@ top:2px;
 
 .fieldsetRegistrar{
     position: absolute;
-    top: 60px;
+    top: 109px;
     left: 90px;
     width: 60%;
 }
@@ -619,7 +619,7 @@ a:hover {
     left: 10%;
     top: 35%;
     border: 2px;
-    
+
 }
 
 .loginFildesetTwo{
@@ -628,7 +628,7 @@ a:hover {
     left: 50%;
     top: 35%;
     border: 2px;
-    
+
 }
 
 .cssAba{
@@ -650,13 +650,13 @@ a:hover {
     -moz-box-shadow:0px 0px 7px #000000;
     -webkit-box-shadow:0px 0px 7px #000000;
     border-top-left-radius:20px;
-   
+
     width:92px;
     height: 30px;
     padding:8px 4px;
     cursor:pointer;
     margin:0 auto;
- 
+
 }
 
 .cssAbaLink1:active{
@@ -732,21 +732,65 @@ a:hover {
     left: 6%;
 }
 
-.errocadastro{
-    background:#FFFF66;
+.erro{
+    position: absolute;
+    background: #ff9999;
     color:#990000;
-    width:230px;
+    width:200px;
     font-family:Verdana, Arial, Helvetica, sans-serif;
     font-size:10px;
     height:auto;
-    border:1px solid #990000;
+    border:2px solid #ff4c4c;
     padding:10px;
-    margin-top:-323px;
-    margin-left: auto;
+    margin-top:250px;
+    margin-left:550px;
     margin-right: auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     display:none;
-
+ 
 }
+
+.erroEditLogin{
+    position: absolute;
+    background: #ff9999;
+    color:#990000;
+    width:200px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:10px;
+    height:auto;
+    border:2px solid #ff4c4c;
+    padding:10px;
+    margin-top:160px;
+    margin-left:440px;
+    margin-right: auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    display: none;
+   
+}
+
+.erroEditPessoa{
+    position: absolute;
+    background: #ff9999;
+    color:#990000;
+    width:200px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:10px;
+    height:auto;
+    border:2px solid #ff4c4c;
+    padding:10px;
+    margin-top:160px;
+    margin-left:780px;
+    margin-right: auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    display: none;
+}
+
 
 #ClickMe {
     background: #fed870; /* Old browsers */
@@ -769,41 +813,89 @@ a:hover {
 }
 
 .info, .success, .warning, .error, .validation {
-position: absolute;
-top: 10%;
-left: 38%;
-border: 1px solid;
-margin: 10px 0px;
-padding:15px 10px 15px 50px;
-width: 250px;
-height: 30px;
-background-repeat: no-repeat;
-background-position: 10px center;
+    position: absolute;
+    top: 10%;
+    left: 38%;
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    width: 250px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
 }
 
 .info {
-color: #00529B;
-background-color: #BDE5F8;
-background-image: url('../image/info.png');
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('../image/info.png');
 }
 
 .success {
-color: #4F8A10;
-background-color: #DFF2BF;
-background-image:url('../image/checked.png');
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('../image/checked.png');
 
 }
 
 .warning {
-color: #9F6000;
-background-color: #FEEFB3;
-background-image: url('../image/warning.png');
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('../image/warning.png');
 }
 
 .error {
-color: #D8000C;
-background-color: #FFBABA;
-background-image: url('../image/error.png');
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('../image/error.png');
 }
 
+
+.errorLogin {
+    position: absolute;
+    top: 21%;
+    left: 10%;
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    width: 250px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('../image/error.png');
+}
+
+.successLogin{
+    position: absolute;
+    top: 21%;
+    left: 10%;
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    width: 250px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('../image/checked.png');
+}
+
+.warningRegistro{
+    position: absolute;
+    top: 5%;
+    left: 38%;
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    width: 250px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('../image/warning.png');
+}
 

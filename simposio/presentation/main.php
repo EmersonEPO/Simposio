@@ -131,22 +131,20 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 
             if (isset($_GET['atualiza'])) {
                 if ($_GET['atualiza'] == 1) {
-                    echo"<script language='javascript'>
-                                alert('Dados atualizados com sucesso.');
-                                window.location.href='../presentation/main.php?pag=frmEditPessoa.php';
-                             </script>";
+                    echo"<div id='mensagem' style='' class='success'>";
+                    echo"<p>Dados atualizados com sucesso</p>";
+                    echo"</div>";
                 }
                 if ($_GET['atualiza'] == 2) {
-                    echo"<script language='javascript'>
-                                alert('Erro ao atualizar, tente novamente mais tarde.');
-                                window.location.href='../presentation/main.php?pag=frmEditPessoa.php';
-                             </script>";
+                    echo"<div id='mensagem' style='' class='error'>";
+                    echo"<p>Ocorreu um erro, tem novamente mais tarde.</p>";
+                    echo"</div>";
                 }
                 if ($_GET['atualiza'] == 0) {
-                    echo"<script language='javascript'>
-                                alert('Login atualizado com sucesso.');
-                                window.location.href='../presentation/main.php?pag=frmEditLogin.php';
-                             </script>";
+                    echo"<div id='mensagem' style='' class='success'>";
+                    echo"<p>Senha atualizada com sucesso.</p>";
+                    echo"</div>";
+                    
                 }
             }
             ?>

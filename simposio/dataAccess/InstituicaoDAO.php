@@ -62,7 +62,7 @@ class InstituicaoDAO {
     //listar todos
     public function listarTodos() {
 
-        $query = "SELECT * FROM instituicao WHERE status = 1";
+        $query = "SELECT * FROM instituicao USE INDEX (idx_nome_instituicao) WHERE status = 1";
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();

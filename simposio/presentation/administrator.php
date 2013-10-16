@@ -20,10 +20,19 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style type="text/css" media="all">@import url(style/reset.css);@import url(style/base.css);@import url(style/style.css);@import url(style/alertas.css)</style>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <style type="text/css" media="all">
+            @import url(style/reset.css);
+            @import url(style/base.css);
+            @import url(style/font.css);
+            @import url(style/style.css);
+            @import url(style/alert.css);
+        </style>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+        <script type="text/javascript" src="js/alertBox.js"></script>
+        <script src="scripts/jquery.alert.js" type="text/javascript"></script>
+        <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
         <!-- script auxiliar do jquery para o menu dropdown -->
         <script type="text/javascript">
             $(document).ready(function(){      
@@ -40,18 +49,16 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             });
             
         </script>
-        <!-- fim script -->
-        <script language="Javascript">
-	
-            function confirmacao2() { 
-                var resposta = confirm("Realmente deseja sair?");   
-                if (resposta == true) { 
-                    window.location.href = "logout.php"; 
-                } 
-            } 
+        <!-- fim script  PARA MENSAGEM DE SAIR--> 
+        <script>
+            $(function() {
+                $('#clickMe').alertBox({
+                    href: '../presentation/logout.php'
+                });
+            });
         </script>
 
-        <title>Simpósio</title>
+        <title>Administrator</title>
     </head>
     <body>
         <!-- Conteudo -->
@@ -80,8 +87,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                     </li>
                     <li class='has-sub'><a  href="administrator.php?pag=admLista.php">Atividades</a></li>
                     <!-- Logout do usuario -->
-
-                    <li class='has-sub'><?php echo"<a href='javascript:func()' onclick='confirmacao2()'>Sair</a>"; ?></li>
+                    <li class='has-sub'><?php echo"<a href='#' id='clickMe'>Sair</a>"; ?></li>
 
                 </ul>
                 <!-- fim menu principal -->

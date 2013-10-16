@@ -20,7 +20,7 @@ class EstadoDAO {
     //put your code here
     //listar todos
     public function listarTodos() {
-        $query = "SELECT * FROM estado";
+        $query = "SELECT * FROM estado USE INDEX(idx_nome_estado)";
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();

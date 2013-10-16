@@ -17,8 +17,8 @@ $daoE = new EstadoDAO();
 $estado = new Estado();
 $estado = $daoE->listarTodos();
 //-----
-if (isset($_POST['email'])) {
-    $email = $_POST['email'];
+if (isset($_POST['email2'])) {
+    $email = $_POST['email2'];
 } else {
     $email = "";
 }
@@ -26,17 +26,21 @@ if (isset($_POST['email'])) {
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        <script src="js/jquery.js" type="text/javascript"></script>
-        <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
-        <script src="js/validacao.js" type="text/javascript"></script>
         <script rel="stylesheet" type="text/javascript" src="js/spryEffects.js"></script>
+        <script type="text/javascript" src="validacao/validacao.js"></script>
+        <script language="javascript" src="validacao/funcoes.js"></script>
         <title>Dados Pessoais</title>
-
         <script type="text/javascript">
             function MM_effectAppearFade(targetElement, duration, from, to, toggle){
                 Spry.Effect.DoFade(targetElement, {duration: duration, from: from, to: to, toggle: toggle});
             }
         </script>
+         <script type="text/javascript">
+            function validar(dados){
+                if(!checkCpf(dados.cpf)) return false;
+            }    
+        </script>
+        
         <!-- mascaras -->
         <script>
             jQuery(function($){
@@ -78,14 +82,10 @@ if (isset($_POST['email'])) {
                     document.formPessoa.senha.focus()
                     document.formPessoa.senha.value = ""
                     document.formPessoa.primeiraSenha.value = ""
+                   
                     return false;
                 }
             }
-        </script>
-        <script type="text/javascript">
-            function vCPF(i){
-                i.setCustomValidity(vCPF(i.value)?'':'CPF inválido!')
-            }    
         </script>
 
     </head>
@@ -96,11 +96,11 @@ if (isset($_POST['email'])) {
         <fieldset class="fieldsetRegistrar">
             <legend>DADOS PESSOAIS </legend>
             <!--   <form id="formPessoa" name="formPessoa" method="POST" action="teste.php" onsubmit="return validaPessoa()"> -->
-            <form id="formPessoa" name="formPessoa" method="POST" action="../controller/CtlPessoa.php"> 
+            <form id="formPessoa" name="formPessoa" method="POST" action="../controller/CtlPessoa.php" onsubmit="return validaPessoa()"> 
                 <label for="nome" class="labelRegistrar">Nome:</label>
                 <input type="text" id="nome" name="nome" value=""  placeholder="João"  class="forRegistrar"/><br/>
                 <label for="cpf" class="labelRegistrar">Cpf:</label>
-                <input type="text" id="cpf" name="cpf" value="" placeholder="111.111.111-11" class="forRegistrar" maxlength="11" onblur="vCPF(this)"/>
+                <input type="text" id="cpf" name="cpf" value="" placeholder="111.111.111-11" class="forRegistrar" onblur="validar(document.formPessoa)" maxlength="14"/>
 
                 <br/>
                 <label for="nascimento" class="labelRegistrar">Data Nascimento:</label>
@@ -134,7 +134,7 @@ if (isset($_POST['email'])) {
                     <legend>ENDEREÇO</legend>
 
                     <label for="rua" class="labelRegistrar">Endereço:</label>
-                    <input type="text" id="rua" name="rua" value=""  placeholder="Rua" class="forRegistrar"/><br/>
+                    <input type="text" id="rua" name="rua" value="" placeholder="Rua" class="forRegistrar"/><br/>
                     <label for="rua" class="labelRegistrar">Numero:</label>
                     <input type="text" id="numero" name="numero" value=""  placeholder="0000" class="forRegistrar"/><br/>
                     <label for="rua" class="labelRegistrar">Bairro:</label>
@@ -146,7 +146,6 @@ if (isset($_POST['email'])) {
                     <select id="estado" name="estado"  class="forRegistrarSelec" onchange="buscarCidades()">
                         <option value="" selected="">Selecione</option>
                         <?php
-                        ini_set('default_charset', 'utf-8');
                         foreach ($estado as $es) {
                             echo"<option value='" . $es->getId() . "'>" . strtoupper($es->getNome()) . "</option>";
                             $es++;
@@ -164,19 +163,19 @@ if (isset($_POST['email'])) {
                 <fieldset class="fieldsetRegistrarLog">
                     <legend>LOGIN</legend>
                     <label for="email" class="labelRegistrar">Email:</label>
-                    <input type="text" id="email" name="email" value="<?php echo $email; ?>"  placeholder="Email" class="forRegistrarLog"/>
+                    <input type="text" id="email" name="email" value="<?php echo $email; ?>"  placeholder="Email" class="forRegistrarLog" />
 
                     <br/>
                     <label for="senha" class="labelRegistrar">Senha:</label>
                     <input type="password" id="primeiraSenha" name="primeiraSenha" placeholder="Senha" value="" class="forRegistrarLog"/>
                     <br/>
                     <label for="confirmarSenha" class="labelRegistrar">Confirmar:</label>
-                    <input type="password" id="senha" name="senha" value=""  class="forRegistrarLog" onblur="valida();" placeholder="Digite novamente"/>
+                    <input type="password" id="senha" name="senha" value="" class="forRegistrarLog" onblur="valida();" placeholder="Digite novamente"/>
                 </fieldset>
                 <input type="submit" value="Cadastrar" class="botaoCad">
             </form>  
         </fieldset>
         <!-- Div para mostrar erros de validação! -->
-        <div id="errocadastro" class="errocadastro"></div>
+        <div id="erro" class="erro"></div>
     </body>
 </html>

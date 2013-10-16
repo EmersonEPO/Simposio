@@ -14,9 +14,11 @@ class PessoaDAO {
 
     public function inserir(Pessoa $obj) {
 
-        $query = sprintf("INSERT INTO pessoa(fk_instituicao,fk_cidade,email,senha,nivel,nome,cpf,sexo,nascimento,telefone,rua,numero,bairro,complemento,outraInstituicao,status) 
-        VALUES('%s','%s','%s',SHA1('%s'),'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',1)", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
+        //$query = sprintf("INSERT INTO pessoa(fk_instituicao,fk_cidade,email,senha,nivel,nome,cpf,sexo,nascimento,telefone,rua,numero,bairro,complemento,outraInstituicao,status) 
+        //VALUES('%s','%s','%s',SHA1('%s'),'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',1)", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
 
+        $query = sprintf("CALL sp_inserePessoa('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
+        
         //iniciar conexao
         $daoConexao = new conexaoDAO();
         $conexaoAberta = $daoConexao->conectar();
@@ -33,7 +35,7 @@ class PessoaDAO {
 
     //atualizar
     public function atualizar(Pessoa $obj) {
-        $query = sprintf("UPDATE pessoa SET fk_instituicao='%s',fk_cidade='%s',nivel='%s',nome='%s',cpf='%s',sexo='%s',nascimento='%s',telefone='%s',rua='%s',numero='%s',bairro='%s',complemento='%s',outraInstituicao='%s',status='%s' WHERE idPessoa = '%s'", $obj->getFk_instituicao(), $obj->getFk_cidade(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao(), 1, $obj->getId());
+        $query = sprintf("UPDATE pessoa SET fk_instituicao='%s',fk_cidade='%s',nivel='%s',nome='%s',sexo='%s',nascimento='%s',telefone='%s',rua='%s',numero='%s',bairro='%s',complemento='%s',outraInstituicao='%s',status='%s' WHERE idPessoa = '%s'", $obj->getFk_instituicao(),$obj->getFk_cidade(), 1, $obj->getNome(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao(), 1, $obj->getId());
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();

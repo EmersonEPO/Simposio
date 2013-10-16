@@ -29,7 +29,7 @@ $id = $_SESSION['id'];
 
 if (isset($_GET['at'])) {
     $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
+    //$cpf = $_POST['cpf'];
     $sexo = $_POST['sexo'];
     $nascimento = implode("-", array_reverse(explode("/", $_POST['nascimento'])));
     $instituicao = $_POST['instituicao'];
@@ -59,7 +59,7 @@ if (isset($_GET['at'])) {
 
     $pessoa->setId($id);
     $pessoa->setNome($nome);
-    $pessoa->setCpf($cpf);
+    //$pessoa->setCpf($cpf);
     $pessoa->setNascimento($nascimento);
     $pessoa->setSexo($sexo);
     $pessoa->setFone($telefone);
@@ -100,22 +100,22 @@ if (isset($_GET['at'])) {
     if ($dao->verificarEmail($pessoa) == true) {
         if (!isset($_GET['ad'])) {
             echo"<script language='javascript'>
-                               window.location.href='../presentation/main.php?pag=frmEditLogin.php&atualiza=0'
+                               window.location.href='../presentation/main.php?pag=frmEditLogin.php&atualiza=2'
                                </script>";
         } else {
             echo"<script language='javascript'>
-                               window.location.href='../presentation/administrator.php?pag=admLogin.php&atualiza=0'
+                               window.location.href='../presentation/administrator.php?pag=admLogin.php&atualiza=2'
                                </script>";
         }
     } else {
         if (!$dao->atualizarLogin($pessoa)) {
             if (!isset($_GET['ad'])) {
                 echo"<script language='javascript'>
-                               window.location.href='../Presentation/main.php?pag=frmEditLogin.php&atualiza=3'
+                               window.location.href='../Presentation/main.php?pag=frmEditLogin.php&atualiza=0'
                                </script>";
             } else {
                 echo"<script language='javascript'>
-                           window.location.href='../Presentation/administrator.php?pag=admLogin.php&atualiza=3'
+                           window.location.href='../Presentation/administrator.php?pag=admLogin.php&atualiza=0'
                            </script>";
             }
         } else {

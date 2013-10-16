@@ -3,7 +3,7 @@
 include('../dataAccess/ConexaoDAO.php');
 
 $estado = $_GET['estado'];
-$query = "SELECT * FROM cidade WHERE idEstado = $estado ORDER BY nome";
+$query = "SELECT * FROM cidade USE INDEX (idx_estado) WHERE idEstado = $estado ORDER BY nome";
 
 //iniciar conexao
 $daoConexao = new conexaoDAO();

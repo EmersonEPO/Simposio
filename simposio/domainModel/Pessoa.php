@@ -10,7 +10,8 @@
  *
  * @author emerson
  */
-class Pessoa{
+class Pessoa {
+
     //put your code here
     private $id;
     private $nome;
@@ -29,9 +30,9 @@ class Pessoa{
     private $email;
     private $senha;
     private $status;
-    
+
     //contrutor
-    function __construct(){
+    function __construct() {
         $this->id = 0;
         $this->nome = "";
         $this->cpf = 0;
@@ -49,115 +50,143 @@ class Pessoa{
         $this->email = "";
         $this->senha = "";
         $this->status = 1;
-      
     }
-    
+
     //metodos
-    public function setId($id){
-        $this->id = addslashes($id);  
+    public function setId($id) {
+        $this->id = addslashes($id);
     }
-    public function getId(){
+
+    public function getId() {
         return $this->id;
     }
+
     //----
-    public function setNome($nome){
-        $this->nome = addslashes($nome);  
+    public function setNome($nome) {
+        $this->nome = addslashes($nome);
     }
-    public function getNome(){
+
+    public function getNome() {
         return $this->nome;
     }
+
     //----
-    public function setCpf($Cpf){
-        $this->cpf = addslashes($Cpf);  
+    public function setCpf($Cpf) {
+        $this->cpf = addslashes($Cpf);
     }
-    public function getCpf(){
+
+    public function getCpf() {
         return $this->cpf;
     }
+
     //----
-    public function setNascimento($nascimento){
-        $this->nascimento = addslashes($nascimento);  
+    public function setNascimento($nascimento) {
+        $this->nascimento = addslashes($nascimento);
     }
-    public function getNascimento(){
+
+    public function getNascimento() {
         return $this->nascimento;
     }
+
     //----
-    public function setFone($fone){
-        $this->fone = addslashes($fone);  
+    public function setFone($fone) {
+        $this->fone = addslashes($fone);
     }
-    public function getFone(){
+
+    public function getFone() {
         return $this->fone;
     }
+
     //----
-    public function setSexo($sexo){
-        $this->sexo = addslashes($sexo);  
+    public function setSexo($sexo) {
+        $this->sexo = addslashes($sexo);
     }
-    public function getSexo(){
+
+    public function getSexo() {
         return $this->sexo;
     }
+
     //----
-    public function setRua($rua){
-        $this->rua = addslashes($rua);  
+    public function setRua($rua) {
+        $this->rua = addslashes($rua);
     }
-    public function getRua(){
+
+    public function getRua() {
         return $this->rua;
     }
+
     //----
-    public function setNumero($numero){
-        $this->numero = addslashes($numero);  
+    public function setNumero($numero) {
+        $this->numero = addslashes($numero);
     }
-    public function getNumero(){
+
+    public function getNumero() {
         return $this->numero;
     }
+
     //----
-    public function setBairro($bairro){
-        $this->bairro = addslashes($bairro);  
+    public function setBairro($bairro) {
+        $this->bairro = addslashes($bairro);
     }
-    public function getBairro(){
+
+    public function getBairro() {
         return $this->bairro;
     }
+
     //----
-    public function setComplemento($complemento){
-        $this->complemento = addslashes($complemento);  
+    public function setComplemento($complemento) {
+        $this->complemento = addslashes($complemento);
     }
-    public function getComplemento(){
+
+    public function getComplemento() {
         return $this->complemento;
     }
+
     //----
-    public function setFk_cidade($cidade){
-        $this->cidade = addslashes($cidade);  
+    public function setFk_cidade($cidade) {
+        $this->cidade = addslashes($cidade);
     }
-    public function getFk_cidade(){
+
+    public function getFk_cidade() {
         return $this->cidade;
     }
+
     //----
-    public function setFk_instituicao($instituicao){
-        $this->instituicao = addslashes($instituicao);  
+    public function setFk_instituicao($instituicao) {
+        $this->instituicao = addslashes($instituicao);
     }
-    public function getFk_instituicao(){
+
+    public function getFk_instituicao() {
         return $this->instituicao;
     }
+
     //----
-    public function setNomeInstituicao($nomeInstituicao){
-        $this->nomeInstituicao = addslashes($nomeInstituicao);  
+    public function setNomeInstituicao($nomeInstituicao) {
+        $this->nomeInstituicao = addslashes($nomeInstituicao);
     }
-    public function getNomeInstituicao(){
+
+    public function getNomeInstituicao() {
         return $this->nomeInstituicao;
     }
+
     //email
-    public function setEmail($email){
+    public function setEmail($email) {
         $this->email = addslashes($email);
     }
-    public function getEmail(){
+
+    public function getEmail() {
         return $this->email;
     }
+
     //senha
-    public function setSenha($senha){
+    public function setSenha($senha) {
         $this->senha = addslashes($senha);
     }
-    public function getSenha(){
+
+    public function getSenha() {
         return $this->senha;
     }
-   
+
 }
 
 ?>

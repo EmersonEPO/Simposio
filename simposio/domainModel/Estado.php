@@ -11,6 +11,7 @@
  * @author emerson
  */
 class Estado {
+
     //put your code here
     private $nome;
     private $id;
@@ -27,20 +28,25 @@ class Estado {
     public function setId($id) {
         $this->id = addslashes($id);
     }
+
     public function getId() {
         return $this->id;
     }
+
     //----
     public function setNome($nome) {
         $this->nome = addslashes($nome);
     }
+
     public function getNome() {
         return $this->nome;
     }
+
     //----
     public function setSigla($sigla) {
         $this->sigla = addslashes($sigla);
     }
+
     public function getSigla() {
         return $this->sigla;
     }

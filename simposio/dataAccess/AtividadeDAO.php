@@ -1,3 +1,22 @@
+<?php
+
+//A sessao precisa ser iniciada caso ela nao exista
+//para ser feito a comparação log mais
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+//nivel para ter acesso a essa pagina
+$nivel_necessario = 1;
+// Verifica se não há a variavel da sessao que identifica o usuario
+if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
+    //destroi a sessao por segurança
+    session_destroy();
+    //redireciona o visitante de volta pro login
+    header("Location: ../presentation/index.php?pag=frmLogin.php");
+    exit;
+}
+?>
 
 <?php
 
@@ -20,8 +39,7 @@ class AtividadeDAO {
     //inserir
     public function inserir(Atividade $obj) {
         $query = sprintf("INSERT INTO atividade(fk_evento,fk_tipoAtv,fk_ministrante,nome,tipoDuracao,duracao,local,dataAtvidade,horaInicio,horaTermino,status) 
-        VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',1)",
-        $obj->getFk_evento(), $obj->getFk_tipoAtv(), $obj->getFk_ministrante(), $obj->getNome(), $obj->getTipoDuracao(), $obj->getDuracao(), $obj->getLocal(), $obj->getDataAtividade(), $obj->getHoraInicio(), $obj->getHoraTermino());
+        VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',1)", $obj->getFk_evento(), $obj->getFk_tipoAtv(), $obj->getFk_ministrante(), $obj->getNome(), $obj->getTipoDuracao(), $obj->getDuracao(), $obj->getLocal(), $obj->getDataAtividade(), $obj->getHoraInicio(), $obj->getHoraTermino());
         //query para acrescentar estoque a uma atividade;
         $query_estoque = ("INSERT INTO controle(fk_atividade,totalVaga,totalEspera,status) VALUES(LAST_INSERT_ID(),30,5,1)");
         //iniciar conexao
@@ -113,7 +131,7 @@ class AtividadeDAO {
     }
 
     //Listar todos
-     public function listaTodos() {
+    public function listaTodos() {
         $query = "SELECT a.idAtividade,a.fk_evento,a.fk_tipoAtv,a.fk_ministrante,a.nome,a.tipoDuracao,a.duracao,a.local,a.dataAtividade,a.horaInicio,a.horaTermino FROM atividade a INNER JOIN evento e on (a.fk_evento = e.idEvento) WHERE (a.status = 1 AND  e.status = 1) ORDER BY a.horaInicio";
 
         //iniciar conexao
@@ -152,7 +170,7 @@ class AtividadeDAO {
         }
         return $lista;
     }
-    
+
     //listarTodos por data
     public function listaTodosPorData($data) {
         $query = "SELECT a.idAtividade,a.fk_evento,a.fk_tipoAtv,a.fk_ministrante,a.nome,a.tipoDuracao,a.duracao,a.local,a.dataAtividade,a.horaInicio,a.horaTermino FROM atividade a INNER JOIN evento e on (a.fk_evento = e.idEvento) WHERE ((a.status = 1 AND  e.status = 1)AND (a.dataAtividade like '" . $data . "' )) ORDER BY a.horaInicio";
@@ -236,13 +254,12 @@ class AtividadeDAO {
 
             $lista->append($novo);
         }
-        if(count($lista)){
+        if (count($lista)) {
             return $lista;
-        }else{
+        } else {
             return null;
         }
     }
 
 }
-
 ?>

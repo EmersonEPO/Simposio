@@ -1,8 +1,9 @@
 
 <?php
-    include_once "../dataAccess/ConexaoDAO.php";
-    include_once "../domainModel/Estado.php";
-     include_once "../domainModel/Cidade.php";
+
+include_once "../dataAccess/ConexaoDAO.php";
+include_once "../domainModel/Estado.php";
+include_once "../domainModel/Cidade.php";
 
 /*
  * To change this template, choose Tools | Templates
@@ -15,42 +16,42 @@
  * @author Home
  */
 class EstadoDAO {
+
     //put your code here
-    
     //listar todos
-    public function listarTodos(){
-       $query = "SELECT * FROM estado";
-      
-       //iniciar conexao
-       $daoConexao = new conexaoDAO();
-       $conexaoAberta = $daoConexao->conectar();
+    public function listarTodos() {
+        $query = "SELECT * FROM estado";
 
-       //selecionar banco
-       $daoConexao->selecionarBanco();
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
 
-       //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
-       $resultado = $daoConexao->executeQuery($query);
+        //selecionar banco
+        $daoConexao->selecionarBanco();
 
-       //fecha conexao
-       $daoConexao->desconectar($conexaoAberta);
-       
-       $lista = new ArrayObject();
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
 
-       while ($rs = mysql_fetch_array($resultado)) {
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
 
-           $novo = new Estado();
-           
-           $novo->setId(stripslashes($rs['idEstado']));
-           $novo->setNome(stripslashes($rs['nome']));
-           $novo->setSigla(stripslashes($rs['uf']));
-           
-           $lista->append($novo);
-       }
-       return $lista;
-        
+        $lista = new ArrayObject();
+
+        while ($rs = mysql_fetch_array($resultado)) {
+
+            $novo = new Estado();
+
+            $novo->setId(stripslashes($rs['idEstado']));
+            $novo->setNome(stripslashes($rs['nome']));
+            $novo->setSigla(stripslashes($rs['uf']));
+
+            $lista->append($novo);
+        }
+        return $lista;
     }
+
     //abrir idestado por cidade
-     public function abrirIdEstado($id) {
+    public function abrirIdEstado($id) {
         $query = sprintf("SELECT idEstado FROM cidade WHERE idCidade = '%s'", $id);
 
         //iniciar conexao

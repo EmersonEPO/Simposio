@@ -1,23 +1,26 @@
 <?php
-    header('Content-Type: text/html; charset=iso-8859-1');
-    //A sessao precisa ser iniciada caso ela nao exista
-    //para ser feito a comparação log mais
-    if (!isset($_SESSION)) {
-        session_start();
-    }
 
-    //nivel para ter acesso a essa pagina
-    $nivel_necessario = 1;
-    // Verifica se não há a variavel da sessao que identifica o usuario
-    if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)){
-        //destroi a sessao por segurança
-        session_destroy();
-        //redireciona o visitante de volta pro login
-        header("Location: ../presentation/index.php?pag=frmLogin.php"); exit;
-    }
+header('Content-Type: text/html; charset=iso-8859-1');
+//A sessao precisa ser iniciada caso ela nao exista
+//para ser feito a comparação log mais
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+//nivel para ter acesso a essa pagina
+$nivel_necessario = 1;
+// Verifica se não há a variavel da sessao que identifica o usuario
+if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
+    //destroi a sessao por segurança
+    session_destroy();
+    //redireciona o visitante de volta pro login
+    header("Location: ../presentation/index.php?pag=frmLogin.php");
+    exit;
+}
 ?>
 
 <?php
+
 require_once '../domainModel/Atividade.php';
 require_once '../dataAccess/AtividadeDAO.php';
 require_once '../presentation/pdf/fpdf.php';
@@ -70,33 +73,33 @@ $pdf->Ln(20);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(27, 5, 'NOME', 1);
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(130, 5,$pessoa->getNome(), 1);
+$pdf->Cell(130, 5, $pessoa->getNome(), 1);
 $pdf->Ln();
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(27, 5, 'CPF', 1);
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(50, 5,$pessoa->getCpf(), 1);
+$pdf->Cell(50, 5, $pessoa->getCpf(), 1);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(27, 5, 'TELEFONE', 1);
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(53, 5,$pessoa->getFone(), 1);
+$pdf->Cell(53, 5, $pessoa->getFone(), 1);
 $pdf->Ln();
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(27, 5, 'EMAIL', 1);
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(130, 5,$pessoa->getEmail(), 1);
+$pdf->Cell(130, 5, $pessoa->getEmail(), 1);
 $pdf->Ln();
 
-if($pessoa->getFk_instituicao() == 1){
+if ($pessoa->getFk_instituicao() == 1) {
     $instituto = $pessoa->getNomeInstituicao();
-}else{
+} else {
     $instituto = $instituicao->getNome();
 }
 
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(27, 5, 'INST.', 1);
 $pdf->SetFont('Arial', '', 8);
-$pdf->Cell(130, 5,$instituto, 1);
+$pdf->Cell(130, 5, $instituto, 1);
 
 
 
@@ -127,18 +130,18 @@ foreach ($novo as $row) {
     } else {
         $tipoM = "Pre-inscrito";
     }
-    
+
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'TITULO', 1);
     $pdf->SetFont('Arial', '', 8);
     $pdf->Cell(100, 5, $row->getNome(), 1);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(30, 5,$tipoM, 1);
+    $pdf->Cell(30, 5, $tipoM, 1);
     $pdf->Ln();
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'CH', 1);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(130, 5,$row->getTipoDuracao()." ".$duracao, 1);
+    $pdf->Cell(130, 5, $row->getTipoDuracao() . " " . $duracao, 1);
     $pdf->Ln();
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'DATA', 1);
@@ -147,7 +150,7 @@ foreach ($novo as $row) {
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'HORARIO', 1);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(53, 5, $row->getHoraInicio()." - ".$row->getHoraTermino(), 1);
+    $pdf->Cell(53, 5, $row->getHoraInicio() . " - " . $row->getHoraTermino(), 1);
     $pdf->Ln();
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'LOCAL', 1);
@@ -157,8 +160,8 @@ foreach ($novo as $row) {
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'MINISTRANTE', 1);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(130, 5, $ministrante->getNome()."  ( ".$ministrante->getFormacao()." )", 1);
-    $pdf->Cell(30, 5,"Visto:_________________", 0);
+    $pdf->Cell(130, 5, $ministrante->getNome() . "  ( " . $ministrante->getFormacao() . " )", 1);
+    $pdf->Cell(30, 5, "Visto:_________________", 0);
     $pdf->Ln(10);
 }
 

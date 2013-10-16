@@ -55,13 +55,13 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                 });
             });
         </script>
-        
+
         <title>Simpósio</title>
     </head>
     <body>
         <!-- Conteudo -->
         <div>
-           
+
             <!-- corpo -->
             <div id="cssmenu">
                 <?php
@@ -92,45 +92,41 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 
                 </ul>
                 <!-- fim menu principal -->
-              
-                
-                
+
+
+
             </div>
             <!-- fim corpo -->
-       
+
 
             <?php
             if (isset($_GET['msg'])) {
                 if ($_GET['msg'] == 'atention') {
                     echo"<div id='mensagem' style='' class='error'>";
-                    echo"<p>Operação cancelada! Você atingiu o numero maximo de inscrições permitidas.</p>"; 
+                    echo"<p>Operação cancelada! Você atingiu o numero maximo de inscrições permitidas.</p>";
                     echo"</div>";
-           
                 }
                 if ($_GET['msg'] == 'sucess') {
                     echo"<div id='mensagem' style='' class='success'>";
-                    echo"<p>Matricula realizada com sucesso</p>"; 
+                    echo"<p>Matricula realizada com sucesso</p>";
                     echo"</div>";
-                   
                 }
                 if ($_GET['msg'] == 'alert') {
                     echo"<div id='mensagem' style='' class='error'>";
-                    echo"<p>Operação cancelada, houve choque de horario.</p>"; 
+                    echo"<p>Operação cancelada, houve choque de horario.</p>";
                     echo"</div>";
-                    
                 }
 
                 if ($_GET['msg'] == 'important') {
                     echo"<div id='mensagem' style='' class='warning'>";
-                    echo"<p>Atenção, matricula realizada com sucesso na lista de espera.</p>"; 
+                    echo"<p>Atenção, matricula realizada com sucesso na lista de espera.</p>";
                     echo"</div>";
                 }
                 if ($_GET['msg'] == 'ops') {
                     echo"<div id='mensagem' style='' class='info'>";
-                    echo"<p>Sentimos informa-lo que todas as vagas para este evento forma preenchidas.</p>"; 
+                    echo"<p>Sentimos informa-lo que todas as vagas para este evento forma preenchidas.</p>";
                     echo"</div>";
                 }
-              
             }
 
             if (isset($_GET['atualiza'])) {

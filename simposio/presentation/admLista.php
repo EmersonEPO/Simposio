@@ -35,7 +35,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 
         echo "<div  class='cssLinkPdf'>";
         foreach ($atv as $a) {
-            echo "<a href='../controller/CtlListasPDF.php?id=".$a->getId()."'  target='_blank'><img src='../presentation/image/pdf.gif'>" . $a->getNome() . "</a><br/><br/>";
+            echo "<a href='../controller/CtlListasPDF.php?id=" . $a->getId() . "'  target='_blank'><img src='../presentation/image/pdf.gif'>" . $a->getNome() . "</a><br/><br/>";
             $a++;
         }
         echo "</div>";

@@ -11,6 +11,7 @@
  * @author emerson
  */
 class Cidade {
+
     //put your code here
     private $id;
     private $nome;
@@ -27,13 +28,16 @@ class Cidade {
     public function setId($id) {
         $this->id = addslashes($id);
     }
+
     public function getId() {
         return $this->id;
     }
+
     //----
     public function setNome($nome) {
         $this->nome = addslashes($nome);
     }
+
     public function getNome() {
         return $this->nome;
     }
@@ -42,10 +46,11 @@ class Cidade {
     public function setIdEstado($id) {
         $this->idEstado = addslashes($id);
     }
+
     public function getIdEstado() {
         return $this->idEstado;
     }
-    
+
 }
 
 ?>

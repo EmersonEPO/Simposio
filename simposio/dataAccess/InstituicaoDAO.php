@@ -1,6 +1,7 @@
 <?php
-    include_once "../dataAccess/ConexaoDAO.php";
-    include_once "../domainModel/Instituicao.php";
+
+include_once "../dataAccess/ConexaoDAO.php";
+include_once "../domainModel/Instituicao.php";
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -12,83 +13,84 @@
  * @author emerson
  */
 class InstituicaoDAO {
-    
+
     //put your code here
     //inserir
-    public function iserir(Instituicao $obj){
-       $query = sprintf("INSERT INTO instituicao(nome,status) VALUES('%s',1)",$obj->getNome());
-        
-       //iniciar conexao
-       $daoConexao = new conexaoDAO();
-       $conexaoAberta = $daoConexao->conectar();
+    public function iserir(Instituicao $obj) {
+        $query = sprintf("INSERT INTO instituicao(nome,status) VALUES('%s',1)", $obj->getNome());
 
-       //selecionar banco
-       $daoConexao->selecionarBanco();
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
 
-       //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
-       $daoConexao->executeQuery($query);
+        //selecionar banco
+        $daoConexao->selecionarBanco();
 
-       //fecha conexao
-       $daoConexao->desconectar($conexaoAberta);
-        
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
     }
+
     //abrir
-    public function abrir($id){
-       $query = sprintf("SELECT * FROM instituicao WHERE idInstituicao = '%s'",$id);
+    public function abrir($id) {
+        $query = sprintf("SELECT * FROM instituicao WHERE idInstituicao = '%s'", $id);
 
-       //iniciar conexao
-       $daoConexao = new conexaoDAO();
-       $conexaoAberta = $daoConexao->conectar();
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
 
-       //selecionar banco
-       $daoConexao->selecionarBanco();
+        //selecionar banco
+        $daoConexao->selecionarBanco();
 
-       //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
-       $resultado = $daoConexao->executeQuery($query);
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
 
-       //fecha conexao
-       $daoConexao->desconectar($conexaoAberta);
-       
-       while($rs = mysql_fetch_array($resultado)){
-            $novo = new Instituicao();	
-            
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+
+        while ($rs = mysql_fetch_array($resultado)) {
+            $novo = new Instituicao();
+
             $novo->setId(stripslashes($rs['idInstituicao']));
-	    $novo->setNome(stripslashes($rs['nome']));
+            $novo->setNome(stripslashes($rs['nome']));
             return $novo;
-       }
+        }
     }
+
     //listar todos
     public function listarTodos() {
 
-       $query = "SELECT * FROM instituicao WHERE status = 1";
-      
-       //iniciar conexao
-       $daoConexao = new conexaoDAO();
-       $conexaoAberta = $daoConexao->conectar();
+        $query = "SELECT * FROM instituicao WHERE status = 1";
 
-       //selecionar banco
-       $daoConexao->selecionarBanco();
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
 
-       //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
-       $resultado = $daoConexao->executeQuery($query);
+        //selecionar banco
+        $daoConexao->selecionarBanco();
 
-       //fecha conexao
-       $daoConexao->desconectar($conexaoAberta);
-       
-       $lista = new ArrayObject();
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
 
-       while ($rs = mysql_fetch_array($resultado)) {
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
 
-           $novo = new Instituicao();
-           
-           $novo->setId(stripslashes($rs['idInstituicao']));
-           $novo->setNome(stripslashes($rs['nome']));
-           
-           $lista->append($novo);
-       }
-       return $lista;
-   }
-    
+        $lista = new ArrayObject();
+
+        while ($rs = mysql_fetch_array($resultado)) {
+
+            $novo = new Instituicao();
+
+            $novo->setId(stripslashes($rs['idInstituicao']));
+            $novo->setNome(stripslashes($rs['nome']));
+
+            $lista->append($novo);
+        }
+        return $lista;
+    }
+
 }
 
 ?>

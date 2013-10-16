@@ -133,7 +133,7 @@ class PessoaDAO {
             return false;
         }
     }
-    
+
     //função que verifica se email já existe no sistema
     public function verificarCpf(Pessoa $obj) {
         $query = sprintf("SELECT COUNT(idPessoa) as ok FROM pessoa WHERE cpf LIKE '%s' AND idPessoa <> '%s' ", $obj->getCpf(), $obj->getId());
@@ -159,13 +159,14 @@ class PessoaDAO {
             return false;
         }
     }
+
     public function listaTodos($idAtividade) {
         $query = sprintf("SELECT p.idPessoa,p.fk_instituicao,p.fk_cidade,p.email,p.senha,p.nivel,p.nome,p.cpf,p.sexo,p.nascimento,p.telefone,p.rua,p.numero,p.bairro,p.complemento,p.outraInstituicao,p.status 
             FROM pessoa p
             INNER JOIN matricula m ON (m.fk_pessoa = p.idPessoa)
             INNER JOIN atividade a ON (m.fk_atividade = a.idAtividade)
             WHERE ((p.status = 1 AND p.nivel <> 2) AND (m.fk_atividade = '%s'))
-            ORDER BY m.fk_tipo",$idAtividade);
+            ORDER BY m.fk_tipo", $idAtividade);
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();
@@ -185,7 +186,7 @@ class PessoaDAO {
 
         while ($resultado = mysql_fetch_array($rs)) {
             $pessoa = new Pessoa();
-            
+
             $pessoa->setId(stripslashes($resultado['idPessoa']));
             $pessoa->setFk_instituicao(stripslashes($resultado['fk_instituicao']));
             $pessoa->setFk_cidade(stripslashes($resultado['fk_cidade']));

@@ -6,8 +6,8 @@
     </head>
     <body>
         <?php
-            $local = "Location: presentation/index.php";
-            header($local);
+        $local = "Location: presentation/index.php";
+        header($local);
         ?>
     </body>
 </html>

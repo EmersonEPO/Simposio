@@ -19,7 +19,6 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-      
         ?>
         <fieldset class="loginFildesetOne">
             <legend>Já sou Cadastrado :</legend><br/>
@@ -41,7 +40,7 @@ and open the template in the editor.
 
             </form>
         </fieldset>
-        
+
 
     </body>
 </html>

@@ -95,8 +95,8 @@ if (isset($_POST['email'])) {
         ?>
         <fieldset class="fieldsetRegistrar">
             <legend>DADOS PESSOAIS </legend>
-         <!--   <form id="formPessoa" name="formPessoa" method="POST" action="teste.php" onsubmit="return validaPessoa()"> -->
-                <form id="formPessoa" name="formPessoa" method="POST" action="../controller/CtlPessoa.php"> 
+            <!--   <form id="formPessoa" name="formPessoa" method="POST" action="teste.php" onsubmit="return validaPessoa()"> -->
+            <form id="formPessoa" name="formPessoa" method="POST" action="../controller/CtlPessoa.php"> 
                 <label for="nome" class="labelRegistrar">Nome:</label>
                 <input type="text" id="nome" name="nome" value=""  placeholder="João"  class="forRegistrar"/><br/>
                 <label for="cpf" class="labelRegistrar">Cpf:</label>

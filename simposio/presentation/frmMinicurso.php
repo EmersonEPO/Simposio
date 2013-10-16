@@ -44,6 +44,8 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                 } 
             } 
         </script>
+      
+        
     </head>
     <body>
 
@@ -101,6 +103,8 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         $atv = new Atividade();
         
         ?>
+        
+        
 
         <!-- -->
         <div class="divLegenda">
@@ -262,7 +266,6 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             echo "<td  style='border-color:#f2f2f2;background:#f2f2f2;' ><a href='" . $link . "'>
                       <input type='button' value='" . $inscrever . "' class='" . $estilo . "'>
                       </a></td>";
-
             echo "</tr>";
             $at++;
         }
@@ -281,5 +284,6 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         //verifica se o usuario ja possui alguma matricula para que entao seja exibida a opção de gerar pdf
         ?>
 
+        
     </body>
 </html>

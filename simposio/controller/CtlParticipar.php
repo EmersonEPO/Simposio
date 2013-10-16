@@ -84,10 +84,10 @@
                 //realizar matricula
                 $daoM->matricular($pessoa, $idAtividade, $tipo);
                 //mensagem de resposta
-                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=info&Qua';</script>";
+                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=important&Qua';</script>";
             } else {
                 //mensagem de resposta
-                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=ops&Qua';</script>";
+                echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=info&Qua';</script>";
             }
         }
     } else {

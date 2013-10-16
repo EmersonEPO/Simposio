@@ -1,23 +1,11 @@
 <?php
+    header('Content-Type: text/html; charset=iso-8859-1');
     //A sessao precisa ser iniciada caso ela nao exista
     //para ser feito a comparação log mais
     if (!isset($_SESSION)) {
         session_start();
     }
 
-    //Se o cokie criado apos o login não existir mais
-    //significa que a sessao deve ser finalizada
-    if(!isset($_COOKIE['expira'])){
-        //detroi sessao
-        session_destroy();
-        //por segurança, estou destruindo também o cokie
-        setcookie("expira");
-        //mensagem informando que o tempo do usuario expirou, redireciona para index
-        echo "<script language='javascript'>
-                    window.location.href='../presentation/index.php?pag=frmLogin.php'
-              </script>";
-        
-    }
     //nivel para ter acesso a essa pagina
     $nivel_necessario = 1;
     // Verifica se não há a variavel da sessao que identifica o usuario
@@ -27,7 +15,6 @@
         //redireciona o visitante de volta pro login
         header("Location: ../presentation/index.php?pag=frmLogin.php"); exit;
     }
-    
 ?>
 
 <?php
@@ -40,6 +27,8 @@ require_once '../domainModel/Ministrante.php';
 require_once '../dataAccess/MinistranteDAO.php';
 require_once '../dataAccess/InstituicaoDAO.php';
 require_once '../domainModel/Instituicao.php';
+require_once '../dataAccess/TipoAtividadeDAO.php';
+require_once '../domainModel/TipoAtividade.php';
 
 
 //Recebe pela sessao o id da pessoa
@@ -54,6 +43,8 @@ $daoM = new MinistranteDAO();
 $ministrante = new Ministrante();
 $daoI = new InstituicaoDAO();
 $instituicao = new Instituicao();
+$tipoAtividade = new TipoAtividade();
+$daoTA = new TipoAtividadeDAO();
 
 $novo = $daoA->listarAtividadeDoUser($idPessoa);
 
@@ -72,32 +63,41 @@ $pdf->AddPage('P', 'A4');
 $pdf->Image('../presentation/image/logo.jpg', 70);
 $pdf->SetFont('Arial', 'B', 14);
 $pdf->Cell(80);
-$pdf->Cell(30, 10, 'VI SIMPOSIO INFORMATICA', 0, 0, 'C');
+$pdf->Cell(30, 10, 'VII SIMPOSIO INFORMATICA', 0, 0, 'C');
 $pdf->Ln();
 $pdf->Ln(20);
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(11, 5,'NOME:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(29, 5,$pessoa->getNome(), 0, 0, 'C');
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(210,5,'FONE:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(-168,5,$pessoa->getFone(), 0, 0, 'C');
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(27, 5, 'NOME', 1);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(130, 5,$pessoa->getNome(), 1);
 $pdf->Ln();
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(7,4,'CPF:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(39, 4,$pessoa->getCpf(), 0, 0, 'C');
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(27, 5, 'CPF', 1);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(50, 5,$pessoa->getCpf(), 1);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(27, 5, 'TELEFONE', 1);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(53, 5,$pessoa->getFone(), 1);
 $pdf->Ln();
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(11,5,'EMAIL:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(37,5,$pessoa->getEmail(), 0, 0, 'C');
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(27, 5, 'EMAIL', 1);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(130, 5,$pessoa->getEmail(), 1);
 $pdf->Ln();
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(28,5,'INSTITUIÇÃO:', 0, 0, 'C');
-$pdf->SetFont('Arial', '', 11);
-$pdf->Cell(29,5,  strtoupper($instituicao->getNome()), 0, 0, 'C');
+
+if($pessoa->getFk_instituicao() == 1){
+    $instituto = $pessoa->getNomeInstituicao();
+}else{
+    $instituto = $instituicao->getNome();
+}
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(27, 5, 'INST.', 1);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(130, 5,$instituto, 1);
+
 
 
 $pdf->Ln(10);
@@ -107,10 +107,13 @@ $pdf->SetFont('Arial', 'B', 10);
 
 $pdf->Ln();
 
-//POPULANDO A TABELA
-$pdf->SetFont('Arial', '', 8);
+
 foreach ($novo as $row) {
     $ministrante = $daoM->abrir($row->getFk_ministrante());
+    //ao invez de me retornar o id da matricula, isso me retornara o FK de tipo de matricula
+    //1 = Inscrito
+    //2 = Pre-incrito
+    $tipoAtividade = $daoTA->abrirMatricula($row->getId(), $idPessoa);
 
     //tipo duração
     if ($row->getTipoDuracao() == 1) {
@@ -118,14 +121,22 @@ foreach ($novo as $row) {
     } else {
         $duracao = "Min.";
     }
+    //
+    if ($tipoAtividade->getId() == 1) {
+        $tipoM = "Inscrito";
+    } else {
+        $tipoM = "Pre-inscrito";
+    }
     
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'TITULO', 1);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(130, 5, $row->getNome(), 1);
+    $pdf->Cell(100, 5, $row->getNome(), 1);
+    $pdf->SetFont('Arial', '', 8);
+    $pdf->Cell(30, 5,$tipoM, 1);
     $pdf->Ln();
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->Cell(27, 5, 'DURAÇAO', 1);
+    $pdf->Cell(27, 5, 'CH', 1);
     $pdf->SetFont('Arial', '', 8);
     $pdf->Cell(130, 5,$row->getTipoDuracao()." ".$duracao, 1);
     $pdf->Ln();

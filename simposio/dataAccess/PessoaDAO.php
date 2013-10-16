@@ -159,6 +159,53 @@ class PessoaDAO {
             return false;
         }
     }
+    public function listaTodos($idAtividade) {
+        $query = sprintf("SELECT p.idPessoa,p.fk_instituicao,p.fk_cidade,p.email,p.senha,p.nivel,p.nome,p.cpf,p.sexo,p.nascimento,p.telefone,p.rua,p.numero,p.bairro,p.complemento,p.outraInstituicao,p.status 
+            FROM pessoa p
+            INNER JOIN matricula m ON (m.fk_pessoa = p.idPessoa)
+            INNER JOIN atividade a ON (m.fk_atividade = a.idAtividade)
+            WHERE ((p.status = 1 AND p.nivel <> 2) AND (m.fk_atividade = '%s'))
+            ORDER BY m.fk_tipo",$idAtividade);
+
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $rs = $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+
+        //--
+        $lista = new ArrayObject();
+
+        while ($resultado = mysql_fetch_array($rs)) {
+            $pessoa = new Pessoa();
+            
+            $pessoa->setId(stripslashes($resultado['idPessoa']));
+            $pessoa->setFk_instituicao(stripslashes($resultado['fk_instituicao']));
+            $pessoa->setFk_cidade(stripslashes($resultado['fk_cidade']));
+            $pessoa->setNome(stripslashes($resultado['nome']));
+            $pessoa->setCpf(stripslashes($resultado['cpf']));
+            $pessoa->setNascimento(implode("/", array_reverse(explode("-", $resultado['nascimento']))));
+            $pessoa->setSexo(stripslashes($resultado['sexo']));
+            $pessoa->setRua(stripslashes($resultado['rua']));
+            $pessoa->setNumero(stripslashes($resultado['numero']));
+            $pessoa->setFone(stripslashes($resultado['telefone']));
+            $pessoa->setBairro(stripslashes($resultado['bairro']));
+            $pessoa->setComplemento(stripslashes($resultado['complemento']));
+            $pessoa->setNomeInstituicao(stripslashes($resultado['outraInstituicao']));
+            $pessoa->setEmail(stripslashes($resultado['email']));
+            $pessoa->setSenha(stripslashes($resultado['senha']));
+
+            $lista->append($pessoa);
+        }
+        return $lista;
+    }
 
 }
 

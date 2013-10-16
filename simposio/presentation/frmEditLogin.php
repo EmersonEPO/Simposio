@@ -5,7 +5,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-
 //nivel para ter acesso a essa pagina
 $nivel_necessario = 1;
 // Verifica se não há a variavel da sessao que identifica o usuario

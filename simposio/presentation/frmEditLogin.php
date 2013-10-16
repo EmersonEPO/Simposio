@@ -39,7 +39,6 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         <script type="text/javascript">
             function valida(){
                 if(document.formEditLogin.senha.value != document.formEditLogin.confirmarSenha.value ){
-                    alert("As senhas Estão incorretas")
                     document.formEditLogin.senha.focus()
                     document.formEditLogin.senha.value = ""
                     document.formEditLogin.confirmarSenha.value = ""

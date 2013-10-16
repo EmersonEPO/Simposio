@@ -78,12 +78,15 @@ if (isset($_POST['email2'])) {
         <script type="text/javascript">
             function valida(){
                 if(document.formPessoa.senha.value != document.formPessoa.primeiraSenha.value ){
-                    alert("As senhas Estão incorretas")
                     document.formPessoa.senha.focus()
                     document.formPessoa.senha.value = ""
                     document.formPessoa.primeiraSenha.value = ""
-                   
+                    var texto = "As senhas não são iguais"
+                    MM_effectAppearFade('erro',1000,0,100, false);
+                    document.getElementById('erro').innerHTML = texto;
                     return false;
+                }else{
+                    return true;  
                 }
             }
         </script>

@@ -18,9 +18,9 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <style type="text/css" media="all">
             @import url(style/reset.css);
             @import url(style/base.css);
@@ -44,7 +44,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                 } 
             } 
         </script>
-
+        
 
     </head>
     <body>
@@ -111,13 +111,13 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             <img src="image/es.png"> Inscrever-se na lista de espera<br/>
             <img src="image/er.png"> Todas as vagas foram preenchidas<br/>
             <img src="image/su.png"> Inscrito na atividadade<br/>
-            <img src="image/pr.png"> Pré-inscrito na atividadade<br/>
+            <img src="image/pr.png"> Pre-inscrito na atividadade<br/>
 
 
         </div>
 
         <?php
-        echo "<table name='tbl' id='tbl' border='1' class='cssTblAtividade'>";
+        echo "<table name='tbl' id='tbl' style='boder:none;' class='cssTblAtividade'>";
         echo "<tr>";
         //esquema para "paginação"
         echo"<td colspan='9' border='0'>";
@@ -142,13 +142,13 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         echo"<tr>";
         echo "<td width='600' align='middle' class='cssRow1'><b>NOME</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>TIPO</b></td>";
-        echo "<td width='600' align='middle' class='cssRow1'><b>DURAÇÃO</b></td>";
+        echo "<td width='600' align='middle' class='cssRow1'><b>C.H.</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>DATA</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>INICIO</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>TERMINO</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>LOCAL</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>MINISTRANTE</b></td>";
-        echo "<td width='600' align='middle' class='cssRow1'><b>FORMAÇÃO</b></td>";
+        echo "<td width='600' align='middle' class='cssRow1'><b>TITULO</b></td>";
         echo "</tr>";
 
         foreach ($atividade as $at) {
@@ -206,7 +206,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                             if ($controle->getTotalEspera() == $total_vagas_espera) {
                                 $inscrever = "Inscrito";
                             } else {
-                                $inscrever = "Pré-inscrito";
+                                $inscrever = "Pre-inscrito";
                             }
                             break;
                         } else {
@@ -235,20 +235,22 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                 $estilo = "botaoInscrito";
                 $link = "";
             } else {
-                if ($inscrever == "Pré-inscrito") {
+                if ($inscrever == "Pre-inscrito") {
                     $estilo = "botaoPreInscrito";
                     $link = "";
                 } else
                 if ($inscrever == "Espera") {
                     $estilo = "botaoEspera";
                     $link = "javascript:func()' onclick='confirmacao(" . $at->getId() . ")";
+                    //$link = "../controller/CtlParticipar.php?id=". $at->getId() ."";
                 } else {
                     if ($inscrever == "Esgotado") {
                         $estilo = "botaoEsgotado";
-                        $link = "";
+                        $link = "../controller/CtlParticipar.php?id=". $at->getId() ."";
                     } else {
                         $estilo = "botaoInscrever";
                         $link = "javascript:func()' onclick='confirmacao(" . $at->getId() . ")";
+                        //$link = "../controller/CtlParticipar.php?id=". $at->getId() ."";
                     }
                 }
             }
@@ -261,18 +263,21 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             $ministrante = $daoM->abrir($at->getFk_ministrante());
             echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $ministrante->getNome() . "</td>";
             echo "<td class='linha-td' width='1200' align='middle' class='cssRow'>" . $ministrante->getFormacao() . "</td>";
-
-            echo "<td  style='border-color:#f2f2f2;background:#f2f2f2;' ><a href='" . $link . "'>
-                      <input type='button' value='" . $inscrever . "' class='" . $estilo . "'>
-                      </a></td>";
+            echo "<td  style='border: 5px;background:#fffffff;' class='linha-tdB'>
+                          <a href='" . $link . "'>
+                          <input type='button' value='" . $inscrever . "' class='" . $estilo . "'>
+                      </a>
+                 </td>";
             echo "</tr>";
             $at++;
+            //    
+             // <a href='". $link ."'  class='confirmacao'>
         }
         echo"<tr>";
-        echo"<td colspan='9' style='border-color:#f2f2f2;background:#f2f2f2;'>";
+        echo"<td colspan='9' style='background:#fffffff;'>";
         if ($daoMa->existteMatricula($_SESSION['id']) == true) {
             echo"<div class='csspdf'>";
-            echo "<a href='../controller/CtlMatriculaPDF.php'  target='_blank'><img src='../presentation/image/pdf.gif'> Gerar matricula de inscrição</a>";
+            echo "<a href='../controller/CtlMatriculaPDF.php'  target='_blank'><img src='../presentation/image/pdf.gif'> Gerar matricula...</a>";
             echo "</div>";
         }
         echo"</td>";
@@ -282,6 +287,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         <?php
         //verifica se o usuario ja possui alguma matricula para que entao seja exibida a opção de gerar pdf
         ?>
+        
 
 
     </body>

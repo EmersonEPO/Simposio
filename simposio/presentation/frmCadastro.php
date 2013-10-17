@@ -23,9 +23,9 @@ if (isset($_POST['email2'])) {
     $email = "";
 }
 ?>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <script rel="stylesheet" type="text/javascript" src="js/spryEffects.js"></script>
         <script type="text/javascript" src="validacao/validacao.js"></script>
         <script language="javascript" src="validacao/funcoes.js"></script>

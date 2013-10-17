@@ -18,9 +18,16 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+         <style type="text/css" media="all">
+            @import url(style/reset.css);
+            @import url(style/base.css);
+            @import url(style/font.css);
+            @import url(style/style.css);
+            @import url(style/alert.css);
+        </style>
         <title></title>
     </head>
     <body>

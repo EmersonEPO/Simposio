@@ -18,7 +18,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <style type="text/css" media="all">
@@ -80,7 +80,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                     <li class="has-sub">"           "</li>
                     <li class='active'><a  href="administrator.php?" >Home</a></li>
 
-                    <li class='has-sub'><a  href="#" >Configurações</a>
+                    <li class='has-sub'><a  href="#" >Perfil</a>
                         <ul>
                             <li><a  href="administrator.php?pag=admLogin.php" >Login</a></li>
                         </ul>

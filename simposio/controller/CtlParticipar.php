@@ -43,8 +43,9 @@ $novo = new Controle();
 if ($daoM->existteMatricula($pessoa) == true) {
     //verificar se nao ocorreu choque de horario.
     $atv = $daoA->abrir($idAtividade);
-
-    if ($dao->choqueHorario($atv->getHoraInicio(), $atv->getHoraTermino(), $pessoa) == true) {
+    $data = implode("-", array_reverse(explode("/", $atv->getDataAtividade())));
+    
+    if ($dao->choqueHorario($atv->getHoraInicio(), $atv->getHoraTermino(), $data, $pessoa) == true) {
         $passe = 0;
         echo"<script language='javascript'>window.location.href='../presentation/main.php?pag=frmMinicurso.php&msg=alert&Qua';</script>";
     }

@@ -101,8 +101,10 @@ class ControleDAO {
     }
 
     //controle de choque de horario
-    public function choqueHorario($horaInicio, $horaTermino, $pessoa) {
-        $query = "SELECT COUNT(a.idAtividade) AS ok FROM atividade a INNER JOIN matricula m ON (m.fk_atividade = a.idAtividade) WHERE ((((a.horaInicio >= '" . $horaInicio . "') AND (a.horaInicio < '" . $horaTermino . "')) OR ((a.horaTermino >= '" . $horaInicio . "') AND (a.horaTermino <= '" . $horaTermino . "')))AND m.fk_pessoa = '" . $pessoa . "')";
+    public function choqueHorario($horaInicio, $horaTermino,$data, $pessoa) {
+        $query = "SELECT COUNT(a.idAtividade) AS ok FROM atividade a INNER JOIN matricula m ON (m.fk_atividade = a.idAtividade) 
+            WHERE ((((a.dataAtividade LIKE '".$data."') AND ((a.horaInicio >= '" . $horaInicio . "') AND (a.horaInicio < '" . $horaTermino . "'))) OR 
+            ((a.dataAtividade LIKE '".$data."') AND ((a.horaTermino >= '" . $horaInicio . "') AND (a.horaTermino <= '" . $horaTermino . "')))) AND m.fk_pessoa = '" . $pessoa . "')";
 
         //iniciar conexao
         $daoConexao = new conexaoDAO();

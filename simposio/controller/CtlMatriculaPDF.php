@@ -30,8 +30,8 @@ require_once '../domainModel/Ministrante.php';
 require_once '../dataAccess/MinistranteDAO.php';
 require_once '../dataAccess/InstituicaoDAO.php';
 require_once '../domainModel/Instituicao.php';
-require_once '../dataAccess/TipoAtividadeDAO.php';
-require_once '../domainModel/TipoAtividade.php';
+require_once '../dataAccess/MatriculaDAO.php';
+require_once '../domainModel/Matricula.php';
 
 
 //Recebe pela sessao o id da pessoa
@@ -40,14 +40,18 @@ $idPessoa = $_SESSION['id'];
 //obtendo dados do banco
 $daoA = new AtividadeDAO();
 $novo = new Atividade();
+//----
 $daoP = new PessoaDAO();
 $pessoa = new Pessoa();
+//----
 $daoM = new MinistranteDAO();
 $ministrante = new Ministrante();
+//----
 $daoI = new InstituicaoDAO();
 $instituicao = new Instituicao();
-$tipoAtividade = new TipoAtividade();
-$daoTA = new TipoAtividadeDAO();
+//----
+$tipoMatricula = new Matricula();
+$daoMat = new MatriculaDAO();
 
 $novo = $daoA->listarAtividadeDoUser($idPessoa);
 
@@ -113,10 +117,6 @@ $pdf->Ln();
 
 foreach ($novo as $row) {
     $ministrante = $daoM->abrir($row->getFk_ministrante());
-    //ao invez de me retornar o id da matricula, isso me retornara o FK de tipo de matricula
-    //1 = Inscrito
-    //2 = Pre-incrito
-    $tipoAtividade = $daoTA->abrirMatricula($row->getId(), $idPessoa);
 
     //tipo duração
     if ($row->getTipoDuracao() == 1) {
@@ -124,8 +124,12 @@ foreach ($novo as $row) {
     } else {
         $duracao = "Min.";
     }
-    //
-    if ($tipoAtividade->getId() == 1) {
+    
+    //ao invez de me retornar o id da matricula, isso me retornara o FK de tipo de matricula
+    //1 = Inscrito
+    //2 = Pre-incrito
+    $tipoMatricula = $daoMat->abrir($pessoa->getId(), $row->getId());
+    if ($tipoMatricula->getFk_tipo() == 1) {
         $tipoM = "Inscrito";
     } else {
         $tipoM = "Pre-inscrito";
@@ -141,7 +145,7 @@ foreach ($novo as $row) {
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'CH', 1);
     $pdf->SetFont('Arial', '', 8);
-    $pdf->Cell(130, 5, $row->getTipoDuracao() . " " . $duracao, 1);
+    $pdf->Cell(130, 5, $row->getDuracao() . " " . $duracao, 1);
     $pdf->Ln();
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(27, 5, 'DATA', 1);

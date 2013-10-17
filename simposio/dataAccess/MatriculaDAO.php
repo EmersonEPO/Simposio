@@ -21,6 +21,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 <?php
 
 include_once "../dataAccess/ConexaoDAO.php";
+include_once "../domainModel/Matricula.php";
 
 
 /*
@@ -102,6 +103,33 @@ class MatriculaDAO {
             return true;
         } else {
             return false;
+        }
+    }
+    
+     public function abrir($pessoa,$atividade) {
+        $query = sprintf("SELECT * FROM matricula WHERE fk_pessoa = '%s' AND fk_atividade = '%s'",$pessoa,$atividade);
+
+        //iniciar conexao
+        $daoConexao = new conexaoDAO();
+        $conexaoAberta = $daoConexao->conectar();
+
+        //selecionar banco
+        $daoConexao->selecionarBanco();
+
+        //Persiste os dados, caso ocorra algum erro ocorre um mysql_error()
+        $resultado = $daoConexao->executeQuery($query);
+
+        //fecha conexao
+        $daoConexao->desconectar($conexaoAberta);
+
+        while ($rs = mysql_fetch_array($resultado)) {
+            $novo = new Matricula();
+
+            $novo->setId(stripslashes($rs['idMatAtv']));
+            $novo->setFk_pessoa(stripslashes($rs['fk_pessoa']));
+            $novo->setFk_atividade(stripslashes($rs['fk_atividade']));
+            $novo->setFk_tipo(stripslashes($rs['fk_tipo']));
+            return $novo;
         }
     }
 

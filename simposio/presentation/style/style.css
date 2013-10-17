@@ -10,6 +10,7 @@ body{
     font-family: arial, helvetica, sans-serif;
     font-size: 12px;
     background-color: #f2f2f2;
+    
 }
 
 .div-corpo{
@@ -434,8 +435,8 @@ body{
 
 .csspdf{
     position: absolute;
-    top: 120%;
-    left: 40%;
+    top: 110%;
+    left: 43%;
 }
 
 a:link, a:visited {
@@ -599,6 +600,15 @@ a:hover {
 
 .linha-td:hover{
     background-color: #f2f2f2;
+    cursor: pointer;   
+}
+
+.linha-tdB{
+    text-align: center;
+}
+
+.linha-tdB:hover{
+    background-color: #ffffff;
     cursor: pointer;   
 }
 

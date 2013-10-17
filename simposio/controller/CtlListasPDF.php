@@ -64,21 +64,35 @@ $pdf->Ln(5);
 $pdf->Ln();
 
 //POPULANDO A TABELA
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(78, 5, 'NOME', 0, 0, 'C');
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(33, 5, 'CPF', 0, 0, 'C');
-$pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(56, 5, "ASSINATURA", 0, 0, 'C');
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(150, 5, 'NOME', 0, 0, 'C');
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(-48, 5, 'CPF', 0, 0, 'C');
+$pdf->SetFont('Arial', 'B', 10);
+$pdf->Cell(128, 5, "ASSINATURA", 0, 0, 'C');
 $pdf->Ln();
+//contador
+$num = 1;
 foreach ($pessoa as $row) {
+    $pdf->SetFont('Arial', '', 8);
+    $pdf->Cell(5, 5, $num, 1);
+    
+    if($num <= 30){
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(26, 5,"INSCRITO", 1);
+    }else{
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->Cell(26, 5,"PRE-INSCRITO", 1);
+        
+    }
     $pdf->SetFont('Arial', '', 8);
     $pdf->Cell(80, 5, $row->getNome(), 1);
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->Cell(30, 5, $row->getCpf(), 1);
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->Cell(60, 5, "", 1);
+    $pdf->Cell(50, 5, "", 1);
     $pdf->Ln();
+    $num++;
 }
 
 //FORÇA O DOWNLOAD PELO BROWSER

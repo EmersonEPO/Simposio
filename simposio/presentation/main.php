@@ -17,7 +17,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <style type="text/css" media="all">
@@ -56,7 +56,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             });
         </script>
 
-        <title>Simpósio</title>
+        <title>VII SI</title>
     </head>
     <body>
         <!-- Conteudo -->
@@ -86,7 +86,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                         </ul>
                     </li>
                     <li class='has-sub'><a  href="../presentation/main.php?pag=frmMinicurso.php&Qua">Atividades</a></li>
-                    <li class='has-sub'><a  href="#" target="_blank" >Simposio</a></li>
+                    <li class='has-sub'><a  href="#" target="_blank" ><img src="image/simposio.png"/></a></li>
                     <!-- Logout do usuario -->
                     <li class='has-sub'><?php echo"<a href='#' id='clickMe'>Sair</a>"; ?></li>
 

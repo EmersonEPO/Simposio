@@ -55,7 +55,7 @@ if ($daoM->existteMatricula($pessoa) == true) {
 $novo = $dao->abrirtotal($idAtividade);
 
 //-----------
-//ATENTION/ ATENÇÃO { AQUI FICAM A QUANTIDADE DE MATRICULAS QUE O SISTEMA ACEITARA´SEREM FEITAS }
+//ATENTION/ ATENÇÃO { AQUI FICAM A QUANTIDADE DE MATRICULAS QUE O SISTEMA ACEITARA SEREM FEITAS }
 $total_vagas_normais = 30;
 $total_vagas_espera = 5;
 

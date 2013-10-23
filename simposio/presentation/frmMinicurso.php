@@ -1,3 +1,4 @@
+
 <?php
 //A sessao precisa ser iniciada caso ela nao exista
 //para ser feito a comparação log mais
@@ -16,7 +17,9 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
     exit;
 }
 ?>
-
+<?php
+	header("Content-Type: text/html; charset=iso-8859-1",true); 
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
     <head>
@@ -38,7 +41,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         <title></title>
         <script language="Javascript">
             function confirmacao(id) { 
-                var resposta = confirm("Realmente deseja prosseguir com essa operação? Lembre-se ela não poderá ser desfeita posteriormente.");   
+                var resposta = confirm("Realmente deseja prosseguir? Não será possível desfazer isso posteriormente.");   
                 if (resposta == true) { 
                     window.location.href = "../controller/CtlParticipar.php?id="+id; 
                 } 
@@ -107,13 +110,11 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
 
         <!-- -->
         <div class="divLegenda">
-            <img src="image/no.png"> Inscrever-se em alguma atividade<br/>
-            <img src="image/es.png"> Inscrever-se na lista de espera<br/>
-            <img src="image/er.png"> Todas as vagas foram preenchidas<br/>
-            <img src="image/su.png"> Inscrito na atividadade<br/>
-            <img src="image/pr.png"> Pre-inscrito na atividadade<br/>
-
-
+            <img src="image/no.png"> <span style='font-size:14px;margin:8px;' >Inscrever-se em algum mini-curso<br/></span>
+            <img src="image/es.png"> <span style='font-size:14px;margin:8px;' >Inscrever-se na lista de espera do mini-curso<br/></span>
+            <img src="image/su.png"> <span style='font-size:14px;margin:8px;' >Inscrito no mini-curso<br/></span>
+            <img src="image/pr.png"> <span style='font-size:14px;margin:8px;' >Inscrito na lista de espera do mini-curso<br/></span>
+			<img src="image/er.png"> <span style='font-size:14px;margin:8px;' >Todas as vagas foram preenchidas<br/></span>
         </div>
 
         <?php
@@ -144,11 +145,11 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         echo "<td width='600' align='middle' class='cssRow1'><b>TIPO</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>C.H.</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>DATA</b></td>";
-        echo "<td width='600' align='middle' class='cssRow1'><b>INICIO</b></td>";
-        echo "<td width='600' align='middle' class='cssRow1'><b>TERMINO</b></td>";
+        echo "<td width='600' align='middle' class='cssRow1'><img src='../presentation/image/inicio.png'></td>";
+        echo "<td width='600' align='middle' class='cssRow1'><b>FIM</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>LOCAL</b></td>";
         echo "<td width='600' align='middle' class='cssRow1'><b>MINISTRANTE</b></td>";
-        echo "<td width='600' align='middle' class='cssRow1'><b>TITULO</b></td>";
+        echo "<td width='600' align='middle' class='cssRow1'><b><img src='../presentation/image/formacao.png'></b></td>";
         echo "</tr>";
 
         foreach ($atividade as $at) {
@@ -206,7 +207,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                             if ($controle->getTotalEspera() == $total_vagas_espera) {
                                 $inscrever = "Inscrito";
                             } else {
-                                $inscrever = "Pre-inscrito";
+                                $inscrever = "Pré-inscrito";
                             }
                             break;
                         } else {
@@ -235,8 +236,9 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                 $estilo = "botaoInscrito";
                 $link = "";
             } else {
-                if ($inscrever == "Pre-inscrito") {
+                if ($inscrever == "Pré-inscrito") {
                     $estilo = "botaoPreInscrito";
+					$inscrever = "Inscrito";
                     $link = "";
                 } else
                 if ($inscrever == "Espera") {
@@ -277,7 +279,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         echo"<td colspan='9' style='background:#fffffff;'>";
         if ($daoMa->existteMatricula($_SESSION['id']) == true) {
             echo"<div class='csspdf'>";
-            echo "<a href='../controller/CtlMatriculaPDF.php'  target='_blank'><img src='../presentation/image/pdf.gif'> Gerar matricula...</a>";
+            echo "<a href='../controller/CtlMatriculaPDF.php'  target='_blank'><img src='../presentation/image/pdf.gif'><img src='../presentation/image/gerar_mat.png'></a>";
             echo "</div>";
         }
         echo"</td>";

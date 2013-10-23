@@ -3,9 +3,8 @@
 include('../dataAccess/ConexaoDAO.php');
 
 $estado = $_GET['estado'];
-$query = "SELECT * FROM cidade USE INDEX (idx_estado) WHERE idEstado = $estado ORDER BY nome";
+$query = "SELECT * FROM cidade USE INDEX(idx_cidade_estado) WHERE idEstado = $estado ORDER BY nome";
 
-//iniciar conexao
 $daoConexao = new conexaoDAO();
 $conexaoAberta = $daoConexao->conectar();
 
@@ -27,7 +26,7 @@ for ($i = 0; $i < $total; $i++) {
 }
 ?>
 
-<label class="labelRegistrar">Cidade:</label>
+<label class="labelRegistrar">CIDADE:</label>
 <select name="cidade" id="cidade" required="" class="cssCidade">
     <?php
     foreach ($arrCidades as $value => $nome) {

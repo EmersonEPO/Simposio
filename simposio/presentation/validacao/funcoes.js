@@ -9,7 +9,7 @@ CPF = CPF.replace(/[^\d]+/g,'');
        CPF == "55555555555" || CPF == "66666666666" || CPF == "77777777777" ||
        CPF == "88888888888" || CPF == "99999999999" || CPF.length<1){
 	   MM_effectAppearFade('erro',1000,0,100, false); //Chamar a fun��o p/ mostrar a div erro
-	   document.getElementById('erro').innerHTML = "O cpf é invalido!";
+	   document.getElementById('erro').innerHTML = "O CPF incorreto!";
 	   //alert ("CPF inv�lido!");
 	   //ncpf.focus();
 	  return false;
@@ -22,7 +22,7 @@ CPF = CPF.replace(/[^\d]+/g,'');
        resto = 0;
    if (resto != parseInt(CPF.charAt(9))){
        MM_effectAppearFade('erro',1000,0,100, false); //Chamar a fun��o p/ mostrar a div erro
-	   document.getElementById('erro').innerHTML = "O cpf é invalido!";
+	   document.getElementById('erro').innerHTML = "O CPF incorreto!";
 	   //alert ("CPF inv�lido!");
 	   //ncpf.focus();
 	   return false;}
@@ -34,10 +34,10 @@ CPF = CPF.replace(/[^\d]+/g,'');
        resto = 0;
    if (resto != parseInt(CPF.charAt(10))){
        MM_effectAppearFade('erro',1000,0,100, false); //Chamar a fun��o p/ mostrar a div erro
-	   document.getElementById('erro').innerHTML = "O cpf é invalido!";
+	   document.getElementById('erro').innerHTML = "O CPF incorreto!";
 	   return false;
 	}
-   MM_effectAppearFade('erro',1000,0,100, true); //Chamar a fun��o p/ mostrar a div erro
+   MM_effectAppearFade('erro',0000,0,000, true); //Chamar a fun��o p/ mostrar a div erro
    return true;
 
 }

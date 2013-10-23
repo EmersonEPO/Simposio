@@ -12,7 +12,7 @@ function validaPessoa(){
 	}
 	if(formPessoa.cpf.value == ""){
 		erro = 1;
-		texto = texto + "Preencha o campo cpf<br/>";
+		texto = texto + "Preencha o campo CPF<br/>";
 		document.getElementById('cpf').style.background = '#ffdfdf';
 	}
         if(formPessoa.nascimento.value == ""){
@@ -47,7 +47,7 @@ function validaPessoa(){
 	}
         if(formPessoa.numero.value == ""){
 		erro = 1;
-		texto = texto + "Preencha o campo numero<br/>";
+		texto = texto + "Preencha o campo número<br/>";
 		document.getElementById('numero').style.background = '#ffdfdf';
 	}
         if(formPessoa.bairro.value == ""){
@@ -68,13 +68,13 @@ function validaPessoa(){
         if(formPessoa.email.value == ""){
 		erro = 1;
                 email = 1;
-		texto = texto + "Preencha o campo email<br/>";
+		texto = texto + "Preencha o campo e-mail<br/>";
 		document.getElementById('email').style.background = '#ffdfdf';
 	}
         if(email == 0){
             if (formPessoa.email.value.lastIndexOf("@") == -1) {
                 erro = 1;
-                texto = texto + "Formato ilegal para email<br/>";
+                texto = texto + "Formato ilegal para e-mail<br/>";
                 document.getElementById('email').style.background = '#ffdfdf';
             }
         }
@@ -143,7 +143,7 @@ function validaPessoaEdit(){
 	}
         if(formPessoa.numero.value == ""){
 		erro = 1;
-		texto = texto + "Preencha o campo numero<br/>";
+		texto = texto + "Preencha o campo número<br/>";
 		document.getElementById('numero').style.background = '#ffdfdf';
 	}
         if(formPessoa.bairro.value == ""){

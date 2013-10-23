@@ -1,11 +1,4 @@
-
 <?php
-    mb_internal_encoding("UTF-8"); 
-    //mb_http_output( "iso-8859-1" );  
-    ob_start("mb_output_handler");   
-    header("Content-Type: text/html; charset=ISO-8859-1",true);
-
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -39,7 +32,7 @@ class ConexaoDAO {
     
     //selecionar banco
     public function selecionarBanco(){
-        $base = mysql_select_db($this->database) or die(mysql_errno());
+        $base = mysql_select_db($this->database) or die(mysql_error());
         
         if($base){
             return true;

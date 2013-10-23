@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //A sessao precisa ser iniciada caso ela nao exista
 //para ser feito a comparação log mais
 if (!isset($_SESSION)) {
@@ -15,7 +15,9 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
     exit;
 }
 ?>
-
+<?php
+	header("Content-Type: text/html; charset=iso-8859-1",true); 
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
     <head>
@@ -56,7 +58,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             });
         </script>
 
-        <title>VII SI</title>
+        <title>Bem-vindo</title>
     </head>
     <body>
         <!-- Conteudo -->
@@ -71,8 +73,7 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                 }
                 //------
                 ?>
-
-
+		
                 <!-- Menu principal -->
 
                 <ul>
@@ -85,8 +86,8 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
                             <li><a  href="../presentation/main.php?pag=frmEditLogin.php" >Alterar Senha</a></li>
                         </ul>
                     </li>
-                    <li class='has-sub'><a  href="../presentation/main.php?pag=frmMinicurso.php&Qua">Atividades</a></li>
-                    <li class='has-sub'><a  href="#" target="_blank" ><img src="image/simposio.png"/></a></li>
+                    <li class='has-sub'><a  href="../presentation/main.php?pag=frmMinicurso.php&Qua">Mini-Cursos</a></li>
+                    <li class='has-sub'><a  href="http://200.131.5.227/simposio" target="_blank" ><img src="image/simposio.png"/></a></li>
                     <!-- Logout do usuario -->
                     <li class='has-sub'><?php echo"<a href='#' id='clickMe'>Sair</a>"; ?></li>
 
@@ -103,28 +104,28 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             if (isset($_GET['msg'])) {
                 if ($_GET['msg'] == 'atention') {
                     echo"<div id='mensagem' style='' class='error'>";
-                    echo"<p>Operação cancelada! Você atingiu o numero maximo de inscrições permitidas.</p>";
+                    echo"<p>Operação cancelada! Você atingiu o número máximo de inscrições permitidas.</p>";
                     echo"</div>";
                 }
                 if ($_GET['msg'] == 'sucess') {
                     echo"<div id='mensagem' style='' class='success'>";
-                    echo"<p>Matricula realizada com sucesso</p>";
+                    echo"<p>Pré-inscrição realizada com sucesso!</p>";
                     echo"</div>";
                 }
                 if ($_GET['msg'] == 'alert') {
                     echo"<div id='mensagem' style='' class='error'>";
-                    echo"<p>Operação cancelada, houve choque de horario.</p>";
+                    echo"<p>Escolha outro mini-curso, houve choque de horário!</p>";
                     echo"</div>";
                 }
 
                 if ($_GET['msg'] == 'important') {
                     echo"<div id='mensagem' style='' class='warning'>";
-                    echo"<p>Atenção, matricula realizada com sucesso na lista de espera.</p>";
+                    echo"<p>Atenção, pré-inscrição realizada com sucesso na lista de espera.</p>";
                     echo"</div>";
                 }
                 if ($_GET['msg'] == 'ops') {
                     echo"<div id='mensagem' style='' class='info'>";
-                    echo"<p>Sentimos informa-lo que todas as vagas para este evento forma preenchidas.</p>";
+                    echo"<p>Sentimos informá-lo que todas as vagas para este mini-curso foram preenchidas.</p>";
                     echo"</div>";
                 }
             }
@@ -132,17 +133,17 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
             if (isset($_GET['atualiza'])) {
                 if ($_GET['atualiza'] == 1) {
                     echo"<div id='mensagem' style='' class='success'>";
-                    echo"<p>Dados atualizados com sucesso</p>";
+                    echo"<p>Dados atualizados com sucesso!</p>";
                     echo"</div>";
                 }
                 if ($_GET['atualiza'] == 2) {
                     echo"<div id='mensagem' style='' class='error'>";
-                    echo"<p>Ocorreu um erro, tem novamente mais tarde.</p>";
+                    echo"<p>Ocorreu um erro, tente novamente mais tarde.</p>";
                     echo"</div>";
                 }
                 if ($_GET['atualiza'] == 0) {
                     echo"<div id='mensagem' style='' class='success'>";
-                    echo"<p>Senha atualizada com sucesso.</p>";
+                    echo"<p>Senha atualizada com sucesso!</p>";
                     echo"</div>";
                     
                 }

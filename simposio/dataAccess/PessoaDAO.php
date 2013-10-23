@@ -14,10 +14,10 @@ class PessoaDAO {
 
     public function inserir(Pessoa $obj) {
 
-        //$query = sprintf("INSERT INTO pessoa(fk_instituicao,fk_cidade,email,senha,nivel,nome,cpf,sexo,nascimento,telefone,rua,numero,bairro,complemento,outraInstituicao,status) 
-        //VALUES('%s','%s','%s',SHA1('%s'),'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',1)", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
+        $query = sprintf("INSERT INTO pessoa(fk_instituicao,fk_cidade,email,senha,nivel,nome,cpf,sexo,nascimento,telefone,rua,numero,bairro,complemento,outraInstituicao,status) 
+        VALUES('%s','%s','%s',SHA1('%s'),'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',1)", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
 
-        $query = sprintf("CALL sp_inserePessoa('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
+       // $query = sprintf("CALL sp_inserePessoa('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", $obj->getFk_instituicao(), $obj->getFk_cidade(), $obj->getEmail(), $obj->getSenha(), 1, $obj->getNome(), $obj->getCpf(), $obj->getSexo(), $obj->getNascimento(), $obj->getFone(), $obj->getRua(), $obj->getNumero(), $obj->getBairro(), $obj->getComplemento(), $obj->getNomeInstituicao());
         
         //iniciar conexao
         $daoConexao = new conexaoDAO();

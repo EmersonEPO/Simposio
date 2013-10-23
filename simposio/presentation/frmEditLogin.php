@@ -16,7 +16,9 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
     exit;
 }
 ?>
-
+<?php
+header("Content-Type:text/html; charset=iso-8859-1",true); 
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
     <head>
@@ -66,17 +68,17 @@ if (!isset($_SESSION['email']) OR ($_SESSION['nivel'] < $nivel_necessario)) {
         $p = $daoP->abrir($idPessoa);
         ?>
         <fieldset class="fieldsetRegistrarLog2">
-            <legend>LOGIN</legend>
+            <legend class="fildCssLegend"><b>EDITAR DADOS DE LOGIN</b></legend><br/>
             <form name="formEditLogin" id="formEditLogin" action="../controller/CtlPessoaEditar.php" method="POST" name="formEditLogin" id="login"  onsubmit="return validarLogin()">
-                <label for="email" class="labelRegistrar">Email:</label>
+                <label for="email" class="labelRegistrar">E-MAIL:</label>
                 <input type="text" id="email" name="email" value="<?php echo $p->getEmail(); ?>"  class="forRegistrarLog" disabled="true"/>
 
                 <br/>
-                <label for="senha" class="labelRegistrar">Nova senha:</label>
+                <label for="senha" class="labelRegistrar">NOVA SENHA:</label>
                 <input type="password" id="senha" name="senha" value="" class="forRegistrarLog" maxlength="16" placeholder="Nova senha"/>
 
                 <br/>
-                <label for="confirmarSenha" class="labelRegistrar">Confirmar senha:</label>
+                <label for="confirmarSenha" class="labelRegistrar">CONFIRMAR SENHA:</label>
                 <input type="password" id="confirmarSenha" name="confirmarSenha" value="" class="forRegistrarLog" maxlength="16" placeholder="Digite novamente" onblur="valida();"/>
                 <br/>
                 <input type="submit" name="atualizar" id="atualizar" value="Atualizar"  class="botaoAtualizarSenha">

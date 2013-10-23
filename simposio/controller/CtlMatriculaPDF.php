@@ -67,10 +67,7 @@ $pdf->AddPage('P', 'A4');
 //CABEÇALHO DO RELATÓRIO
 //Coloque aqui uma imagem como logo no seu relatório
 //Se não precisar de imagem, apague essa linha
-$pdf->Image('../presentation/image/logo.jpg', 70);
-$pdf->SetFont('Arial', 'B', 14);
-$pdf->Cell(80);
-$pdf->Cell(30, 10, 'VII SIMPOSIO INFORMATICA', 0, 0, 'C');
+$pdf->Image('../presentation/image/logo.png',1);
 $pdf->Ln();
 $pdf->Ln(20);
 
